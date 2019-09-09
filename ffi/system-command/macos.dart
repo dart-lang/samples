@@ -22,12 +22,16 @@ typedef SystemDart = int Function(ffi.Pointer<Utf8> command);
 int system(String command) {
   // Load `stdlib`. On MacOS this is in libSystem.dylib.
   final dylib = ffi.DynamicLibrary.open('libSystem.dylib');
+
   // Look up the `system` function.
   final systemP = dylib.lookupFunction<SystemC, SystemDart>('system');
 
   // Allocate a pointer to a Utf8 array containing our command.
   final cmdP = Utf8.toUtf8(command);
 
-  // Invoke the command, and return the result.
-  return systemP(cmdP);
+  // Invoke the command, and free the pointer.
+  int result = systemP(cmdP);
+  cmdP.free();
+
+  return result;
 }
