@@ -1,0 +1,9 @@
+name: primitives_ffi
+version: 0.0.1
+description: >-
+  A super simple example of calling C code from Dart with FFI
+author: Matt Sullivan <mattsullivan@google.com>
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+dev_dependencies:
+  test: ^1.5.3

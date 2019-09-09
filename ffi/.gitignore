@@ -1,0 +1,8 @@
+*.o
+*.dylib
+a.out
+.vscode/
+.packages
+sdk-version
+*snapshot*
+pubspec.lock
