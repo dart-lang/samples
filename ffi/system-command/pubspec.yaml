@@ -1,0 +1,10 @@
+name: system_command
+description: A FFI application that invokes system commands.
+version: 1.0.0
+author: Michael Thomsen <mit@google.com>
+
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+
+dependencies:
+  ffi: ^0.1.1
