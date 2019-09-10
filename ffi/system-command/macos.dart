@@ -25,7 +25,7 @@ typedef SystemDart = int Function(ffi.Pointer<Utf8> command);
 
 int system(String command) {
   // Load `stdlib`. On MacOS this is in libSystem.dylib.
-  final dylib = ffi.DynamicLibrary.open('libSystem.dylib');
+  final dylib = ffi.DynamicLibrary.open('/usr/lib/libSystem.dylib');
 
   // Look up the `system` function.
   final systemP = dylib.lookupFunction<SystemC, SystemDart>('system');
