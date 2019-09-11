@@ -3,9 +3,11 @@ dart:
 - stable
 - dev
 dart_task:
-- test: --platform vm
+# Check static analysis and code formatting.
 - dartanalyzer
 - dartfmt
+# Skip tests as there currently are none.
+- test: --platform vm
 
 # Only building master means that we don't run two builds for each pull request.
 branches:
