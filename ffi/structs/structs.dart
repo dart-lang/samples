@@ -49,10 +49,8 @@ class Coordinate extends ffi.Struct<Coordinate> {
 
 // Example of a complex struct (contains strings and other structs)
 class Place extends ffi.Struct<Place> {
-  @ffi.Pointer()
   ffi.Pointer<Utf8> name;
 
-  @ffi.Pointer()
   ffi.Pointer<Coordinate> coordinate;
 
   factory Place.allocate(
