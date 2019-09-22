@@ -7,11 +7,15 @@ before release. This code is designed to work with *Dart version 2.5.0*.
 
 ## Instructions
 
-The C make files are (currently) written to work on a Mac. To compile the
+The C make files are (currently) written to work on a Mac/Windows. To compile the
 libraries, go to the `c/` folder in each subproject and run:
 
-```bash
-make dylib
+```shell
+make dylib # Mac
+```
+
+```shell
+make dll # Windows
 ```
 
 A .dylib file should be created in the parent folder. Navigate to that and run
