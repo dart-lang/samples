@@ -1,0 +1,11 @@
+primitives.exe: primitives.obj
+	cl primitives.obj
+
+primitives.obj: primitives.c
+	cl /c primitives.c
+
+dll: primitives.obj
+	cl /LD primitives.obj /link /out:..\primitives.dll /DEF:primitives.def
+
+clean:
+	rm primitives.obj primitives.lib primitives.exp ..\primitives.dll
