@@ -8,7 +8,7 @@ dylib: structs.o
 	gcc -dynamiclib -undefined suppress -flat_namespace structs.o -o ../structs.dylib
 
 dll: structs.o
-	gcc -shared structs.o -o ../structs.dylib
+	gcc -shared structs.o -o ../structs.dll
 
 clean:
-	rm a.out structs.o ../structs.dylib
+	rm a.out structs.o ../structs.dll
