@@ -1,0 +1,6 @@
+LIBRARY   structs
+EXPORTS
+    hello_world
+    create_place
+    create_coordinate
+    reverse
