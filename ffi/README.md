@@ -31,6 +31,11 @@ A dll can be created in two ways.
 
     Install gcc from [msys2](https://www.msys2.org/), a more detailed [tutorial](https://github.com/orlp/dev-on-windows/wiki/Installing-GCC--&-MSYS2).
 
+    And add it to `path` eg: `C:\msys64\mingw64\bin\`.
+
+    And make sure `gcc -dumpmachine` gives something like `x86_64-w64-mingw32` but **NOT** `i686-w64-mingw32`
+    eg: `C:\msys64\mingw64\bin\gcc.exe`
+
 
 2. Using `cl` from the Visual Studio build.
     Follow the [docs](https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=vs-2019) to be able to run `nmake.exe` from cmd line.
