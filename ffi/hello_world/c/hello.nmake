@@ -5,7 +5,7 @@ hello.obj: hello.c
 	cl /c hello.c
 
 dll: hello.obj
-	cl /LD hello.obj /link /out:..\hello_world.dylib /DEF:hello.def
+	cl /LD hello.obj /link /out:..\hello_world.dll /DEF:hello.def
 
 clean:
-	rm hello.obj hello.lib hello.exp ..\hello_world.dylib
+	rm hello.obj hello.lib hello.exp ..\hello_world.dll
