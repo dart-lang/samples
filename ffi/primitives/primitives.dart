@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:ffi' as ffi;
+import 'dart:io' show Platform;
 
 // C sum function - int sum(int a, int b);
 // Example of how to pass paramters into C and use the returned result
@@ -28,7 +29,9 @@ typedef multi_sum_func = ffi.Int32 Function(
 typedef MultiSum = int Function(int numCount, int a, int b, int c);
 
 main() {
-  final dylib = ffi.DynamicLibrary.open('primitives.dylib');
+  var path = 'primitives.dylib';
+  if (Platform.isWindows) path = 'primitives.dll';
+  final dylib = ffi.DynamicLibrary.open(path);
 
   // calls int sum(int a, int b);
   final sumPointer = dylib.lookup<ffi.NativeFunction<sum_func>>('sum');
