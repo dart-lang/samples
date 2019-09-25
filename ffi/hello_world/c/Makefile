@@ -7,5 +7,8 @@ hello.o: hello.c
 dylib: hello.o
 	gcc -dynamiclib -undefined suppress -flat_namespace hello.o -o ../hello_world.dylib
 
+dll: hello.o
+	gcc -shared hello.o -o ../hello_world.dll
+
 clean:
-	rm a.out hello.o ../hello_world.dylib
+	rm -f a.out hello.o ../hello_world.dylib ../hello_world.dll

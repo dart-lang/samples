@@ -1,0 +1,6 @@
+LIBRARY   structs
+EXPORTS
+    multi_sum
+    sum
+    subtract
+    multiply
