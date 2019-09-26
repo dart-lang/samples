@@ -7,11 +7,10 @@
 
 int main()
 {
-    hello_world();
     return 0;
 }
 
-void hello_world()
+void HelloWorld()
 {
     printf("Hello World\n");
 }
