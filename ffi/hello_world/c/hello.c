@@ -5,12 +5,10 @@
 #include <stdio.h>
 #include "hello.h"
 
-int main()
-{
+int main() {
     return 0;
 }
 
-void HelloWorld()
-{
+void HelloWorld() {
     printf("Hello World\n");
 }

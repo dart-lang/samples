@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:ffi' as ffi;
+import 'dart:io' show Platform;
 
 // FFI signature of the hello_world C function
 typedef hello_world_func = ffi.Void Function();
@@ -11,7 +12,9 @@ typedef HelloWorld = void Function();
 
 main() {
   // Open the dynamic library
-  final dylib = ffi.DynamicLibrary.open('hello_world.dylib');
+  var path = "hello_world.dylib";
+  if (Platform.isWindows) path = "hello_world.dll";
+  final dylib = ffi.DynamicLibrary.open(path);
   // Look up the C function 'hello_world'
   final HelloWorld hello = dylib
       .lookup<ffi.NativeFunction<hello_world_func>>('HelloWorld')

@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:convert';
+import 'dart:io' show Platform;
 import 'dart:ffi' as ffi;
 
 // Example of using structs to pass strings to and from Dart/C
@@ -49,10 +50,8 @@ class Coordinate extends ffi.Struct<Coordinate> {
 
 // Example of a complex struct (contains strings and other structs)
 class Place extends ffi.Struct<Place> {
-  @ffi.Pointer()
   ffi.Pointer<Utf8> name;
 
-  @ffi.Pointer()
   ffi.Pointer<Coordinate> coordinate;
 
   factory Place.allocate(
@@ -85,7 +84,9 @@ typedef CreatePlace = ffi.Pointer<Place> Function(
     ffi.Pointer<Utf8> name, double latitude, double longitude);
 
 main() {
-  final dylib = ffi.DynamicLibrary.open('structs.dylib');
+  var path = 'structs.dylib';
+  if (Platform.isWindows) path = 'structs.dll';
+  final dylib = ffi.DynamicLibrary.open(path);
 
   final helloWorldPointer =
       dylib.lookup<ffi.NativeFunction<hello_world_func>>('hello_world');
