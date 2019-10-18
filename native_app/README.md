@@ -1,4 +1,6 @@
-A sample command-line application.
+This sample demonstrates a command-line application compiled to native code using
+dart2native. Fetches stats for a GitHub user and
+prints them to the console.
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+## Using
+
