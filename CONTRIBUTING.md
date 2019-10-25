@@ -32,7 +32,7 @@ frustration later on.
 
 ## Coding style
 
-The source code of Dart follows the:
+The source code in this project follows the:
 
 - [Google C++ style guide](https://google.github.io/styleguide/cppguide.html)
 - [Dart style guide](https://www.dartlang.org/articles/style-guide/)
