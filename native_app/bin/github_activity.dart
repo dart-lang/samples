@@ -22,6 +22,7 @@ void main(List<String> args) {
   var fetcher = ActivityService(options.user, options.verbose, options.interval,
       formatter: _getFormatter(options));
 
+  // Stream the github activity to the console
   fetcher.getActivityStrings().listen((s) {
     print(s);
   })
@@ -29,6 +30,7 @@ void main(List<String> args) {
     ..onError((e) => print('Unable to fetch stats:\n$e'));
 }
 
+/// Gets the correct [Formatter] defined by [Options]
 EventFormatter _getFormatter(Options options) {
   if (options.format == 'markdown') {
     return MarkdownEventFormatter();
