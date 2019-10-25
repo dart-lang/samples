@@ -8,6 +8,8 @@ Dart][awesome-dart].
 
 - [ffi](https://github.com/dart-lang/samples/blob/master/ffi) - A series of
 simple examples demonstrating how to call C libraries from Dart.
+- [native_app](https://github.com/dart-lang/samples/blob/master/native_app) - A
+command line application that can be compiled to native code using dart2native.
 
 ## More samples
 
