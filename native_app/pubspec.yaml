@@ -21,8 +21,8 @@ executables:
   github_activity: github_activity
 dependency_overrides:
   # TODO(ryjohn): Remove when this pull request is released.
-  # https://github.com/SpinlockLabs/github.dart/pull/184
+  # https://github.com/SpinlockLabs/github.dart/pull/188
   github:
     git:
-      url: git://github.com/johnpryan/github.dart.git
-      ref: event-updates
+      url: git://github.com/SpinlockLabs/github.dart.git
+      ref: dev

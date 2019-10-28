@@ -4,7 +4,7 @@
 
 import 'dart:io';
 
-import 'package:github/server.dart';
+import 'package:github/github.dart';
 
 import 'src/formatter.dart';
 import 'src/options.dart';
@@ -46,7 +46,7 @@ class ActivityService {
   }
 
   Stream<String> _fetchUserStatsImpl() async* {
-    var client = createGitHubClient(auth: authentication);
+    var client = GitHub(auth: authentication);
     var events = client.activity.listEventsPerformedByUser(username);
 
     await for (var event in events) {
