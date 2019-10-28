@@ -12,11 +12,11 @@ import 'src/util.dart' as util;
 
 export 'src/options.dart';
 
-/// Returns the value of the `GH_STATS_TOKEN` environment variable. This
+/// Returns the value of the `GITHUB_TOKEN` environment variable. This
 /// variable should contain a GitHub auth token. Auth tokens are used to avoid
 /// API rate-limiting.
 Authentication get authentication {
-  var ghStatsToken = Platform.environment['GH_STATS_TOKEN'];
+  var ghStatsToken = Platform.environment['GITHUB_TOKEN'];
   return Authentication.withToken(ghStatsToken);
 }
 

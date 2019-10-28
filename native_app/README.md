@@ -46,10 +46,10 @@ The following command will print events from the past week:
 ```
 
 If you run into rate limiting issues, you can generate a GitHub token and set it
-to the `GH_STATS_TOKEN` environment variable:
+to the `GITHUB_TOKEN` environment variable:
 
 ```bash
-export GH_STATS_TOKEN=<Your token>
+export GITHUB_TOKEN=<Your token>
 ```
 
 [build]: https://pub.dev/packages/build
