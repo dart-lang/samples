@@ -20,6 +20,7 @@ class Options {
     abbr: 'i',
     help: 'The time interval to filter events.',
     allowed: ['day', 'week', 'month'],
+    defaultsTo: Interval.week,
   )
   Interval interval;
 

@@ -36,6 +36,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addOption('interval',
       abbr: 'i',
       help: 'The time interval to filter events.',
+      defaultsTo: 'week',
       allowed: ['day', 'week', 'month'])
   ..addFlag('verbose', abbr: 'v', help: 'Print additional event types')
   ..addOption('format',
