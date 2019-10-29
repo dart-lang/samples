@@ -7,22 +7,29 @@ stats for a GitHub user and prints them to the console.
 This sample also shows how to parse command line options into Dart object using
 [`package:build_cli_annotations`][build-cli] and [`package:build`][build].
 
-## Building an executable
+## Building and running an executable
 To create a standalone executable, Run the `dart2native` command on a Dart file
 with a `main()` function. By default, it places the executable in the same
-directory. The `--output` or `-o` flag is used to change the location of the
-executable.
+directory.
 
 ### Linux and macOS
 
 ```bash
-dart2native bin/github_activity.dart -o github_activity
+dart2native bin/github_activity.dart
+```
+
+```
+./bin/github_activity.exe --user jskeet
 ```
 
 ### Windows
 
 ```bash
-dart2native bin/github_activity.dart -o github_activity.exe
+dart2native bin/github_activity.dart 
+```
+
+```
+bin/github_activity.exe --user jskeet
 ```
 
 ## Building an AOT snapshot
@@ -35,14 +42,14 @@ dart2native bin/github_activity.dart -k aot -o github_activity.aot
 This AOT snapshot can be run using the `dartaotruntime` command:
 
 ```bash
-dartaotruntime github_activity.aot --user hixie
+dartaotruntime github_activity.aot --user jskeet
 ```
 
 ## About this project
 The following command will print events from the past week:
 
 ```
-./github_activity --user johnpryan --format markdown --interval week
+./github_activity --user jskeet --format markdown --interval week
 ```
 
 If you run into rate limiting issues, you can generate a GitHub token and set it
