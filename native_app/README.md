@@ -10,26 +10,33 @@ This sample also shows how to parse command line options into Dart object using
 ## Building and running an executable
 To create a standalone executable, Run the `dart2native` command on a Dart file
 with a `main()` function. By default, it places the executable in the same
-directory.
+directory. The `--output` or `-o` flag is used to change the location of the
+executable.
 
 ### Linux and macOS
+To build the executable:
 
 ```bash
-dart2native bin/github_activity.dart
+dart2native bin/github_activity.dart -o github_activity
 ```
 
+To run:
+
 ```
-./bin/github_activity.exe --user jskeet
+./github_activity
 ```
 
 ### Windows
+To build the executable:
 
 ```bash
-dart2native bin/github_activity.dart 
+dart2native bin/github_activity.dart -o github_activity.exe
 ```
 
+To run:
+
 ```
-bin/github_activity.exe --user jskeet
+github_activity.exe
 ```
 
 ## Building an AOT snapshot
