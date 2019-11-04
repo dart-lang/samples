@@ -17,8 +17,10 @@ dev_dependencies:
   build_runner: ^1.0.0
   pedantic: ^1.8.0
   test: ^1.6.0
+
 executables:
   github_activity: github_activity
+
 dependency_overrides:
   # TODO(ryjohn): Remove when this pull request is released.
   # https://github.com/SpinlockLabs/github.dart/pull/188
