@@ -1,0 +1,8 @@
+hello.o: hello.c
+	gcc -c -fpic hello.c
+
+so: hello.o
+	gcc -shared hello.o -o ../hello_world.so
+
+clean:
+	rm -f a.out hello.o ../hello_world.so
