@@ -22,7 +22,7 @@ typedef multiply_func = ffi.Pointer<ffi.Int32> Function(
     ffi.Int32 a, ffi.Int32 b);
 typedef Multiply = ffi.Pointer<ffi.Int32> Function(int a, int b);
 
-// C multi sum fuction - int multi_sum(int nr_count, ...);
+// C multi sum function - int multi_sum(int nr_count, ...);
 // Example of how to call C functions with varargs with a fixed arg count in Dart
 typedef multi_sum_func = ffi.Int32 Function(
     ffi.Int32 numCount, ffi.Int32 a, ffi.Int32 b, ffi.Int32 c);
