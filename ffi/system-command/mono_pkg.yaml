@@ -1,6 +1,5 @@
 dart:
   - dev
-  - stable
 
 stages:
   - analyze:
