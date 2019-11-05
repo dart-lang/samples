@@ -1,0 +1,9 @@
+dart:
+  - dev
+
+stages:
+  - analyze:
+      - dartanalyzer
+      - dartfmt
+  - unit_test:
+      - test

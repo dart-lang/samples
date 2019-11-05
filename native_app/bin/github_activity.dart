@@ -35,7 +35,7 @@ EventFormatter _getFormatter(Options options) {
   if (options.format == 'markdown') {
     return MarkdownEventFormatter();
   }
-   return DefaultEventFormatter();
+  return DefaultEventFormatter();
 }
 
 void _printUsage() {
