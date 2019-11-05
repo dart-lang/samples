@@ -5,4 +5,4 @@ so: hello.o
 	gcc -shared hello.o -o ../hello_world.so
 
 clean:
-	rm -f a.out hello.o ../hello_world.so
+	rm -f hello.o ../hello_world.so

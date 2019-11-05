@@ -13,7 +13,7 @@ typedef HelloWorld = void Function();
 main() {
   // Open the dynamic library
   var path = "./hello_world.so";
-  if (Platform.isMacOS) path = "hello_world.dylib";
+  if (Platform.isMacOS) path = "./hello_world.dylib";
   if (Platform.isWindows) path = "hello_world.dll";
   final dylib = ffi.DynamicLibrary.open(path);
   // Look up the C function 'hello_world'

@@ -4,5 +4,7 @@ dart:
 
 stages:
   - analyze:
-    - dartanalyzer
-    - dartfmt
+      - dartanalyzer
+      - dartfmt
+  - unit_test:
+      - test
