@@ -35,7 +35,7 @@ int system(String command) {
 
   // Invoke the command, and free the pointer.
   int result = systemP(cmdP);
-  cmdP.free();
+  free(cmdP);
 
   return result;
 }

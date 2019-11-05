@@ -75,6 +75,6 @@ A dll can be created in two ways.
 Samples with a Dockerfile can be tested using Docker:
 
 ```
-docker build -t dart-ffi/hello_world .
-docker run dart-ffi/hello_world pub run test
+docker build -t dart-ffi .
+docker run dart-ffi pub run test
 ```

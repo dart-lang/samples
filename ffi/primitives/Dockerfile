@@ -8,4 +8,3 @@ COPY . /app
 RUN pub get --offline
 
 RUN apt-get update && apt-get install -y make gcc
-RUN dartanalyzer .
