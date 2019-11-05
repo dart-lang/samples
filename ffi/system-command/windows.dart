@@ -52,8 +52,8 @@ int ShellExecute(String operation, String file) {
   // Invoke the command, and free the pointers.
   var result = ShellExecuteP(
       ffi.nullptr, operationP, fileP, ffi.nullptr, ffi.nullptr, SW_SHOWNORMAL);
-  operationP.free();
-  fileP.free();
+  free(operationP);
+  free(fileP);
 
   return result;
 }
