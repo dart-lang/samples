@@ -1,5 +1,7 @@
 # Dart samples
 
+[![Build Status](https://travis-ci.org/dart-lang/samples.svg?branch=master)](https://travis-ci.org/dart-lang/samples)
+
 A collection of [Dart][dart] programs that illustrate features and best
 practices. For a list of community-maintained projects, see [Awesome
 Dart][awesome-dart].
