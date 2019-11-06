@@ -9,7 +9,7 @@ environment:
 dependencies:
   args: ^1.0.0
   build_cli_annotations: ^1.0.0
-  github: ^5.0.0
+  github: 6.0.0-dev.1.0
   intl: ^0.16.0
 
 dev_dependencies:
@@ -20,11 +20,3 @@ dev_dependencies:
 
 executables:
   github_activity: github_activity
-
-dependency_overrides:
-  # TODO(ryjohn): Remove when this pull request is released.
-  # https://github.com/SpinlockLabs/github.dart/pull/188
-  github:
-    git:
-      url: git://github.com/SpinlockLabs/github.dart.git
-      ref: dev
