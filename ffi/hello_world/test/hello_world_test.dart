@@ -6,21 +6,7 @@ import 'package:test/test.dart';
 // README.
 void main() async {
   group('hello_world', () {
-    test('make dylib + execute', () async {
-      // run 'make clean'
-      var clean = await Process.run('make', ['-f', 'LinuxMakefile', 'clean'],
-          workingDirectory: 'c');
-      expect(clean.exitCode, 0);
-
-      // run 'make so'
-      var dynamicLib = await Process.run('make', ['-f', 'LinuxMakefile', 'so'],
-          workingDirectory: 'c');
-      expect(dynamicLib.exitCode, 0);
-
-      // Verify dynamic library was created
-      var file = File('./hello_world.so');
-      expect(await file.exists(), true);
-
+    test('execution', () async {
       // Run the Dart script
       var dartProcess = await Process.run('dart', ['hello.dart']);
       expect(dartProcess.exitCode, equals(0));

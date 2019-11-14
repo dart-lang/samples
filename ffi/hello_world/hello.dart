@@ -12,7 +12,7 @@ typedef HelloWorld = void Function();
 
 main() {
   // Open the dynamic library
-  var path = "./libhello.so";
+  var path = "./hello_library/libhello.so";
   if (Platform.isMacOS) path = "./hello_library/Debug/libhello.dylib";
   if (Platform.isWindows) path = "libhello.dll";
   final dylib = ffi.DynamicLibrary.open(path);

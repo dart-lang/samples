@@ -17,4 +17,5 @@ hello_test
 # Generated shared library files
 *.dylib
 *.so
+*.so.*
 *.dll
