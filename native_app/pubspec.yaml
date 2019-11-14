@@ -9,7 +9,7 @@ environment:
 dependencies:
   args: ^1.0.0
   build_cli_annotations: ^1.0.0
-  github: 6.0.0-dev.1.0
+  github: ^6.0.0
   intl: ^0.16.0
 
 dev_dependencies:
