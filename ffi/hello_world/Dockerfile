@@ -1,4 +1,4 @@
-FROM google/dart:2.6.0-dev.8.2
+FROM google/dart:2.6
 
 WORKDIR /app
 
