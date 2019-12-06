@@ -70,3 +70,11 @@ A dll can be created in two ways.
 
     More details on how to write/generate one [here](https://stackoverflow.com/a/32284832/8608146)
 
+## Using Docker
+
+Samples with a Dockerfile can be tested using Docker:
+
+```
+docker build -t dart-ffi .
+docker run dart-ffi pub run test
+```
