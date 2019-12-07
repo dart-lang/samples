@@ -11,4 +11,4 @@ dll: structs.o
 	gcc -shared structs.o -o ../structs.dll
 
 clean:
-	rm a.out structs.o ../structs.dll
+	rm -f a.out structs.o ../structs.dll ../structs.dylib
