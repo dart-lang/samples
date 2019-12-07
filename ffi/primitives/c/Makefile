@@ -11,4 +11,4 @@ dll: primitives.o
 	gcc -shared primitives.o -o ../primitives.dll
 
 clean:
-	rm a.out primitives.o ../primitives.dll
+	rm -f a.out primitives.o ../primitives.dll ../primitives.dylib
