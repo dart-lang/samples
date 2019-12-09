@@ -8,7 +8,7 @@ dylib: primitives.o
 	gcc -dynamiclib -undefined suppress -flat_namespace primitives.o -o ../primitives.dylib
 
 dll: primitives.o
-	gcc -shared primitives.o -o ../primitives.dylib
+	gcc -shared primitives.o -o ../primitives.dll
 
 clean:
-	rm a.out primitives.o ../primitives.dylib
+	rm -f a.out primitives.o ../primitives.dll ../primitives.dylib
