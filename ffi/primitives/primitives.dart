@@ -35,9 +35,9 @@ typedef multi_sum_func = Int32 Function(
 typedef MultiSum = int Function(int numCount, int a, int b, int c);
 
 main() {
-  var path = './primitives.so';
-  if (Platform.isWindows) path = 'primitives.dll';
-  if (Platform.isMacOS) path = './primitives.dylib';
+  var path = './primitives_library/primitives.so';
+  if (Platform.isMacOS) path = "./primitives_library/primtives.dylib";
+  if (Platform.isWindows) path = 'primitives_library\primitives.dll';
   final dylib = DynamicLibrary.open(path);
 
   // calls int sum(int a, int b);

@@ -7,18 +7,18 @@ import 'package:test/test.dart';
 void main() async {
   group('primitives', () {
     test('make dylib + execute', () async {
-      // run 'make clean'
-      var clean = await Process.run('make', ['-f', 'LinuxMakefile', 'clean'],
-          workingDirectory: 'c');
-      expect(clean.exitCode, 0);
+      // run 'cmake .'
+      var cmake =
+      await Process.run('cmake', ['.'], workingDirectory: 'primitives_library');
+      expect(cmake.exitCode, 0);
 
-      // run 'make so'
-      var dynamicLib = await Process.run('make', ['-f', 'LinuxMakefile', 'so'],
-          workingDirectory: 'c');
-      expect(dynamicLib.exitCode, 0);
+      // run 'make'
+      var make =
+      await Process.run('make', [], workingDirectory: 'primitives_library');
+      expect(make.exitCode, 0);
 
       // Verify dynamic library was created
-      var file = File('./primitives.so');
+      var file = File('./primitives.dylib');
       expect(await file.exists(), true);
 
       // Run the Dart script

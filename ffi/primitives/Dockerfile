@@ -1,4 +1,4 @@
-FROM google/dart:2.6.0-dev.8.2
+FROM google/dart:2.7
 
 WORKDIR /app
 
@@ -7,4 +7,6 @@ RUN pub get
 COPY . /app
 RUN pub get --offline
 
-RUN apt-get update && apt-get install -y make gcc
+RUN apt-get update && apt-get install -y make gcc cmake
+
+CMD pub run test
