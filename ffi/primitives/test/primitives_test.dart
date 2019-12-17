@@ -18,7 +18,7 @@ void main() async {
       expect(make.exitCode, 0);
 
       // Verify dynamic library was created
-      var file = File('./primitives_library/primitives.so');
+      var file = File('./primitives_library/libprimitives.so');
       expect(await file.exists(), true);
 
       // Run the Dart script
