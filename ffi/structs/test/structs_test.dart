@@ -18,7 +18,7 @@ void main() async {
       expect(make.exitCode, 0);
 
       // Verify dynamic library was created
-      var file = File('./primitives.dylib');
+      var file = File('./structs_library/structs.dylib');
       expect(await file.exists(), true);
 
       // Run the Dart script

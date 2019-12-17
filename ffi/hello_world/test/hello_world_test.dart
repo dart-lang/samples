@@ -18,7 +18,7 @@ void main() async {
       expect(make.exitCode, 0);
 
       // Verify dynamic library was created
-      var file = File('./hello_world.dylib');
+      var file = File('./hello_library/libhello.dylib');
       expect(await file.exists(), true);
 
       // Run the Dart script
