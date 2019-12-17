@@ -11,4 +11,4 @@ RUN apt-get update && apt-get install -y make gcc cmake
 
 RUN (cd hello_library && cmake . && make)
 
-CMD dart hello.dart
+CMD pub run test

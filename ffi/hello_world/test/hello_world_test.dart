@@ -9,11 +9,11 @@ void main() async {
     test('execution', () async {
       // Run the Dart script
       var dartProcess = await Process.run('dart', ['hello.dart']);
-      expect(dartProcess.exitCode, equals(0));
 
       // Verify program output
       expect(dartProcess.stderr, isEmpty);
       expect(dartProcess.stdout, equals('Hello World\n'));
+      expect(dartProcess.exitCode, equals(0));
     });
   });
 }
