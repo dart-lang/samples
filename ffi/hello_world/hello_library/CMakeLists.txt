@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 project(hello_library VERSION 1.0.0 LANGUAGES C)
 add_library(hello_library SHARED hello.c)
 add_executable(hello_test hello.c)
