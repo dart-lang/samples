@@ -1,6 +1,11 @@
 # Created with package:mono_repo v2.3.0
 language: dart
 
+addons:
+  apt:
+    packages:
+    - cmake
+
 jobs:
   include:
     - stage: analyze
@@ -129,9 +134,7 @@ jobs:
       os: linux
       env: PKGS="ffi/hello_world"
       before_script:
-        - cd hello_library
-        - cmake .
-        - make
+        - (cd ffi/hello_world/hello_library && cmake . && make)
       script: ./tool/travis.sh test
     - stage: unit_test
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
@@ -139,9 +142,7 @@ jobs:
       os: linux
       env: PKGS="ffi/hello_world"
       before_script:
-        - cd hello_library
-        - cmake .
-        - make
+        - (cd ffi/hello_world/hello_library && cmake . && make)
       script: ./tool/travis.sh test
     - stage: unit_test
       name: "SDK: dev; PKG: ffi/primitives; TASKS: `pub run test`"
