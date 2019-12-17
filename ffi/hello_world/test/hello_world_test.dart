@@ -17,11 +17,8 @@ void main() async {
           await Process.run('make', [], workingDirectory: 'hello_library');
       expect(make.exitCode, 0);
 
-      // Verify dynamic library was created
-      await for (var entity in Directory('./hello_library').list()) {
-        print(entity.path);
-      }
-      var file = File('./hello_library/libhello.dylib');
+      // Verify dynamic library was created (Linux only)
+      var file = File('./hello_library/libhello.so');
       expect(await file.exists(), true);
 
       // Run the Dart script
