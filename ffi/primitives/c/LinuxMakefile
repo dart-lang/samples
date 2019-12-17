@@ -1,8 +1,0 @@
-primitives.o: primitives.c
-	gcc -c -fpic primitives.c
-
-so: primitives.o
-	gcc -shared primitives.o -o ../primitives.so
-
-clean:
-	rm -f a.out primitives.o ../primitives.so

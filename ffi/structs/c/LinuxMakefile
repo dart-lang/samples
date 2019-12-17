@@ -1,8 +1,0 @@
-structs.o: structs.c
-	gcc -c -fpic structs.c
-
-so: structs.o
-	gcc -shared structs.o -o ../structs.so
-
-clean:
-	rm -f a.out structs.o ../structs.so
