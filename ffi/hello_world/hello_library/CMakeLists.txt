@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
-project(hello_library VERSION 1.0.0 DESCRIPTION "Introductory dart:ffi example")
+cmake_minimum_required(VERSION 3.7 FATAL_ERROR)
+project(hello_library VERSION 1.0.0 LANGUAGES C)
 add_library(hello_library SHARED hello.c)
 add_executable(hello_test hello.c)
 
