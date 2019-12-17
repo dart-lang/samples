@@ -8,13 +8,13 @@ void main() async {
   group('structs', () {
     test('make dylib + execute', () async {
       // run 'cmake .'
-      var cmake =
-      await Process.run('cmake', ['.'], workingDirectory: 'structs_library');
+      var cmake = await Process.run('cmake', ['.'],
+          workingDirectory: 'structs_library');
       expect(cmake.exitCode, 0);
 
       // run 'make'
       var make =
-      await Process.run('make', [], workingDirectory: 'structs_library');
+          await Process.run('make', [], workingDirectory: 'structs_library');
       expect(make.exitCode, 0);
 
       // Verify dynamic library was created

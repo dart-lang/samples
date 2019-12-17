@@ -8,13 +8,13 @@ void main() async {
   group('primitives', () {
     test('make dylib + execute', () async {
       // run 'cmake .'
-      var cmake =
-      await Process.run('cmake', ['.'], workingDirectory: 'primitives_library');
+      var cmake = await Process.run('cmake', ['.'],
+          workingDirectory: 'primitives_library');
       expect(cmake.exitCode, 0);
 
       // run 'make'
       var make =
-      await Process.run('make', [], workingDirectory: 'primitives_library');
+          await Process.run('make', [], workingDirectory: 'primitives_library');
       expect(make.exitCode, 0);
 
       // Verify dynamic library was created
