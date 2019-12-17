@@ -9,6 +9,4 @@ RUN pub get --offline
 
 RUN apt-get update && apt-get install -y make gcc cmake
 
-RUN (cd hello_library && cmake . && make)
-
 CMD pub run test
