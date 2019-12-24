@@ -31,5 +31,4 @@ extension Silliest on Object {
   String stop(String x) => toString() + x;
   Type please() => runtimeType;
   bool notAgain(Object other) => this != other;
-  // ...
 }

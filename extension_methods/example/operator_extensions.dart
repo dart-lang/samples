@@ -4,7 +4,8 @@
 
 import 'package:extension_methods/some_api.dart';
 
-/// This file shows that classes can be extended even by operators.
+/// This file shows that extension methods can be used in conjunction
+/// with operator overloading.
 void main() {
   var team = jean + betty;
   team += kay;

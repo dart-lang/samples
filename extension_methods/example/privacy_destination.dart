@@ -14,6 +14,6 @@ void main() {
   // extension is not reachable from here.
   // print(40.addTwo);
 
-  // Same applies for unnamed extension.
+  // Same applies for unnamed extensions.
   // print(true.asInteger);
 }
