@@ -8,10 +8,14 @@ Dart][awesome-dart].
 
 ## Index
 
+- [extension_methods](https://github.com/dart-lang/samples/blob/master/extension_methods) -
+  A set of samples that demonstrates the extension methods syntax and shows
+  some common use cases of the feature.
 - [ffi](https://github.com/dart-lang/samples/blob/master/ffi) - A series of
-simple examples demonstrating how to call C libraries from Dart.
+  simple examples demonstrating how to call C libraries from Dart.
 - [native_app](https://github.com/dart-lang/samples/blob/master/native_app) - A
-command line application that can be compiled to native code using dart2native.
+  command line application that can be compiled to native code using 
+  `dart2native`.
 
 ## More samples
 
