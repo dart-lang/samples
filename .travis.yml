@@ -1,11 +1,11 @@
 # Created with package:mono_repo v2.3.0
 language: dart
 
-# This section is manually added after running "mono_repo travis"
+# Custom configuration
 addons:
   apt:
     packages:
-    - cmake
+      - cmake
 
 jobs:
   include:
