@@ -10,6 +10,30 @@ addons:
 jobs:
   include:
     - stage: analyze
+      name: "SDK: dev; PKG: command_line; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: linux
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: command_line; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: linux
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: dev; PKG: command_line; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: linux
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: command_line; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: linux
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
       name: "SDK: dev; PKG: extension_methods; TASKS: `dartanalyzer .`"
       dart: dev
       os: linux
@@ -154,6 +178,18 @@ jobs:
       env: PKGS="native_app"
       script: ./tool/travis.sh dartfmt
     - stage: unit_test
+      name: "SDK: dev; PKG: command_line; TASKS: `pub run test`"
+      dart: dev
+      os: linux
+      env: PKGS="command_line"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: stable; PKG: command_line; TASKS: `pub run test`"
+      dart: stable
+      os: linux
+      env: PKGS="command_line"
+      script: ./tool/travis.sh test
+    - stage: unit_test
       name: "SDK: dev; PKG: extension_methods; TASKS: `pub run test`"
       dart: dev
       os: linux
@@ -188,18 +224,6 @@ jobs:
       dart: stable
       os: linux
       env: PKGS="ffi/primitives"
-      script: ./tool/travis.sh test
-    - stage: unit_test
-      name: "SDK: dev; PKG: native_app; TASKS: `pub run test`"
-      dart: dev
-      os: linux
-      env: PKGS="native_app"
-      script: ./tool/travis.sh test
-    - stage: unit_test
-      name: "SDK: stable; PKG: native_app; TASKS: `pub run test`"
-      dart: stable
-      os: linux
-      env: PKGS="native_app"
       script: ./tool/travis.sh test
 
 stages:
