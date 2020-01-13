@@ -1,0 +1,5 @@
+travis:
+  addons:
+    apt:
+      packages:
+        - cmake
