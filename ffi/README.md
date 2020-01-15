@@ -1,11 +1,10 @@
-# Experiments with Dart FFI
+# Dart FFI Samples
 
 A series of simple examples demonstrating how to call C libraries from Dart.
 
-Please note that the Dart FFI API is in active development and likely to change
-before release. This code is designed to work with *Dart version 2.5.0*.
+This code is designed to work with *Dart version 2.6.0* and above.
 
-## Instructions
+## Building native libraries
 
 Each sample uses [CMake][cmake] to generate a Makefile. To build the native
 library for each sample:
@@ -18,6 +17,10 @@ make
 
 The `make` command creates a `libhello.dylib` (macOS), `libhello.dll`
 (Windows) or `libhello.so` (Linux) library file.
+
+## Running
+
+Once the native library is built, run `dart <filename>.dart`.
 
 ## Using Docker
 
