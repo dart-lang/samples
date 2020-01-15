@@ -31,4 +31,8 @@ docker build -t dart-ffi .
 docker run dart-ffi
 ```
 
+## macOS code signing
+The Dart binary can only load shared libraries that are *signed*. For more
+information, see https://github.com/dart-lang/sdk/issues/38314
+
 [cmake]: https://cmake.org/
