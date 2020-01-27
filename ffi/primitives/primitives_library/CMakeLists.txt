@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.7 FATAL_ERROR)
 project(primitives_library VERSION 1.0.0 LANGUAGES C)
-add_library(primitives_library SHARED primitives.c)
+add_library(primitives_library SHARED primitives.c primitives.def)
 add_executable(primitives_test primitives.c)
 
 set_target_properties(primitives_library PROPERTIES
