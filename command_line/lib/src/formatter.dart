@@ -18,6 +18,7 @@ class DefaultEventFormatter implements EventFormatter {
 
   const DefaultEventFormatter();
 
+  @override
   String format(Event event) {
     var date = dateFormat.format(event.createdAt.toLocal());
     var type = event.type;
@@ -33,7 +34,8 @@ class DefaultEventFormatter implements EventFormatter {
 }
 
 class MarkdownEventFormatter implements EventFormatter {
-  static final dateFormat = DateFormat("EEE, M/d/y");
+  static final dateFormat = DateFormat('EEE, M/d/y');
+  @override
   String format(Event event) {
     var date = dateFormat.format(event.createdAt.toLocal());
     var type = event.type;
