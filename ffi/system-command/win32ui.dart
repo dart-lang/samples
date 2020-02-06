@@ -61,7 +61,8 @@ int MessageBox(String message, String caption) {
   final captionP = Utf16.toUtf16(caption);
 
   // Invoke the command, and free the pointers.
-  var result = MessageBoxP(ffi.nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
+  var result =
+      MessageBoxP(ffi.nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
   free(messageP);
   free(captionP);
 
