@@ -6,10 +6,10 @@ import 'dart:ffi' as ffi;
 import 'package:ffi/ffi.dart';
 
 main() {
-  MessageBox('Hello Windows 98', 'HelloMsg');
+  MessageBox('こんにちは窓', 'Hello Windows');
 }
 
-/*
+/* MessageBoxW is the UTF16 (wchar_t) version of MessageBox.
 int MessageBoxW(
   HWND    hWnd,
   LPCWSTR lpText,
@@ -19,14 +19,14 @@ int MessageBoxW(
  */
 typedef MessageBoxC = ffi.Int32 Function(
   ffi.Pointer hwnd,
-  ffi.Pointer lpText,
-  ffi.Pointer lpCaption,
+  ffi.Pointer<Utf16> lpText,
+  ffi.Pointer<Utf16> lpCaption,
   ffi.Uint32 uType,
 );
 typedef MessageBoxDart = int Function(
   ffi.Pointer parentWindow,
-  ffi.Pointer message,
-  ffi.Pointer caption,
+  ffi.Pointer<Utf16> message,
+  ffi.Pointer<Utf16> caption,
   int type,
 );
 
@@ -52,7 +52,7 @@ int MessageBox(String message, String caption) {
   // Load user32.
   final user32 = ffi.DynamicLibrary.open('user32.dll');
 
-  // Look up the `ShellExecuteW` function.
+  // Look up the `MessageBoxW` function.
   final MessageBoxP =
       user32.lookupFunction<MessageBoxC, MessageBoxDart>('MessageBoxW');
 
@@ -61,7 +61,7 @@ int MessageBox(String message, String caption) {
   final captionP = Utf16.toUtf16(caption);
 
   // Invoke the command, and free the pointers.
-  var result = MessageBoxP(ffi.nullptr, messageP, captionP, 0);
+  var result = MessageBoxP(ffi.nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
   free(messageP);
   free(captionP);
 
