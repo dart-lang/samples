@@ -2,7 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'dart:ffi' as ffi;
+import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 main() {
@@ -17,16 +17,16 @@ int MessageBoxW(
   UINT    uType
 );
  */
-typedef MessageBoxC = ffi.Int32 Function(
-  ffi.Pointer hwnd,
-  ffi.Pointer<Utf16> lpText,
-  ffi.Pointer<Utf16> lpCaption,
-  ffi.Uint32 uType,
+typedef MessageBoxC = Int32 Function(
+  Pointer hwnd,
+  Pointer<Utf16> lpText,
+  Pointer<Utf16> lpCaption,
+  Uint32 uType,
 );
 typedef MessageBoxDart = int Function(
-  ffi.Pointer parentWindow,
-  ffi.Pointer<Utf16> message,
-  ffi.Pointer<Utf16> caption,
+  Pointer parentWindow,
+  Pointer<Utf16> message,
+  Pointer<Utf16> caption,
   int type,
 );
 
@@ -50,7 +50,7 @@ const MB_ICONHAND = 0x00000010;
 
 int MessageBox(String message, String caption) {
   // Load user32.
-  final user32 = ffi.DynamicLibrary.open('user32.dll');
+  final user32 = DynamicLibrary.open('user32.dll');
 
   // Look up the `MessageBoxW` function.
   final MessageBoxP =
@@ -61,8 +61,8 @@ int MessageBox(String message, String caption) {
   final captionP = Utf16.toUtf16(caption);
 
   // Invoke the command, and free the pointers.
-  var result =
-      MessageBoxP(ffi.nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
+  final result =
+      MessageBoxP(nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
   free(messageP);
   free(captionP);
 
