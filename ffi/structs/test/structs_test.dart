@@ -18,7 +18,7 @@ void main() async {
       expect(make.exitCode, 0);
 
       // Verify dynamic library was created
-      var file = File('./structs_library/structs.so');
+      var file = File('./structs_library/libstructs.so');
       expect(await file.exists(), true);
 
       // Run the Dart script
