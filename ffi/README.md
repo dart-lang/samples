@@ -4,6 +4,9 @@ A series of simple examples demonstrating how to call C libraries from Dart.
 
 This code is designed to work with *Dart version 2.6.0* and above.
 
+To learn more about FFI, start with the [C interop using
+dart:ffi](https://dart.dev/guides/libraries/c-interop) guide on dart.dev.
+
 ## Building native libraries
 
 Each sample uses [CMake][cmake] to generate a Makefile. To build the native
