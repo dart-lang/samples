@@ -3,7 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:ffi';
-import 'dart:io' show Platform;
+import 'dart:io' show Directory, Platform;
 
 import 'package:ffi/ffi.dart';
 
@@ -35,10 +35,12 @@ typedef multi_sum_func = Int32 Function(
 typedef MultiSum = int Function(int numCount, int a, int b, int c);
 
 main() {
-  var path = './primitives_library/libprimitives.so';
-  if (Platform.isMacOS) path = './primitives_library/libprimtives.dylib';
-  if (Platform.isWindows) path = r'primitives_library\Debug\primitives.dll';
-  final dylib = DynamicLibrary.open(path);
+  String absolutePath = Directory.current.path;
+  var path = '${absolutePath}/primitives_library/libprimitives.so';
+  if (Platform.isMacOS) path = '${absolutePath}/primitives_library/libprimitives.dylib';
+  if (Platform.isWindows) path = r'${absolutePath}\primitives_library\Debug\primitives.dll';
+  print(path);
+  final dylib = DynamicLibrary.open(path); //.open(path);
 
   // calls int sum(int a, int b);
   final sumPointer = dylib.lookup<NativeFunction<sum_func>>('sum');
