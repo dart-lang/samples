@@ -56,8 +56,10 @@ typedef CreatePlace = Pointer<Place> Function(
 main() {
   String absolutePath = Directory.current.path;
   var path = '${absolutePath}/structs_library/libstructs.so';
-  if (Platform.isMacOS) path = '${absolutePath}/structs_library/libstructs.dylib';
-  if (Platform.isWindows) path = r'${absolutePath}\structs_library\Debug\structs.dll';
+  if (Platform.isMacOS)
+    path = '${absolutePath}/structs_library/libstructs.dylib';
+  if (Platform.isWindows)
+    path = r'${absolutePath}\structs_library\Debug\structs.dll';
   final dylib = DynamicLibrary.open(path);
 
   final helloWorldPointer =

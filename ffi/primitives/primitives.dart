@@ -37,10 +37,11 @@ typedef MultiSum = int Function(int numCount, int a, int b, int c);
 main() {
   String absolutePath = Directory.current.path;
   var path = '${absolutePath}/primitives_library/libprimitives.so';
-  if (Platform.isMacOS) path = '${absolutePath}/primitives_library/libprimitives.dylib';
-  if (Platform.isWindows) path = r'${absolutePath}\primitives_library\Debug\primitives.dll';
-  print(path);
-  final dylib = DynamicLibrary.open(path); //.open(path);
+  if (Platform.isMacOS)
+    path = '${absolutePath}/primitives_library/libprimitives.dylib';
+  if (Platform.isWindows)
+    path = r'${absolutePath}\primitives_library\Debug\primitives.dll';
+  final dylib = DynamicLibrary.open(path);
 
   // calls int sum(int a, int b);
   final sumPointer = dylib.lookup<NativeFunction<sum_func>>('sum');
