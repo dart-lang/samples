@@ -3,3 +3,12 @@ travis:
     apt:
       packages:
         - cmake
+
+  dart:
+    - dev
+    - stable
+
+  os:
+    - linux
+    - windows
+    - osx
