@@ -15,4 +15,3 @@ stages:
     - test:
       os:
         - linux
-        - osx

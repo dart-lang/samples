@@ -160,21 +160,9 @@ jobs:
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh test
     - stage: unit_test
-      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `pub run test`"
-      dart: dev
-      os: osx
-      env: PKGS="ffi/hello_world"
-      script: ./tool/travis.sh test
-    - stage: unit_test
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
       dart: stable
       os: linux
-      env: PKGS="ffi/hello_world"
-      script: ./tool/travis.sh test
-    - stage: unit_test
-      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
-      dart: stable
-      os: osx
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh test
     - stage: unit_test
@@ -184,21 +172,9 @@ jobs:
       env: PKGS="ffi/primitives"
       script: ./tool/travis.sh test
     - stage: unit_test
-      name: "SDK: dev; PKG: ffi/primitives; TASKS: `pub run test`"
-      dart: dev
-      os: osx
-      env: PKGS="ffi/primitives"
-      script: ./tool/travis.sh test
-    - stage: unit_test
       name: "SDK: stable; PKG: ffi/primitives; TASKS: `pub run test`"
       dart: stable
       os: linux
-      env: PKGS="ffi/primitives"
-      script: ./tool/travis.sh test
-    - stage: unit_test
-      name: "SDK: stable; PKG: ffi/primitives; TASKS: `pub run test`"
-      dart: stable
-      os: osx
       env: PKGS="ffi/primitives"
       script: ./tool/travis.sh test
 
