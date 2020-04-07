@@ -12,4 +12,7 @@ stages:
     - dartanalyzer
     - dartfmt
   - unit_test:
-    - test
+    - test:
+      os:
+        - linux
+        - osx
