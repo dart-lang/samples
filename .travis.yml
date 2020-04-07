@@ -16,9 +16,33 @@ jobs:
       env: PKGS="command_line"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
+      name: "SDK: dev; PKG: command_line; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: osx
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: dev; PKG: command_line; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: windows
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
       name: "SDK: stable; PKG: command_line; TASKS: `dartanalyzer .`"
       dart: stable
       os: linux
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: command_line; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: osx
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: command_line; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: windows
       env: PKGS="command_line"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
@@ -28,9 +52,33 @@ jobs:
       env: PKGS="command_line"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
+      name: "SDK: dev; PKG: command_line; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: osx
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: dev; PKG: command_line; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: windows
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
       name: "SDK: stable; PKG: command_line; TASKS: `dartfmt -n --set-exit-if-changed .`"
       dart: stable
       os: linux
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: command_line; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: osx
+      env: PKGS="command_line"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: command_line; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: windows
       env: PKGS="command_line"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
@@ -40,9 +88,33 @@ jobs:
       env: PKGS="extension_methods"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
+      name: "SDK: dev; PKG: extension_methods; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: osx
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: dev; PKG: extension_methods; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: windows
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
       name: "SDK: stable; PKG: extension_methods; TASKS: `dartanalyzer .`"
       dart: stable
       os: linux
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: extension_methods; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: osx
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: extension_methods; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: windows
       env: PKGS="extension_methods"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
@@ -52,9 +124,33 @@ jobs:
       env: PKGS="extension_methods"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
+      name: "SDK: dev; PKG: extension_methods; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: osx
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: dev; PKG: extension_methods; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: windows
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
       name: "SDK: stable; PKG: extension_methods; TASKS: `dartfmt -n --set-exit-if-changed .`"
       dart: stable
       os: linux
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: extension_methods; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: osx
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: extension_methods; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: windows
       env: PKGS="extension_methods"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
@@ -64,9 +160,33 @@ jobs:
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
+      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: osx
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: windows
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartanalyzer .`"
       dart: stable
       os: linux
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: osx
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: windows
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
@@ -76,9 +196,33 @@ jobs:
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
+      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: osx
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: windows
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartfmt -n --set-exit-if-changed .`"
       dart: stable
       os: linux
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: osx
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: windows
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
@@ -88,9 +232,33 @@ jobs:
       env: PKGS="ffi/primitives"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
+      name: "SDK: dev; PKG: ffi/primitives; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: osx
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: dev; PKG: ffi/primitives; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: windows
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
       name: "SDK: stable; PKG: ffi/primitives; TASKS: `dartanalyzer .`"
       dart: stable
       os: linux
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/primitives; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: osx
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/primitives; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: windows
       env: PKGS="ffi/primitives"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
@@ -100,9 +268,33 @@ jobs:
       env: PKGS="ffi/primitives"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
+      name: "SDK: dev; PKG: ffi/primitives; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: osx
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: dev; PKG: ffi/primitives; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: windows
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
       name: "SDK: stable; PKG: ffi/primitives; TASKS: `dartfmt -n --set-exit-if-changed .`"
       dart: stable
       os: linux
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/primitives; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: osx
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/primitives; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: windows
       env: PKGS="ffi/primitives"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
@@ -112,9 +304,33 @@ jobs:
       env: PKGS="ffi/structs"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
+      name: "SDK: dev; PKG: ffi/structs; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: osx
+      env: PKGS="ffi/structs"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: dev; PKG: ffi/structs; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: windows
+      env: PKGS="ffi/structs"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
       name: "SDK: stable; PKG: ffi/structs; TASKS: `dartanalyzer .`"
       dart: stable
       os: linux
+      env: PKGS="ffi/structs"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/structs; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: osx
+      env: PKGS="ffi/structs"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/structs; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: windows
       env: PKGS="ffi/structs"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
@@ -124,9 +340,33 @@ jobs:
       env: PKGS="ffi/structs"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
+      name: "SDK: dev; PKG: ffi/structs; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: osx
+      env: PKGS="ffi/structs"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: dev; PKG: ffi/structs; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: windows
+      env: PKGS="ffi/structs"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
       name: "SDK: stable; PKG: ffi/structs; TASKS: `dartfmt -n --set-exit-if-changed .`"
       dart: stable
       os: linux
+      env: PKGS="ffi/structs"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/structs; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: osx
+      env: PKGS="ffi/structs"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/structs; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: windows
       env: PKGS="ffi/structs"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
@@ -136,9 +376,33 @@ jobs:
       env: "PKGS=\"ffi/system-command\""
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
+      name: "SDK: dev; PKG: ffi/system-command; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: osx
+      env: "PKGS=\"ffi/system-command\""
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: dev; PKG: ffi/system-command; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: windows
+      env: "PKGS=\"ffi/system-command\""
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
       name: "SDK: stable; PKG: ffi/system-command; TASKS: `dartanalyzer .`"
       dart: stable
       os: linux
+      env: "PKGS=\"ffi/system-command\""
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/system-command; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: osx
+      env: "PKGS=\"ffi/system-command\""
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/system-command; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: windows
       env: "PKGS=\"ffi/system-command\""
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
@@ -148,9 +412,33 @@ jobs:
       env: "PKGS=\"ffi/system-command\""
       script: ./tool/travis.sh dartfmt
     - stage: analyze
+      name: "SDK: dev; PKG: ffi/system-command; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: osx
+      env: "PKGS=\"ffi/system-command\""
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: dev; PKG: ffi/system-command; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: windows
+      env: "PKGS=\"ffi/system-command\""
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
       name: "SDK: stable; PKG: ffi/system-command; TASKS: `dartfmt -n --set-exit-if-changed .`"
       dart: stable
       os: linux
+      env: "PKGS=\"ffi/system-command\""
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/system-command; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: osx
+      env: "PKGS=\"ffi/system-command\""
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: ffi/system-command; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: windows
       env: "PKGS=\"ffi/system-command\""
       script: ./tool/travis.sh dartfmt
     - stage: analyze
@@ -160,9 +448,33 @@ jobs:
       env: PKGS="native_app"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
+      name: "SDK: dev; PKG: native_app; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: osx
+      env: PKGS="native_app"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: dev; PKG: native_app; TASKS: `dartanalyzer .`"
+      dart: dev
+      os: windows
+      env: PKGS="native_app"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
       name: "SDK: stable; PKG: native_app; TASKS: `dartanalyzer .`"
       dart: stable
       os: linux
+      env: PKGS="native_app"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: native_app; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: osx
+      env: PKGS="native_app"
+      script: ./tool/travis.sh dartanalyzer
+    - stage: analyze
+      name: "SDK: stable; PKG: native_app; TASKS: `dartanalyzer .`"
+      dart: stable
+      os: windows
       env: PKGS="native_app"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
@@ -172,9 +484,33 @@ jobs:
       env: PKGS="native_app"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
+      name: "SDK: dev; PKG: native_app; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: osx
+      env: PKGS="native_app"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: dev; PKG: native_app; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: dev
+      os: windows
+      env: PKGS="native_app"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
       name: "SDK: stable; PKG: native_app; TASKS: `dartfmt -n --set-exit-if-changed .`"
       dart: stable
       os: linux
+      env: PKGS="native_app"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: native_app; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: osx
+      env: PKGS="native_app"
+      script: ./tool/travis.sh dartfmt
+    - stage: analyze
+      name: "SDK: stable; PKG: native_app; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      dart: stable
+      os: windows
       env: PKGS="native_app"
       script: ./tool/travis.sh dartfmt
     - stage: unit_test
@@ -184,9 +520,33 @@ jobs:
       env: PKGS="command_line"
       script: ./tool/travis.sh test
     - stage: unit_test
+      name: "SDK: dev; PKG: command_line; TASKS: `pub run test`"
+      dart: dev
+      os: osx
+      env: PKGS="command_line"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: dev; PKG: command_line; TASKS: `pub run test`"
+      dart: dev
+      os: windows
+      env: PKGS="command_line"
+      script: ./tool/travis.sh test
+    - stage: unit_test
       name: "SDK: stable; PKG: command_line; TASKS: `pub run test`"
       dart: stable
       os: linux
+      env: PKGS="command_line"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: stable; PKG: command_line; TASKS: `pub run test`"
+      dart: stable
+      os: osx
+      env: PKGS="command_line"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: stable; PKG: command_line; TASKS: `pub run test`"
+      dart: stable
+      os: windows
       env: PKGS="command_line"
       script: ./tool/travis.sh test
     - stage: unit_test
@@ -196,9 +556,33 @@ jobs:
       env: PKGS="extension_methods"
       script: ./tool/travis.sh test
     - stage: unit_test
+      name: "SDK: dev; PKG: extension_methods; TASKS: `pub run test`"
+      dart: dev
+      os: osx
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: dev; PKG: extension_methods; TASKS: `pub run test`"
+      dart: dev
+      os: windows
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh test
+    - stage: unit_test
       name: "SDK: stable; PKG: extension_methods; TASKS: `pub run test`"
       dart: stable
       os: linux
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: stable; PKG: extension_methods; TASKS: `pub run test`"
+      dart: stable
+      os: osx
+      env: PKGS="extension_methods"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: stable; PKG: extension_methods; TASKS: `pub run test`"
+      dart: stable
+      os: windows
       env: PKGS="extension_methods"
       script: ./tool/travis.sh test
     - stage: unit_test
@@ -208,9 +592,33 @@ jobs:
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh test
     - stage: unit_test
+      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `pub run test`"
+      dart: dev
+      os: osx
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `pub run test`"
+      dart: dev
+      os: windows
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh test
+    - stage: unit_test
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
       dart: stable
       os: linux
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
+      dart: stable
+      os: osx
+      env: PKGS="ffi/hello_world"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
+      dart: stable
+      os: windows
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh test
     - stage: unit_test
@@ -220,9 +628,33 @@ jobs:
       env: PKGS="ffi/primitives"
       script: ./tool/travis.sh test
     - stage: unit_test
+      name: "SDK: dev; PKG: ffi/primitives; TASKS: `pub run test`"
+      dart: dev
+      os: osx
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: dev; PKG: ffi/primitives; TASKS: `pub run test`"
+      dart: dev
+      os: windows
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh test
+    - stage: unit_test
       name: "SDK: stable; PKG: ffi/primitives; TASKS: `pub run test`"
       dart: stable
       os: linux
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: stable; PKG: ffi/primitives; TASKS: `pub run test`"
+      dart: stable
+      os: osx
+      env: PKGS="ffi/primitives"
+      script: ./tool/travis.sh test
+    - stage: unit_test
+      name: "SDK: stable; PKG: ffi/primitives; TASKS: `pub run test`"
+      dart: stable
+      os: windows
       env: PKGS="ffi/primitives"
       script: ./tool/travis.sh test
 
