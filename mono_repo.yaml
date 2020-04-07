@@ -3,3 +3,7 @@ travis:
     apt:
       packages:
         - cmake
+
+# Merges all analyze stages into one bot, which is more efficient
+merge_stages:
+  - analyze
