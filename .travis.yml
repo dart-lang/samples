@@ -166,12 +166,6 @@ jobs:
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
-      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `dartanalyzer .`"
-      dart: dev
-      os: windows
-      env: PKGS="ffi/hello_world"
-      script: ./tool/travis.sh dartanalyzer
-    - stage: analyze
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartanalyzer .`"
       dart: stable
       os: linux
@@ -181,12 +175,6 @@ jobs:
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartanalyzer .`"
       dart: stable
       os: osx
-      env: PKGS="ffi/hello_world"
-      script: ./tool/travis.sh dartanalyzer
-    - stage: analyze
-      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartanalyzer .`"
-      dart: stable
-      os: windows
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh dartanalyzer
     - stage: analyze
@@ -202,12 +190,6 @@ jobs:
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
-      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `dartfmt -n --set-exit-if-changed .`"
-      dart: dev
-      os: windows
-      env: PKGS="ffi/hello_world"
-      script: ./tool/travis.sh dartfmt
-    - stage: analyze
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartfmt -n --set-exit-if-changed .`"
       dart: stable
       os: linux
@@ -217,12 +199,6 @@ jobs:
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartfmt -n --set-exit-if-changed .`"
       dart: stable
       os: osx
-      env: PKGS="ffi/hello_world"
-      script: ./tool/travis.sh dartfmt
-    - stage: analyze
-      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `dartfmt -n --set-exit-if-changed .`"
-      dart: stable
-      os: windows
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh dartfmt
     - stage: analyze
@@ -598,12 +574,6 @@ jobs:
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh test
     - stage: unit_test
-      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `pub run test`"
-      dart: dev
-      os: windows
-      env: PKGS="ffi/hello_world"
-      script: ./tool/travis.sh test
-    - stage: unit_test
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
       dart: stable
       os: linux
@@ -613,12 +583,6 @@ jobs:
       name: "SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
       dart: stable
       os: osx
-      env: PKGS="ffi/hello_world"
-      script: ./tool/travis.sh test
-    - stage: unit_test
-      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
-      dart: stable
-      os: windows
       env: PKGS="ffi/hello_world"
       script: ./tool/travis.sh test
     - stage: unit_test
