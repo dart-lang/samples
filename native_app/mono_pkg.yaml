@@ -2,6 +2,11 @@ dart:
   - dev
   - stable
 
+os:
+  - linux
+  - osx
+  - windows
+
 stages:
   - analyze:
     - dartanalyzer

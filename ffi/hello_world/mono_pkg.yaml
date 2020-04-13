@@ -2,9 +2,16 @@ dart:
   - dev
   - stable
 
+os:
+  - linux
+  - osx
+  - windows
+
 stages:
   - analyze:
     - dartanalyzer
     - dartfmt
   - unit_test:
-      - test
+    - test:
+      os:
+        - linux
