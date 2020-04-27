@@ -1,4 +1,4 @@
-name: cli_app
+name: native_app
 description: >
   A command line application that can be compiled to native code using
   dart2native.
