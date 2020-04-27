@@ -3,8 +3,8 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:io';
-import 'package:native_app/github_activity.dart';
-import 'package:native_app/src/formatter.dart';
+import 'package:cli_app/github_activity.dart';
+import 'package:cli_app/src/formatter.dart';
 
 void main(List<String> args) {
   var options = parseOptions(args);

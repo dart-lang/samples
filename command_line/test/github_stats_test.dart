@@ -3,13 +3,14 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:github/github.dart';
-import 'package:native_app/src/formatter.dart';
+import 'package:cli_app/src/formatter.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('DefaultFormatter', () {
     var formatter = DefaultEventFormatter();
-    var actor = User()..login = 'substack';
+    var actor = User()
+      ..login = 'substack';
     var org = Organization();
     var repo = Repository();
 
