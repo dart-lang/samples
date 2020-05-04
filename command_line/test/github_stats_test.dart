@@ -9,8 +9,7 @@ import 'package:test/test.dart';
 void main() {
   test('DefaultFormatter', () {
     var formatter = DefaultEventFormatter();
-    var actor = User()
-      ..login = 'substack';
+    var actor = User()..login = 'substack';
     var org = Organization();
     var repo = Repository();
 
