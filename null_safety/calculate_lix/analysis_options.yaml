@@ -1,3 +1,4 @@
 analyzer:
   enable-experiment:
     - non-nullable
+    

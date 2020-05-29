@@ -2,17 +2,17 @@
 
 This is a small code example of an app that calculates the 'lix' readability
 index for a text file. The implementation uses the new Dart null safety feature,
-and is means to demonstrate how this feature works in a practical example,
-as-well-as serve as a demonstration of how to configure and run code with null
+and is meant to demonstrate how this feature works in a practical example,
+as well as serve as a demonstration of how to configure and run code with null
 safety at it's current technical preview stage.
 
 # Running the example code
 
-The code example only works with the null safety technical preview 1 build, Dart
-SDK version `2.9.0-13.0.dev`. You will need to download a copy of this Dart SDK
-even if you have a Flutter or Dart SDK installed already, and you want to use
-this preview SDK only for experimenting with null safety. Specifically, do not
-use it for any kind of production coding.
+The code works only with the first technical preview of null safety, Dart SDK
+version `2.9.0-13.0.dev`. You will need to download a copy of this Dart SDK even
+if you have a Flutter or Dart SDK installed already, and you'll want to use this
+preview SDK only for experimenting with null safety. Specifically, do not use it
+for any kind of production coding.
 
 ## Dart preview SDK installation
 
