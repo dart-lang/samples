@@ -1,0 +1,17 @@
+name: calculate_lix
+description: A command-line application demonstrating use of null safety.
+version: 1.0.0
+
+environment:
+  sdk: '>=2.9.0-11.0.dev <3.0.0'
+
+dependencies:
+  collection: 1.14.13-dev
+
+# Temporary override as the null safety enabled versions of this package is
+# not yet published to pub.dev.
+dependency_overrides:
+  collection:
+    git:
+      url: https://github.com/dart-lang/collection
+      ref: null_safety
