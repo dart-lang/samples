@@ -2,7 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-class LixCounts {
+class Lix {
   // Based on:
   // https://readabilityformulas.com/the-LIX-readability-formula.php.
   int words; // Number of words in general.
@@ -21,12 +21,27 @@ class LixCounts {
   // the fields 'required', meaning that a value must be passed to the
   // constructor. 'required' is a new keyword introduced as part of null safety
   // which replaces the previous '@required' annotatation.
-  LixCounts({
+  Lix({
     required this.words,
     required this.longWords,
     required this.periods,
   }) {
     readability = this._calculate();
+  }
+
+  factory Lix.fromString(String text) {
+    // Count periods: . : ; ! ?
+    var periods = (RegExp(r"[.:;!?]").allMatches(text).length);
+
+    // Count words.
+    //
+    // TIP: We're using null safe versions of the core libraries, so it's clear
+    // from the signature of split() that it returns a non-null result.
+    var allWords = text.split(RegExp(r"\W+"));
+    var words = allWords.length;
+    var longWords = allWords.where((w) => w.length > 6).toList().length;
+
+    return Lix(words: words, longWords: longWords, periods: periods);
   }
 
   // TIP: Notice how we declare a non-nullable uninitalized `result` variable,
@@ -67,19 +82,4 @@ class LixCounts {
       return 'unknown';
     }
   }
-}
-
-LixCounts calculate(String text) {
-  // Count periods: . : ; ! ?
-  var periods = (RegExp(r"[.:;!?]").allMatches(text).length);
-
-  // Count words.
-  //
-  // TIP: We're using null safe versions of the core libraries, so it's clear
-  // from the signature of split() that it returns a non-null result.
-  var allWords = text.split(RegExp(r"\W+"));
-  var words = allWords.length;
-  var longWords = allWords.where((w) => w.length > 6).toList().length;
-
-  return LixCounts(words: words, longWords: longWords, periods: periods);
 }

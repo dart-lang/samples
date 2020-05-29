@@ -4,7 +4,7 @@
 
 import 'dart:io';
 
-import 'package:calculate_lix/lix.dart' as lix;
+import 'package:calculate_lix/lix.dart';
 
 void main(List<String> arguments) {
   // Parse the arguments; we expect a single argument containing the file name.
@@ -22,10 +22,10 @@ void main(List<String> arguments) {
 
     // Calculate lix.
     try {
-      final lc = lix.calculate(File(fileName).readAsStringSync());
-      print("Lix is: ${lc.readability}, ${lc.describe} to read ("
-          "words: ${lc.words}, long words: ${lc.longWords}, "
-          "periods: ${lc.periods}).");
+      final l = Lix.fromString(File(fileName).readAsStringSync());
+      print("Lix is: ${l.readability}, ${l.describe} to read ("
+          "words: ${l.words}, long words: ${l.longWords}, "
+          "periods: ${l.periods}).");
     } catch (Exception) {
       print('Invalid input, could not calculate lix!');
     }
@@ -33,5 +33,5 @@ void main(List<String> arguments) {
 }
 
 void printUsage() {
-  print('Usage: calclix <text file>');
+  print('Usage: calculate_lix <text file>');
 }
