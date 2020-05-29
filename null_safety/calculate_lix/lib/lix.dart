@@ -55,7 +55,7 @@ class Lix {
     int result;
 
     if (words == 0 || periods == 0) {
-      result = -1;
+      throw (ArgumentError('Text must contain at least one full sentence.'));
     } else {
       final sentenceLength = words / periods;
       final wordLength = (longWords * 100) / words;
