@@ -67,7 +67,7 @@ class Lix {
 
   // TIP: Notice how flow analysis knows we covered the possible cases for `l`
   // (try removing the last else-statement).
-  String get describe {
+  String describe() {
     if (readability > 0 && readability < 20) {
       return 'very easy';
     } else if (readability < 30) {

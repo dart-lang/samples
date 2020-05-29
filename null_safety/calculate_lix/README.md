@@ -4,17 +4,17 @@ This is a small code example of an app that calculates the 'lix' readability
 index for a text file. The implementation uses the new Dart null safety feature,
 and is meant to demonstrate how this feature works in a practical example,
 as well as serve as a demonstration of how to configure and run code with null
-safety at it's current technical preview stage.
+safety at it's current tech preview stage.
 
-# Running the example code
+## Running the example code
 
-The code works only with the first technical preview of null safety, Dart SDK
-version `2.9.0-13.0.dev`. You will need to download a copy of this Dart SDK even
-if you have a Flutter or Dart SDK installed already, and you'll want to use this
+The code works only with the first tech preview of null safety, Dart SDK version
+`2.9.0-13.0.dev`. You will need to download a copy of this Dart SDK even if you
+have a Flutter or Dart SDK installed already, and you'll want to use this
 preview SDK only for experimenting with null safety. Specifically, do not use it
 for any kind of production coding.
 
-## Dart preview SDK installation
+### Dart preview SDK installation
 
   1. Download the preview SDK:
      [Windows](https://storage.googleapis.com/dart-archive/channels/dev/release/2.9.0-13.0.dev/sdk/dartsdk-windows-x64-release.zip),
@@ -24,9 +24,9 @@ for any kind of production coding.
   1. Unzip the SDK to a folder, e.g. `/Users/michael/dev/preview/dart-sdk` or
      `C:\Users\michael\dev\preview\dart-sdk\`
 
-## Running from the terminal/command-prompt
+### Running from the terminal/command-prompt
 
-Because null safety is still in technical preview, we need to pass a so-called
+Because null safety is still in tech preview, we need to pass a so-called
 'experiment flag' when invoking and Dart command in the terminal, which looks
 like this: `--enable-experiment=non-nullable`.
 
@@ -39,19 +39,18 @@ To run the main app, type these commands in the terminal/command-prompt:
     - `cd <folder with samples repo>/null_safety/calculate_lix/`
     - `/Users/michael/dev/preview/dart-sdk/bin/dart --enable-experiment=non-nullable bin/main.dart text/lorem-ipsum.txt`
 
-## Running from VSCode
+### Running from VSCode
 
 This example contains a launch configuration for VSCode that runs
 `bin/main.dart` passing both the experimental flag, so to run the sample in
 VSCode:
 
   1. Edit your VSCode configuration to point to one additional Dart SDK, the
-     preview SDK we just downloaded. See [details steps
+     preview SDK we just downloaded. See [details
      here](https://dartcode.org/docs/quickly-switching-between-sdk-versions/)
      for what values to put in Code > Preferences > Settings.
 
-  1. Restarts VSCode, invoke File > Open, and select and select the
-     `calculate_lix` folder
+  1. Invoke File > Open, and select the `calculate_lix` folder
 
   1. Tell VSCode to use the preview Dart SDK: Open `bin/main.dart` and then
      locate the 'Dart: <version number>' selector in the status bar at the
@@ -61,7 +60,7 @@ VSCode:
      Console.
 
 
-## Running from Android Studio
+### Running from Android Studio
 
   1. Start Android Studio
 

@@ -15,15 +15,15 @@ void main(List<String> arguments) {
     // Get the file name.
     //
     // TIP: We're using null safe versions of the core libraries, and we already
-    // checked that there is a single argument, so we can safely assume the
-    // first argument isn't null.
+    // checked that there is a single argument, so the Dart analyzer now knows
+    // that the first argument isn't null.
     final fileName = arguments[0];
     print("Calculating Lix of '$fileName'");
 
     // Calculate lix.
     try {
       final l = Lix.fromString(File(fileName).readAsStringSync());
-      print("Lix is: ${l.readability}, ${l.describe} to read ("
+      print("Lix is: ${l.readability}, ${l.describe()} to read ("
           "words: ${l.words}, long words: ${l.longWords}, "
           "periods: ${l.periods}).");
     } catch (ArgumentError) {
