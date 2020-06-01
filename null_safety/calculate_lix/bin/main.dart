@@ -14,9 +14,10 @@ void main(List<String> arguments) {
   } else {
     // Get the file name.
     //
-    // TIP: We're using null safe versions of the core libraries, and we already
-    // checked that there is a single argument, so the Dart analyzer now knows
-    // that the first argument isn't null.
+    // TIP: We're using null safe versions of the core libraries, and the type
+    // of `arguments` is `List` which means that arguments cannot contain null
+    // elements. As a result, the Dart analyzer knows that `fileName` isn't
+    // null.
     final fileName = arguments[0];
     print("Calculating Lix of '$fileName'");
 

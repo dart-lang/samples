@@ -12,9 +12,9 @@ class Lix {
   int periods; // Number of periods.
 
   // TIP: `readability` isn't passed to the constructor, but calculated. By
-  // adding the late keyword we tell the analyzer that we've handled
-  // initializing it.
-  late int readability; // The lix readability index calculated.
+  // adding the late keyword we tell the analyzer that it will be initialized
+  // later in the program.
+  late int readability; // The calculated lix readability index .
 
   // TIP: Because the fields are all non-nullable, the constructor must
   // initialize them all. We can either set a default value, or like here make
@@ -47,8 +47,8 @@ class Lix {
   // TIP: Notice how we declare a non-nullable uninitalized `result` variable,
   // yet we can return is as a non-nullable result without getting an error.
   //
-  // This is possible due to "definete assignement": The Dart analyzer
-  // determines that a value has definetely been assigned before we return. Try
+  // This is possible due to "definite assignement": The Dart analyzer
+  // determines that a value has definitely been assigned before we return. Try
   // removing the assignment to `result` in our of the if/else code branches,
   // and notice how an error then appears in the return statement.
   int _calculate() {
@@ -65,8 +65,9 @@ class Lix {
     return result;
   }
 
-  // TIP: Notice how flow analysis knows we covered the possible cases for `l`
-  // (try removing the last else-statement).
+  // TIP: Notice how flow analysis knows that every branch returns a value for
+  // `readability` and so it's ok to have a non-nullable return type (try
+  // removing the last else-statement).
   String describe() {
     if (readability > 0 && readability < 20) {
       return 'very easy';

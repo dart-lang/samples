@@ -9,5 +9,4 @@ doc/api/
 !.idea/runConfigurations/Run_main_with_test_data.xml
 
 # VSCode configuration
-.vscode/
-!.vscode/launch.json
+.vscode/settings.json

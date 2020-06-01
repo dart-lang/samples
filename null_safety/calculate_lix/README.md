@@ -16,11 +16,10 @@ for any kind of production coding.
 
 ### Dart preview SDK installation
 
-  1. Download the preview SDK:
-     [Windows](https://storage.googleapis.com/dart-archive/channels/dev/release/2.9.0-13.0.dev/sdk/dartsdk-windows-x64-release.zip),
-     [macOS](https://storage.googleapis.com/dart-archive/channels/dev/release/2.9.0-13.0.dev/sdk/dartsdk-macos-x64-release.zip),
-     [Linux](https://storage.googleapis.com/dart-archive/channels/dev/release/2.9.0-13.0.dev/sdk/dartsdk-linux-x64-release.zip)
-    
+  1. Download the tech preview 1 build is version **`2.9.0-13.0.dev`** from the
+     dev-channel in the SDK archive:
+     https://dart.dev/tools/sdk/archive#dev-channel
+   
   1. Unzip the SDK to a folder, e.g. `/Users/michael/dev/preview/dart-sdk` or
      `C:\Users\michael\dev\preview\dart-sdk\`
 
