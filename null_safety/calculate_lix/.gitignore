@@ -1,0 +1,12 @@
+# Files and directories used by the Dart SDK
+.dart_tool/
+.packages
+build/
+doc/api/
+
+# Android Studio configuration
+.idea/
+!.idea/runConfigurations/Run_main_with_test_data.xml
+
+# VSCode configuration
+.vscode/settings.json
