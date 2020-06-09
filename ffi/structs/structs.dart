@@ -54,9 +54,9 @@ typedef CreatePlace = Pointer<Place> Function(
     Pointer<Utf8> name, double latitude, double longitude);
 
 main() {
-  var path = './structs_library/structs.so';
-  if (Platform.isMacOS) path = './structs_library/structs.dylib';
-  if (Platform.isWindows) path = 'structs_library\structs.dll';
+  var path = './structs_library/libstructs.so';
+  if (Platform.isMacOS) path = './structs_library/libstructs.dylib';
+  if (Platform.isWindows) path = r'structs_library\Debug\structs.dll';
   final dylib = DynamicLibrary.open(path);
 
   final helloWorldPointer =

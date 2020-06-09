@@ -11,3 +11,9 @@ To run these samples:
 
 When run, you should see the system-default browser launch and load the
 Dart website, https://dart.dev
+
+## Learn more
+
+To learn more about FFI, start with the [C interop using
+dart:ffi](https://dart.dev/guides/libraries/c-interop) guide on dart.dev.
+

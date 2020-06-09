@@ -9,7 +9,7 @@ os:
 
 stages:
   - analyze:
-    - dartanalyzer: --fatal-warnings .
+    - dartanalyzer: --fatal-infos --fatal-warnings .
       os: linux
     - dartfmt:
       os: linux

@@ -6,7 +6,7 @@ import 'dart:ffi' as ffi;
 import 'package:ffi/ffi.dart';
 
 main() {
-  var result = system('open http://dart.dev');
+  var result = system('open https://dart.dev');
   print('Result: $result');
 }
 

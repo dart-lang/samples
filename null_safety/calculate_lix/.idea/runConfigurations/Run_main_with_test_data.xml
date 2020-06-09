@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run main with test data" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+    <option name="VMOptions" value="--enable-experiment=non-nullable" />
+    <option name="arguments" value="text/lorem-ipsum.txt" />
+    <option name="filePath" value="$PROJECT_DIR$/bin/main.dart" />
+    <method v="2" />
+  </configuration>
+</component>

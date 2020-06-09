@@ -2,7 +2,14 @@ dart:
   - dev
   - stable
 
+os:
+  - linux
+  - osx
+  - windows
+
 stages:
   - analyze:
-    - dartanalyzer
-    - dartfmt
+    - dartanalyzer: --fatal-infos --fatal-warnings .
+      os: linux
+    - dartfmt:
+      os: linux

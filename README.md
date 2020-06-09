@@ -8,6 +8,8 @@ Dart][awesome-dart].
 
 ## Index
 
+- [command_line](https://github.com/dart-lang/samples/blob/master/extension_methods) -
+  A command line app that parses command-line options and fetches from GitHub.
 - [extension_methods](https://github.com/dart-lang/samples/blob/master/extension_methods) -
   A set of samples that demonstrates the extension methods syntax and shows
   some common use cases of the feature.

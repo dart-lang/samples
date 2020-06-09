@@ -72,5 +72,6 @@ class GetActivityException implements Exception {
 
   GetActivityException(this.username, this.original);
 
+  @override
   String toString() => 'failed to fetch stats for user $username: $original';
 }
