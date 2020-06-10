@@ -13,6 +13,7 @@ stages:
       os: linux
     - dartfmt:
       os: linux
+      dart: dev
   - unit_test:
     - test:
       os:
