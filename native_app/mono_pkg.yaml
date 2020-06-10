@@ -13,3 +13,4 @@ stages:
       os: linux
     - dartfmt:
       os: linux
+      dart: dev
