@@ -80,17 +80,17 @@ VSCode:
 
 ## Next steps
 
-Once you have the code running, here some suggestions for things try:
+Once you have the code running, here some suggestions for things to try:
 
   * In `lib/lix.dart` line 30, try to remove the `required` keyword from one or
     more fields in the constructor, and notice the error shown.
 
-  * In `lib/lix.dart` line 49, try delete the code that initializes one or more
+  * In `lib/lix.dart` line 49, try to delete the code that initializes one or more
     fields (e.g. `words: words`) and notice the error shown.
 
   * In `lib/lix.dart` line 9, try to make `words` a nullable variable (`int?
-    words`), and notice how we not get errors about not checking for null in the
-    `_calculate()` method.
+    words`), and notice how we don't get errors about not checking for null in
+    the `_calculate()` method.
 
-  * In `lib/lix.dart` line 22, try to remove the `late` keyboard from
-    `readability`, and notice how er get an error in the constructor.
+  * In `lib/lix.dart` line 22, try to remove the `late` keyword from
+    `readability`, and notice how we get an error in the constructor.
