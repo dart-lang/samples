@@ -49,27 +49,27 @@ VSCode:
   1. Edit your VSCode configuration to point to one additional Dart SDK, the
      preview SDK we just downloaded. See [details
      here](https://dartcode.org/docs/quickly-switching-between-sdk-versions/)
-     for what values to put in Code > Preferences > Settings.
+     for what values to put in **View > Command Palette > Open Settings (JSON)**.
 
-  1. Invoke File > Open, and select the `calculate_lix` folder
+  1. Invoke **File > Open**, and select the `calculate_lix` folder.
 
   1. Tell VSCode to use the preview Dart SDK: Open `bin/main.dart` and then
      locate the 'Dart: <version number>' selector in the status bar at the
      bottom, and select `Dart: 2.9.0-14.0.dev`.
 
-  1. Press F5 and the project should run and print a message in the Debug
+  1. Select **Run > Run** and the project should run and print a message in the Debug
      Console.
 
 
 ### Running from Android Studio
 
-  1. Start Android Studio
+  1. Start Android Studio.
 
-  1. Select Open Project, and select the `calculate_lix` folder
+  1. Select Open Project, and select the `calculate_lix` folder.
 
-  1. Open the file `bin/main.dart` in the code editor
+  1. Open the file `bin/main.dart` in the code editor.
 
-  1. Select 'Open Dart Settings' in the top banner
+  1. Select 'Open Dart Settings' in the top banner.
 
   1. Select both 'Enable Dart support' checkmarks at the top and bottom of the dialog.
   
@@ -77,3 +77,20 @@ VSCode:
 
   1. Select Run > Run and the project should run and print a message in the Run
      pane.
+
+## Next steps
+
+Once you have the code running, here some suggestions for things try:
+
+  * In `lib/lix.dart` line 30, try to remove the `required` keyword from one or
+    more fields in the constructor, and notice the error shown.
+
+  * In `lib/lix.dart` line 49, try delete the code that initializes one or more
+    fields (e.g. `words: words`) and notice the error shown.
+
+  * In `lib/lix.dart` line 9, try to make `words` a nullable variable (`int?
+    words`), and notice how we not get errors about not checking for null in the
+    `_calculate()` method.
+
+  * In `lib/lix.dart` line 22, try to remove the `late` keyboard from
+    `readability`, and notice how er get an error in the constructor.
