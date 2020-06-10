@@ -33,9 +33,11 @@ To run the main app, type these commands in the terminal/command-prompt:
 
   - Windows:
     - `cd <folder with samples repo>\null_safety\calculate_lix\`
+    - `C:\Users\michael\dev\preview\dart-sdk\bin\dart pub get`
     - `C:\Users\michael\dev\preview\dart-sdk\bin\dart --enable-experiment=non-nullable bin\main.dart text\lorem-ipsum.txt`
   - macOS/Linux:
     - `cd <folder with samples repo>/null_safety/calculate_lix/`
+    - `/Users/michael/dev/preview/dart-sdk/bin/dart pub get`
     - `/Users/michael/dev/preview/dart-sdk/bin/dart --enable-experiment=non-nullable bin/main.dart text/lorem-ipsum.txt`
 
 ### Running from VSCode
