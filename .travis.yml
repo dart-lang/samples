@@ -27,12 +27,6 @@ jobs:
       os: linux
       env: "PKGS=\"command_line extension_methods ffi/hello_world ffi/primitives ffi/structs ffi/system-command native_app\""
       script: ./tool/travis.sh dartfmt
-    - stage: analyze
-      name: "SDK: stable; PKGS: command_line, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; TASKS: `dartfmt -n --set-exit-if-changed .`"
-      dart: stable
-      os: linux
-      env: "PKGS=\"command_line ffi/hello_world ffi/primitives ffi/structs ffi/system-command native_app\""
-      script: ./tool/travis.sh dartfmt
     - stage: unit_test
       name: "SDK: dev; PKG: command_line; TASKS: `pub run test`"
       dart: dev
