@@ -13,6 +13,9 @@ Dart][awesome-dart].
 - [extension_methods](https://github.com/dart-lang/samples/blob/master/extension_methods) -
   A set of samples that demonstrates the extension methods syntax and shows
   some common use cases of the feature.
+- [null_safety/calculate_lix](https://github.com/dart-lang/samples/tree/master/null_safety/calculate_lix) -
+  A sample app that calculates the 'lix' readability index with an implementation
+  that uses the tech preview of Dart's new null safety feature.
 - [ffi](https://github.com/dart-lang/samples/blob/master/ffi) - A series of
   simple examples demonstrating how to call C libraries from Dart.
 - [native_app](https://github.com/dart-lang/samples/blob/master/native_app) - A
