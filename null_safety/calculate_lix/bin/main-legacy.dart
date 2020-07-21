@@ -3,7 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 // @TRYTHIS: remove the following line
-// @dart = 2.9
+// @dart = 2.8
 
 import 'dart:io';
 
@@ -22,26 +22,21 @@ void main(List<String> arguments) {
     // elements. As a result, the Dart analyzer knows that `fileName` isn't
     // null.
     final fileName = arguments[0];
-    print('Calculating Lix of "$fileName" with NNBD');
+    print('Calculating Lix of "$fileName" withOUT NNBD');
 
     // Calculate lix.
-    // a smart way to have a "final" in the right scope
-    // @TRYTHIS: convert to `final Lix l`
-    // @TRYTHIS: convert to `final Lix? l`
-    // @TRYTHIS: convert to `Lix? l`
-    late final Lix l;
+    Lix l;
     try {
       l = Lix.fromString(File(fileName).readAsStringSync());
     } catch (ArgumentError) {
       print('Invalid input, could not calculate lix!\n'
           'The input text must contain at least one full sentence.');
     }
-    late final String description;
+    String description;
     switch (l.describe()) {
       case 'unknown':
         print('Lix analysis failed');
-        // @TRYTHIS: replace with "break", and for the value to be 'unknown'
-        return;
+        return; // try replace with "break", and for the value to be 'unknown'
       default:
         description = l.describe();
     }

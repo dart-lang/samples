@@ -6,6 +6,7 @@
 /// https://readabilityformulas.com/the-LIX-readability-formula.php.
 class Lix {
   /// Number of words in general.
+  // @TRYTHIS: convert to `int? words`
   int words;
 
   /// Number of words with more than 6 characters.
@@ -19,6 +20,8 @@ class Lix {
   /// TIP: `readability` isn't passed to the constructor, but calculated. By
   /// adding the late keyword we tell the analyzer that it will be initialized
   /// later in the program.
+  // @TRYTHIS: convert to `int readability`
+  // @TRYTHIS: convert to `int? readability`
   late int readability;
 
   /// TIP: Because the fields are all non-nullable, the constructor must
@@ -27,11 +30,13 @@ class Lix {
   /// constructor. 'required' is a new keyword introduced as part of null safety
   /// which replaces the previous '@required' annotation.
   Lix({
+    // @TRYTHIS: convert to `@required this.words`
     required this.words,
     required this.longWords,
     required this.periods,
   }) {
-    readability = this._calculate();
+    // @TRYTHIS: remove the following line
+    // readability = this._calculate();
   }
 
   factory Lix.fromString(String text) {
@@ -46,7 +51,12 @@ class Lix {
     var words = allWords.length;
     var longWords = allWords.where((w) => w.length > 6).toList().length;
 
-    return Lix(words: words, longWords: longWords, periods: periods);
+    return Lix(
+      // @TRYTHIS: remove the following line
+      words: words,
+      longWords: longWords,
+      periods: periods,
+    );
   }
 
   /// TIP: Notice how we declare a non-nullable uninitialized `result` variable,
@@ -59,11 +69,16 @@ class Lix {
   int _calculate() {
     int result;
 
-    if (words == 0 || periods == 0) {
+    if (words == 0) {
+      // @TRYTHIS: remove the following line
+      throw (ArgumentError('Text must contain at least one full sentence.'));
+    } else if (periods == 0) {
+      // @TRYTHIS: remove the following line
       throw (ArgumentError('Text must contain at least one full sentence.'));
     } else {
       final sentenceLength = words / periods;
       final wordLength = (longWords * 100) / words;
+      // @TRYTHIS: remove the following line
       result = (sentenceLength + wordLength).round();
     }
 
@@ -74,7 +89,10 @@ class Lix {
   /// `readability` and so it's ok to have a non-nullable return type (try
   /// removing the last else-statement).
   String describe() {
-    if (readability > 0 && readability < 20) {
+    late final int localReadability;
+    // @TRYTHIS: remove the following line
+    localReadability = this.readability;
+    if (localReadability > 0 && readability < 20) {
       return 'very easy';
     } else if (readability < 30) {
       return 'easy';
@@ -85,6 +103,7 @@ class Lix {
     } else if (readability < 60) {
       return 'very hard';
     } else {
+      // @TRYTHIS: remove the following line
       return 'unknown';
     }
   }

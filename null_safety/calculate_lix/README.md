@@ -82,15 +82,9 @@ VSCode:
 
 Once you have the code running, here some suggestions for things to try:
 
-  * In `lib/lix.dart` line 30, try to remove the `required` keyword from one or
-    more fields in the constructor, and notice the error shown.
+  * Look for several `@TRYTHIS` comment and follow the instruction. Most of the trythis will
+  result in immediate static analysis and/or compile error. A few will result in runtime exception,
+  most probably `LateInitializationError`
 
-  * In `lib/lix.dart` line 49, try to delete the code that initializes one or more
-    fields (e.g. `words: words`) and notice the error shown.
-
-  * In `lib/lix.dart` line 9, try to make `words` a nullable variable (`int?
-    words`), and notice how we don't get errors about not checking for null in
-    the `_calculate()` method.
-
-  * In `lib/lix.dart` line 22, try to remove the `late` keyword from
-    `readability`, and notice how we get an error in the constructor.
+  * Instead of running `bin/main.dart`, run `main-legacy.dart`, or in VS Code, run `Dart 2.9 backward compatible`,
+  and then remove `// @dart = 2.8` in `main-legacy.dart` and run again, to see how NNBD can be disabled per file.

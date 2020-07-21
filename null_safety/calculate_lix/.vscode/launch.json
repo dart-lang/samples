@@ -5,8 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Dart",
+            "name": "Dart 2.9",
             "program": "bin/main.dart",
+            "request": "launch",
+            "type": "dart",
+            "vmAdditionalArgs": [
+                "--enable-experiment=non-nullable",
+            ],
+            "args": [
+                "text/lorem-ipsum.txt"
+            ]
+        },
+        {
+            "name": "Dart 2.9 backward compatible",
+            "program": "bin/main-legacy.dart",
             "request": "launch",
             "type": "dart",
             "vmAdditionalArgs": [
