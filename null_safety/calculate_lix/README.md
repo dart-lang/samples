@@ -8,17 +8,18 @@ safety at its current tech preview stage.
 
 ## Running the example code
 
-The code works only with the first tech preview of null safety, Dart SDK version
-`2.9.0-14.0.dev`. You will need to download a copy of this Dart SDK even if you
-have a Flutter or Dart SDK installed already, and you'll want to use this
-preview SDK only for experimenting with null safety. Specifically, do not use it
-for any kind of production coding.
+The code works only with tech preview builds of null safety from the Dart dev
+channel. You will need to download a copy of this Dart SDK even if you have a
+Flutter or Dart SDK installed already, and you'll want to use this preview SDK
+only for experimenting with null safety. Specifically, do not use it for any
+kind of production coding.
 
 ### Dart preview SDK installation
 
-  1. Download the tech preview 1 build is version **`2.9.0-14.0.dev`** from the
-     dev-channel in the SDK archive:
-     https://dart.dev/tools/sdk/archive#dev-channel
+  1. Download the latest null safety preview build from the dev-channel in the
+     SDK archive: https://dart.dev/tools/sdk/archive#dev-channel. The
+     instructions below use `2.10.0-56.0.dev`; you get download a more recent
+     build.
    
   1. Unzip the SDK to a folder, e.g. `/Users/michael/dev/preview/dart-sdk` or
      `C:\Users\michael\dev\preview\dart-sdk\`
@@ -34,11 +35,11 @@ To run the main app, type these commands in the terminal/command-prompt:
   - Windows:
     - `cd <folder with samples repo>\null_safety\calculate_lix\`
     - `C:\Users\michael\dev\preview\dart-sdk\bin\dart pub get`
-    - `C:\Users\michael\dev\preview\dart-sdk\bin\dart --enable-experiment=non-nullable bin\main.dart text\lorem-ipsum.txt`
+    - `C:\Users\michael\dev\preview\dart-sdk\bin\dart --enable-experiment=non-nullable run bin\main.dart text\lorem-ipsum.txt`
   - macOS/Linux:
     - `cd <folder with samples repo>/null_safety/calculate_lix/`
     - `/Users/michael/dev/preview/dart-sdk/bin/dart pub get`
-    - `/Users/michael/dev/preview/dart-sdk/bin/dart --enable-experiment=non-nullable bin/main.dart text/lorem-ipsum.txt`
+    - `/Users/michael/dev/preview/dart-sdk/bin/dart --enable-experiment=non-nullable run bin/main.dart text/lorem-ipsum.txt`
 
 ### Running from VSCode
 
@@ -55,7 +56,7 @@ VSCode:
 
   1. Tell VSCode to use the preview Dart SDK: Open `bin/main.dart` and then
      locate the 'Dart: <version number>' selector in the status bar at the
-     bottom, and select `Dart: 2.9.0-14.0.dev`.
+     bottom, and select `Dart: 2.10.0-56.0.dev`.
 
   1. Select **Run > Run** and the project should run and print a message in the Debug
      Console.
