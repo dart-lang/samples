@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/command_line/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/command_line/build" />
+      <excludeFolder url="file://$MODULE_DIR$/extension_methods/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/extension_methods/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/hello_world/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/hello_world/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/primitives/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/primitives/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/structs/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/structs/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/system-command/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/system-command/build" />
+      <excludeFolder url="file://$MODULE_DIR$/native_app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/native_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/native_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/null_safety/calculate_lix/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/null_safety/calculate_lix/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Dart SDK" level="project" />
+    <orderEntry type="library" name="Dart Packages" level="project" />
+  </component>
+</module>
