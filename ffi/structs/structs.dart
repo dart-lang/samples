@@ -92,14 +92,14 @@ void testPlacePointerCreation(final DynamicLibrary dynamicLibrary) {
 }
 
 DynamicLibrary loadDynamicLibrary() {
-  var path = './structs_library/libstructs.so';
-  if (Platform.isMacOS) path = './structs_library/libstructs.dylib';
-  if (Platform.isWindows) path = r'structs_library\Debug\structs.dll';
-  return DynamicLibrary.open(path);
+
 }
 main() {
 
-  final dylib = loadDynamicLibrary();
+  var path = './structs_library/libstructs.so';
+  if (Platform.isMacOS) path = './structs_library/libstructs.dylib';
+  if (Platform.isWindows) path = r'structs_library\Debug\structs.dll';
+  final dylib = DynamicLibrary.open(path);
   testHelloWorldFunction(dylib);
   testReverseFunction(dylib);
   testCoordinatePointerCreation(dylib);
