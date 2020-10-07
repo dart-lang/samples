@@ -3,21 +3,28 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/command_line/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/command_line/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/command_line/build" />
+      <excludeFolder url="file://$MODULE_DIR$/extension_methods/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/extension_methods/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/extension_methods/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/hello_world/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/ffi/hello_world/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/ffi/hello_world/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/primitives/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/ffi/primitives/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/ffi/primitives/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/structs/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/ffi/structs/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/ffi/structs/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ffi/system-command/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/ffi/system-command/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/ffi/system-command/build" />
       <excludeFolder url="file://$MODULE_DIR$/native_app/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/native_app/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/native_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/null_safety/calculate_lix/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/null_safety/calculate_lix/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/null_safety/calculate_lix/build" />
     </content>
