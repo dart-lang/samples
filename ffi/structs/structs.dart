@@ -91,12 +91,15 @@ void testPlacePointerCreation(final DynamicLibrary dynamicLibrary) {
       'Place is called $placeName at ${placeCoordinate.latitude}, ${placeCoordinate.longitude}');
 }
 
-main() {
+DynamicLibrary loadDynamicLibrary() {
   var path = './structs_library/libstructs.so';
   if (Platform.isMacOS) path = './structs_library/libstructs.dylib';
   if (Platform.isWindows) path = r'structs_library\Debug\structs.dll';
-  final dylib = DynamicLibrary.open(path);
+  return DynamicLibrary.open(path);
+}
+main() {
 
+  final dylib = loadDynamicLibrary();
   testHelloWorldFunction(dylib);
   testReverseFunction(dylib);
   testCoordinatePointerCreation(dylib);
