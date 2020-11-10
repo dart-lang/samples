@@ -9,9 +9,6 @@
             "program": "bin/main.dart",
             "request": "launch",
             "type": "dart",
-            "vmAdditionalArgs": [
-                "--enable-experiment=non-nullable",
-            ],
             "args": [
                 "text/lorem-ipsum.txt"
             ]
