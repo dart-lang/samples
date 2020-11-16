@@ -8,7 +8,7 @@ safety at its current tech preview stage.
 
 ## Running the example code
 
-The code works only with beta channel builds of null safety from the `dev`
+The code works only with preview builds of null safety from the `beta`
 channel. If you're using Flutter, you can run:
 
 ```cmd
