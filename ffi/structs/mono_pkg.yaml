@@ -4,7 +4,7 @@ dart:
 
 os:
   - linux
-  - osx
+  - macos
   - windows
 
 stages:

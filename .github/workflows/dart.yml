@@ -1,0 +1,250 @@
+# Created with package:mono_repo v3.1.0-beta.2-dev
+name: Dart CI
+
+on:
+  push:
+    branches: [$default-branch]
+  pull_request:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  job_001:
+    name: "OS: linux; SDK: dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; TASKS: `dartanalyzer --fatal-infos --fatal-warnings .`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: dev
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: "command_line extension_methods ffi/hello_world ffi/primitives ffi/structs ffi/system-command native_app"
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh dartanalyzer
+  job_002:
+    name: "OS: linux; SDK: stable; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; TASKS: `dartanalyzer --fatal-infos --fatal-warnings .`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: stable
+          version: latest
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: "command_line extension_methods ffi/hello_world ffi/primitives ffi/structs ffi/system-command native_app"
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh dartanalyzer
+  job_003:
+    name: "OS: linux; SDK: dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; TASKS: `dartfmt -n --set-exit-if-changed .`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: dev
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: "command_line extension_methods ffi/hello_world ffi/primitives ffi/structs ffi/system-command native_app"
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh dartfmt
+  job_004:
+    name: "OS: linux; SDK: dev; PKG: command_line; TASKS: `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: dev
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: command_line
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh test
+  job_005:
+    name: "OS: linux; SDK: dev; PKG: extension_methods; TASKS: `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: dev
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: extension_methods
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh test
+  job_006:
+    name: "OS: linux; SDK: dev; PKG: ffi/hello_world; TASKS: `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: dev
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: ffi/hello_world
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh test
+  job_007:
+    name: "OS: linux; SDK: dev; PKG: ffi/primitives; TASKS: `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: dev
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: ffi/primitives
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh test
+  job_008:
+    name: "OS: macos; SDK: dev; PKG: command_line; TASKS: `pub run test`"
+    runs-on: macos-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: dev
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: command_line
+          TRAVIS_OS_NAME: macos
+        run: tool/ci.sh test
+  job_009:
+    name: "OS: macos; SDK: dev; PKG: extension_methods; TASKS: `pub run test`"
+    runs-on: macos-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: dev
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: extension_methods
+          TRAVIS_OS_NAME: macos
+        run: tool/ci.sh test
+  job_010:
+    name: "OS: windows; SDK: dev; PKG: command_line; TASKS: `pub run test`"
+    runs-on: windows-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: dev
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: command_line
+          TRAVIS_OS_NAME: windows
+        run: tool/ci.sh test
+  job_011:
+    name: "OS: windows; SDK: dev; PKG: extension_methods; TASKS: `pub run test`"
+    runs-on: windows-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: dev
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: extension_methods
+          TRAVIS_OS_NAME: windows
+        run: tool/ci.sh test
+  job_012:
+    name: "OS: linux; SDK: stable; PKG: command_line; TASKS: `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: stable
+          version: latest
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: command_line
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh test
+  job_013:
+    name: "OS: linux; SDK: stable; PKG: extension_methods; TASKS: `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: stable
+          version: latest
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: extension_methods
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh test
+  job_014:
+    name: "OS: linux; SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: stable
+          version: latest
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: ffi/hello_world
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh test
+  job_015:
+    name: "OS: linux; SDK: stable; PKG: ffi/primitives; TASKS: `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: stable
+          version: latest
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: ffi/primitives
+          TRAVIS_OS_NAME: linux
+        run: tool/ci.sh test
+  job_016:
+    name: "OS: macos; SDK: stable; PKG: command_line; TASKS: `pub run test`"
+    runs-on: macos-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: stable
+          version: latest
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: command_line
+          TRAVIS_OS_NAME: macos
+        run: tool/ci.sh test
+  job_017:
+    name: "OS: macos; SDK: stable; PKG: extension_methods; TASKS: `pub run test`"
+    runs-on: macos-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: stable
+          version: latest
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: extension_methods
+          TRAVIS_OS_NAME: macos
+        run: tool/ci.sh test
+  job_018:
+    name: "OS: windows; SDK: stable; PKG: command_line; TASKS: `pub run test`"
+    runs-on: windows-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: stable
+          version: latest
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: command_line
+          TRAVIS_OS_NAME: windows
+        run: tool/ci.sh test
+  job_019:
+    name: "OS: windows; SDK: stable; PKG: extension_methods; TASKS: `pub run test`"
+    runs-on: windows-latest
+    steps:
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: stable
+          version: latest
+      - uses: actions/checkout@v2
+      - env:
+          PKGS: extension_methods
+          TRAVIS_OS_NAME: windows
+        run: tool/ci.sh test
