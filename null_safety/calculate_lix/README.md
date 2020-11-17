@@ -1,46 +1,39 @@
 # Null safety example: A CLI app for calculating lix
 
 This is a small code example of an app that calculates the 'lix' readability
-index for a text file. The implementation uses the new Dart null safety feature,
+index for a text file. The implementation uses the Dart null safety feature,
 and is meant to demonstrate how this feature works in a practical example,
 as well as serve as a demonstration of how to configure and run code with null
 safety at its current tech preview stage.
 
 ## Running the example code
 
-The code works only with tech preview builds of null safety from the `dev`
+The code works only with preview builds of null safety from the `beta`
 channel. If you're using Flutter, you can run:
 
 ```cmd
-flutter channel dev
+flutter channel beta
+flutter upgrade
 ```
 
 to switch to this channel; alternatively, you may download and install the
 latest null safety preview build of Dart from the [Dart SDK
-archive](https://dart.dev/tools/sdk/archive#dev-channel).
+archive](https://dart.dev/tools/sdk/archive#beta-channel).
 
 ### Running from the terminal / command prompt
-
-Because null safety is still in tech preview, we need to pass a so-called
-'experiment flag' when invoking and Dart command in the terminal, which looks
-like this: `--enable-experiment=non-nullable`.
 
 To run the main app, type these commands in the terminal/command-prompt:
 
 ```cmd
 $ cd <folder with samples repo>/null_safety/calculate_lix/
 $ dart pub get
-$ dart --enable-experiment=non-nullable run bin/main.dart text/lorem-ipsum.txt
+$ dart run bin/main.dart text/lorem-ipsum.txt
 ```
-
-*Note*: You may see a warning "Overriding the upper bound Dart SDK constraint"
-+when running pub get. You can ignore this, which is a temporary issue only
-+expected during the preview.
 
 ### Running from VSCode
 
 This example contains a launch configuration for VSCode that runs
-`bin/main.dart` passing both the experimental flag, so to run the sample in
+`bin/main.dart`, so to run the sample in
 VSCode:
 
   1. If you're using a separate copy of Dart, rather than the Flutter `dev`
@@ -54,7 +47,7 @@ VSCode:
 
   1. Tell VSCode to use the preview Dart SDK: Open `bin/main.dart` and then
      locate the 'Dart: \<version number\>' selector in the status bar at the
-     bottom, and select `Dart: 2.11.0-xxx.0.dev` (where `xxx` is the latest
+     bottom, and select `Dart: 2.12.0-xxx.0.beta` (where `xxx` is the latest
      version available.)
 
   1. Select **Run > Run** and the project should run and print a message in the Debug
@@ -74,7 +67,7 @@ VSCode:
   1. Select both 'Enable Dart support' checkmarks at the top and bottom of the dialog.
   
   1. Under Dart SDK specify the path to the Dart preview SDK
-     (`2.11.0-xxx.0.dev`, where `xxx` is the latest version available). Click
+     (`2.12.0-xxx.0.beta`, where `xxx` is the latest version available). Click
      OK.
 
   1. Select Run > Run and the project should run and print a message in the Run
