@@ -1,0 +1,44 @@
+name: Dart
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # Every day at midnight
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        sdk: [dev,beta,stable]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cedx/setup-dart@v2
+        with:
+          release-channel: ${{ matrix.sdk }}
+
+      - name: Print Dart SDK version
+        run: dart --version
+
+      - name: "PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; TASKS: `dartanalyzer --fatal-infos --fatal-warnings .`"
+        env: 
+          PKGS: "command_line extension_methods ffi/hello_world ffi/primitives ffi/structs ffi/system-command native_app"
+        run: ./tool/travis.sh dartanalyzer
+
+      - name: "PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; TASKS: `dartfmt -n --set-exit-if-changed .`"
+        env: 
+          PKGS: "command_line extension_methods ffi/hello_world ffi/primitives ffi/structs ffi/system-command native_app"
+        run: ./tool/travis.sh dartfmt
+      
+      - name: "PKG: command_line, extension_methods, ffi/hello_world, ffi/primitives; TASKS: `pub run test`"
+        env: 
+          PKGS: "command_line extension_methods ffi/hello_world ffi/primitives"
+        run: ./tool/travis.sh test
