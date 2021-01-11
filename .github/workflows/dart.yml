@@ -21,12 +21,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: cedx/setup-dart@v2
+      - uses: dart-lang/setup-dart@v0.1
         with:
-          release-channel: ${{ matrix.sdk }}
-
-      - name: Print Dart SDK version
-        run: dart --version
+          channel: ${{ matrix.sdk }}
 
       - name: "PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; TASKS: `dartanalyzer --fatal-infos --fatal-warnings .`"
         env: 
