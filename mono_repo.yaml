@@ -1,16 +1,8 @@
 # Run `mono_repo generate --validate` to check 
 # that everything is up to date
 self_validate: true
-
-ci:
-  - travis
-  - github
-
-# travis:
-#   addons:
-#     apt:
-#       packages:
-#         - cmake
+github:
+travis:
 
 # Merges all analyze stages into one bot, which is more efficient
 merge_stages:

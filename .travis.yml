@@ -1,4 +1,4 @@
-# Created with package:mono_repo v3.1.0-beta.2-dev
+# Created with package:mono_repo v3.4.5
 language: dart
 
 jobs:
@@ -6,117 +6,117 @@ jobs:
     - stage: mono_repo_self_validate
       name: mono_repo self validate
       os: linux
-      script: "pub global activate mono_repo 3.1.0-beta.2-dev && pub global run mono_repo generate --validate"
+      script: "pub global activate mono_repo 3.4.5 && pub global run mono_repo generate --validate"
     - stage: analyze
-      name: "SDK: dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; TASKS: `dartanalyzer --fatal-infos --fatal-warnings .`"
+      name: "Dart dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; `dartanalyzer --fatal-infos --fatal-warnings .`"
       dart: dev
       os: linux
       env: "PKGS=\"command_line extension_methods ffi/hello_world ffi/primitives ffi/structs ffi/system-command native_app\""
       script: tool/ci.sh dartanalyzer
     - stage: analyze
-      name: "SDK: stable; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; TASKS: `dartanalyzer --fatal-infos --fatal-warnings .`"
+      name: "Dart stable; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; `dartanalyzer --fatal-infos --fatal-warnings .`"
       dart: stable
       os: linux
       env: "PKGS=\"command_line extension_methods ffi/hello_world ffi/primitives ffi/structs ffi/system-command native_app\""
       script: tool/ci.sh dartanalyzer
     - stage: analyze
-      name: "SDK: dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; TASKS: `dartfmt -n --set-exit-if-changed .`"
+      name: "Dart dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, native_app; `dartfmt -n --set-exit-if-changed .`"
       dart: dev
       os: linux
       env: "PKGS=\"command_line extension_methods ffi/hello_world ffi/primitives ffi/structs ffi/system-command native_app\""
       script: tool/ci.sh dartfmt
     - stage: unit_test
-      name: "SDK: dev; PKG: command_line; TASKS: `pub run test`"
+      name: "Dart dev; PKG: command_line; `pub run test`"
       dart: dev
       os: linux
       env: PKGS="command_line"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: dev; PKG: command_line; TASKS: `pub run test`"
+      name: "Dart dev; PKG: command_line; `pub run test`"
       dart: dev
       os: macos
       env: PKGS="command_line"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: dev; PKG: command_line; TASKS: `pub run test`"
+      name: "Dart dev; PKG: command_line; `pub run test`"
       dart: dev
       os: windows
       env: PKGS="command_line"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: stable; PKG: command_line; TASKS: `pub run test`"
+      name: "Dart stable; PKG: command_line; `pub run test`"
       dart: stable
       os: linux
       env: PKGS="command_line"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: stable; PKG: command_line; TASKS: `pub run test`"
+      name: "Dart stable; PKG: command_line; `pub run test`"
       dart: stable
       os: macos
       env: PKGS="command_line"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: stable; PKG: command_line; TASKS: `pub run test`"
+      name: "Dart stable; PKG: command_line; `pub run test`"
       dart: stable
       os: windows
       env: PKGS="command_line"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: dev; PKG: extension_methods; TASKS: `pub run test`"
+      name: "Dart dev; PKG: extension_methods; `pub run test`"
       dart: dev
       os: linux
       env: PKGS="extension_methods"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: dev; PKG: extension_methods; TASKS: `pub run test`"
+      name: "Dart dev; PKG: extension_methods; `pub run test`"
       dart: dev
       os: macos
       env: PKGS="extension_methods"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: dev; PKG: extension_methods; TASKS: `pub run test`"
+      name: "Dart dev; PKG: extension_methods; `pub run test`"
       dart: dev
       os: windows
       env: PKGS="extension_methods"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: stable; PKG: extension_methods; TASKS: `pub run test`"
+      name: "Dart stable; PKG: extension_methods; `pub run test`"
       dart: stable
       os: linux
       env: PKGS="extension_methods"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: stable; PKG: extension_methods; TASKS: `pub run test`"
+      name: "Dart stable; PKG: extension_methods; `pub run test`"
       dart: stable
       os: macos
       env: PKGS="extension_methods"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: stable; PKG: extension_methods; TASKS: `pub run test`"
+      name: "Dart stable; PKG: extension_methods; `pub run test`"
       dart: stable
       os: windows
       env: PKGS="extension_methods"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: dev; PKG: ffi/hello_world; TASKS: `pub run test`"
+      name: "Dart dev; PKG: ffi/hello_world; `pub run test`"
       dart: dev
       os: linux
       env: PKGS="ffi/hello_world"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: stable; PKG: ffi/hello_world; TASKS: `pub run test`"
+      name: "Dart stable; PKG: ffi/hello_world; `pub run test`"
       dart: stable
       os: linux
       env: PKGS="ffi/hello_world"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: dev; PKG: ffi/primitives; TASKS: `pub run test`"
+      name: "Dart dev; PKG: ffi/primitives; `pub run test`"
       dart: dev
       os: linux
       env: PKGS="ffi/primitives"
       script: tool/ci.sh test
     - stage: unit_test
-      name: "SDK: stable; PKG: ffi/primitives; TASKS: `pub run test`"
+      name: "Dart stable; PKG: ffi/primitives; `pub run test`"
       dart: stable
       os: linux
       env: PKGS="ffi/primitives"
@@ -134,4 +134,4 @@ branches:
 
 cache:
   directories:
-    - "$HOME/.pub-cache"
+    - $HOME/.pub-cache
