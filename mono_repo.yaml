@@ -2,7 +2,6 @@
 # that everything is up to date
 self_validate: true
 github:
-travis:
 
 # Merges all analyze stages into one bot, which is more efficient
 merge_stages:
