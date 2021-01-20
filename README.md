@@ -1,6 +1,6 @@
 # Dart samples
 
-[![CI](https://github.com/dart-lang/samples/workflows/Dart%20CI/badge.svg)](https://github.com/google/mono_repo.dart/actions?query=branch%3Amaster)
+[![CI](https://github.com/dart-lang/samples/workflows/Dart%20CI/badge.svg)](https://github.com/dart-lang/samples/actions?query=branch%3Amaster)
 
 A collection of [Dart][dart] programs that illustrate features and best
 practices. For a list of community-maintained projects, see [Awesome
