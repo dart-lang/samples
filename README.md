@@ -1,6 +1,6 @@
 # Dart samples
 
-[![Build Status](https://travis-ci.org/dart-lang/samples.svg?branch=master)](https://travis-ci.org/dart-lang/samples)
+![example workflow name](https://github.com/dart-lang/samples/workflows/Dart%20CI/badge.svg)
 
 A collection of [Dart][dart] programs that illustrate features and best
 practices. For a list of community-maintained projects, see [Awesome
