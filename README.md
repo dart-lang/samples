@@ -1,6 +1,6 @@
 # Dart samples
 
-![example workflow name](https://github.com/dart-lang/samples/workflows/Dart%20CI/badge.svg)
+[![CI](https://github.com/dart-lang/samples/workflows/Dart%20CI/badge.svg)](https://github.com/dart-lang/samples/actions?query=workflow%3A%22Dart+CI%22)
 
 A collection of [Dart][dart] programs that illustrate features and best
 practices. For a list of community-maintained projects, see [Awesome
