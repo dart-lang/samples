@@ -57,10 +57,10 @@ typedef CreatePlace = Pointer<Place> Function(
 main() {
   // Open the dynamic library
   var libraryPath =
-  path.join(Directory.current.path, 'structs_library', 'libstructs.so');
+      path.join(Directory.current.path, 'structs_library', 'libstructs.so');
   if (Platform.isMacOS)
-    libraryPath =
-        path.join(Directory.current.path, 'structs_library', 'libstructs.dylib');
+    libraryPath = path.join(
+        Directory.current.path, 'structs_library', 'libstructs.dylib');
   if (Platform.isWindows)
     libraryPath = path.join(
         Directory.current.path, 'structs_library', 'Debug', 'structs.dll');

@@ -37,11 +37,11 @@ typedef MultiSum = int Function(int numCount, int a, int b, int c);
 
 main() {
   // Open the dynamic library
-  var libraryPath =
-      path.join(Directory.current.path, 'primitives_library', 'libprimitives.so');
+  var libraryPath = path.join(
+      Directory.current.path, 'primitives_library', 'libprimitives.so');
   if (Platform.isMacOS)
-    libraryPath =
-        path.join(Directory.current.path, 'primitives_library', 'libprimitives.dylib');
+    libraryPath = path.join(
+        Directory.current.path, 'primitives_library', 'libprimitives.dylib');
   if (Platform.isWindows)
     libraryPath = path.join(
         Directory.current.path, 'primitives_library', 'Debug', 'primtives.dll');
