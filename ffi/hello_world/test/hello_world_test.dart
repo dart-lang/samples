@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:test/test.dart';
+import 'package:test_utils/test_utils.dart';
 
 // These tests are Linux-only. For platform-specific instructions, see the
 // README.
@@ -18,8 +19,9 @@ void main() async {
       expect(make.exitCode, 0);
 
       // Verify dynamic library was created (Linux only)
-      var file = File('./hello_library/libhello.so');
-      expect(await file.exists(), true);
+      var filePath = getLibraryFilePath('hello_library', 'hello');
+      var file = File(filePath);
+      expect(await file.exists(), true, reason: '$filePath does not exist');
 
       // Run the Dart script
       var dartProcess = await Process.run('dart', ['hello.dart']);

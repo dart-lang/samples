@@ -2,8 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'dart:io' show Platform;
+import 'dart:io' show Directory, Platform;
 import 'dart:ffi';
+import 'package:path/path.dart' as path;
 import 'package:ffi/ffi.dart';
 
 // Example of handling a simple C struct
@@ -54,10 +55,16 @@ typedef CreatePlace = Pointer<Place> Function(
     Pointer<Utf8> name, double latitude, double longitude);
 
 main() {
-  var path = './structs_library/libstructs.so';
-  if (Platform.isMacOS) path = './structs_library/libstructs.dylib';
-  if (Platform.isWindows) path = r'structs_library\Debug\structs.dll';
-  final dylib = DynamicLibrary.open(path);
+  // Open the dynamic library
+  var libraryPath =
+      path.join(Directory.current.path, 'structs_library', 'libstructs.so');
+  if (Platform.isMacOS)
+    libraryPath = path.join(
+        Directory.current.path, 'structs_library', 'libstructs.dylib');
+  if (Platform.isWindows)
+    libraryPath = path.join(
+        Directory.current.path, 'structs_library', 'Debug', 'structs.dll');
+  final dylib = DynamicLibrary.open(libraryPath);
 
   final helloWorldPointer =
       dylib.lookup<NativeFunction<hello_world_func>>('hello_world');
