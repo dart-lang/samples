@@ -5,5 +5,11 @@ description: >-
 author: Matt Sullivan <mattsullivan@google.com>
 environment:
   sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  path: ^1.7.0
+
 dev_dependencies:
   test: ^1.5.3
+  test_utils:
+    path: ../test_utils
