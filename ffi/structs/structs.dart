@@ -70,7 +70,6 @@ main() {
       dylib.lookup<NativeFunction<hello_world_func>>('hello_world');
   final helloWorld = helloWorldPointer.asFunction<hello_world_func>();
   final messagePointer = helloWorld();
-  // final message = Utf8.fromUtf8(messagePointer);
   final message = messagePointer.toDartString();
   print('$message');
 

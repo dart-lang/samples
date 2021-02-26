@@ -53,5 +53,8 @@ int ShellExecute(String operation, String file) {
   var result = ShellExecuteP(
       ffi.nullptr, operationP, fileP, ffi.nullptr, ffi.nullptr, SW_SHOWNORMAL);
 
+  calloc.free(operationP);
+  calloc.free(fileP);
+
   return result;
 }

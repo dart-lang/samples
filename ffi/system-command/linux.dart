@@ -36,5 +36,7 @@ int system(String command) {
   // Invoke the command, and free the pointer.
   int result = systemP(cmdP);
 
+  calloc.free(cmdP);
+
   return result;
 }

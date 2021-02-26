@@ -64,5 +64,8 @@ int MessageBox(String message, String caption) {
   final result =
       MessageBoxP(nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
 
+  calloc.free(messageP);
+  calloc.free(captionP);
+
   return result;
 }
