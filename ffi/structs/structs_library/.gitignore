@@ -1,0 +1,9 @@
+structs_test
+
+CMakeFiles/**
+CmakeCache.txt
+Makefile
+cmake_install.cmake
+*.dylib
+*.so
+*.dll

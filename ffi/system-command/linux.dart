@@ -31,7 +31,7 @@ int system(String command) {
   final systemP = dylib.lookupFunction<SystemC, SystemDart>('system');
 
   // Allocate a pointer to a Utf8 array containing our command.
-  final cmdP = Utf8.toUtf8(command);
+  final cmdP = command.toNativeUtf8();
 
   // Invoke the command, and free the pointer.
   int result = systemP(cmdP);

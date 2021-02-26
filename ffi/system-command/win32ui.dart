@@ -57,8 +57,8 @@ int MessageBox(String message, String caption) {
       user32.lookupFunction<MessageBoxC, MessageBoxDart>('MessageBoxW');
 
   // Allocate pointers to Utf16 arrays containing the command arguments.
-  final messageP = Utf16.toUtf16(message);
-  final captionP = Utf16.toUtf16(caption);
+  final messageP = message.toNativeUtf16();
+  final captionP = caption.toNativeUtf16();
 
   // Invoke the command, and free the pointers.
   final result =

@@ -16,7 +16,7 @@ class Coordinate extends Struct {
   double longitude;
 
   factory Coordinate.allocate(double latitude, double longitude) =>
-      allocate<Coordinate>().ref
+      malloc<Coordinate>().ref
         ..latitude = latitude
         ..longitude = longitude;
 }
@@ -28,7 +28,7 @@ class Place extends Struct {
   Pointer<Coordinate> coordinate;
 
   factory Place.allocate(Pointer<Utf8> name, Pointer<Coordinate> coordinate) =>
-      allocate<Place>().ref
+      malloc<Place>().ref
         ..name = name
         ..coordinate;
 }
@@ -70,12 +70,13 @@ main() {
       dylib.lookup<NativeFunction<hello_world_func>>('hello_world');
   final helloWorld = helloWorldPointer.asFunction<hello_world_func>();
   final messagePointer = helloWorld();
-  final message = Utf8.fromUtf8(messagePointer);
+  // final message = Utf8.fromUtf8(messagePointer);
+  final message = messagePointer.toDartString();
   print('$message');
 
   final reversePointer = dylib.lookup<NativeFunction<reverse_func>>('reverse');
   final reverse = reversePointer.asFunction<Reverse>();
-  final reversedMessage = Utf8.fromUtf8(reverse(Utf8.toUtf8('backwards'), 9));
+  final reversedMessage = reverse('backwards'.toNativeUtf8(), 9).toDartString();
   print('$reversedMessage');
 
   final createCoordinatePointer =
@@ -91,7 +92,7 @@ main() {
   final createPlace = createPlacePointer.asFunction<CreatePlace>();
   final placePointer = createPlace(messagePointer, 3.5, 4.6);
   final place = placePointer.ref;
-  final placeName = Utf8.fromUtf8(place.name);
+  final placeName = place.name.toDartString();
   final placeCoordinate = place.coordinate.ref;
   print(
       'Place is called $placeName at ${placeCoordinate.latitude}, ${placeCoordinate.longitude}');
