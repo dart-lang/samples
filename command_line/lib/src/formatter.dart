@@ -20,9 +20,9 @@ class DefaultEventFormatter implements EventFormatter {
 
   @override
   String format(Event event) {
-    var date = dateFormat.format(event.createdAt.toLocal());
+    var date = dateFormat.format(event.createdAt!.toLocal());
     var type = event.type;
-    var username = event.actor.login;
+    var username = event.actor!.login;
     var url = util.getUrl(event);
     if (url == null) {
       return '$date: [$type]';
@@ -37,7 +37,7 @@ class MarkdownEventFormatter implements EventFormatter {
   static final dateFormat = DateFormat('EEE, M/d/y');
   @override
   String format(Event event) {
-    var date = dateFormat.format(event.createdAt.toLocal());
+    var date = dateFormat.format(event.createdAt!.toLocal());
     var type = event.type;
     var action = util.getAction(event);
     var url = util.getUrl(event);
@@ -45,7 +45,7 @@ class MarkdownEventFormatter implements EventFormatter {
       return '- ($date): [$type]';
     }
     var title = util.getTitle(event);
-    var repoName = event.repo.name;
+    var repoName = event.repo!.name;
     var issueNumber = util.getIssueNumber(event);
 
     return '- ($date): $action "$title" ([$repoName/$issueNumber]($url))';

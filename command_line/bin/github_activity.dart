@@ -14,12 +14,12 @@ void main(List<String> args) {
     return;
   }
 
-  if (options.user == null || options.user.isEmpty) {
+  if (options.user.isEmpty) {
     _printUsage();
     return;
   }
 
-  var fetcher = ActivityService(options.user, options.verbose, options.interval,
+  var fetcher = ActivityService(options.user, options.verbose!, options.interval!,
       formatter: _getFormatter(options));
 
   // Stream the github activity to the console

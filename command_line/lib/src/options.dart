@@ -22,17 +22,17 @@ class Options {
     allowed: ['day', 'week', 'month'],
     defaultsTo: Interval.week,
   )
-  Interval interval;
+  Interval? interval;
 
   @CliOption(abbr: 'v', help: 'Print additional event types')
-  final bool verbose;
+  final bool? verbose;
 
   @CliOption(
       abbr: 'f',
       help: 'The format to display. Defaults to '
           '"Friday, October 18 at 13:55 PM: <User> opened <URL>"',
       allowed: ['default', 'markdown'])
-  final String format;
+  final String? format;
 
   @CliOption(abbr: 'h', negatable: false, help: 'Prints usage information.')
   final bool help;

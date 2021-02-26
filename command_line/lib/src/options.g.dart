@@ -6,23 +6,23 @@ part of 'options.dart';
 // CliGenerator
 // **************************************************************************
 
-T _$enumValueHelper<T>(Map<T, String> enumValues, String source) {
+T? _$enumValueHelper<T>(Map<T, String> enumValues, String? source) {
   if (source == null) {
     return null;
   }
   return enumValues.entries
       .singleWhere((e) => e.value == source,
-          orElse: () => throw ArgumentError(
+          orElse: (() => throw ArgumentError(
               '`$source` is not one of the supported values: '
-              '${enumValues.values.join(', ')}'))
+              '${enumValues.values.join(', ')}')) as MapEntry<T, String> Function()?)
       .key;
 }
 
 Options _$parseOptionsResult(ArgResults result) => Options(
     result['user'] as String,
-    _$enumValueHelper(_$IntervalEnumMap, result['interval'] as String),
-    result['verbose'] as bool,
-    result['format'] as String,
+    _$enumValueHelper(_$IntervalEnumMap, result['interval'] as String?),
+    result['verbose'] as bool?,
+    result['format'] as String?,
     result['help'] as bool);
 
 const _$IntervalEnumMap = <Interval, String>{
