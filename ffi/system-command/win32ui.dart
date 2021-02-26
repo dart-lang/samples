@@ -63,8 +63,6 @@ int MessageBox(String message, String caption) {
   // Invoke the command, and free the pointers.
   final result =
       MessageBoxP(nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
-  free(messageP);
-  free(captionP);
 
   return result;
 }
