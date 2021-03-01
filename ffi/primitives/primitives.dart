@@ -55,7 +55,7 @@ main() {
 
   // calls int subtract(int *a, int b);
   // Create a pointer
-  Pointer<Int32> p = allocate();
+  Pointer<Int32> p = calloc<Int32>();
   // Place a value into the address
   p.value = 3;
 
@@ -79,4 +79,7 @@ main() {
       dylib.lookup<NativeFunction<multi_sum_func>>('multi_sum');
   final multiSum = multiSumPointer.asFunction<MultiSum>();
   print('3 + 7 + 11 = ${multiSum(3, 3, 7, 11)}');
+
+  // Free up allocated memory.
+  calloc.free(p);
 }
