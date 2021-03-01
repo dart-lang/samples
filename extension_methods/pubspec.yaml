@@ -2,6 +2,9 @@ name: extension_methods
 description: >
   A set of use cases for the extension methods feature.
 
+# This example isn't intended for publishing on pub.dev.
+publish_to: none
+
 environment:
   sdk: '>=2.6.0 <3.0.0'
 

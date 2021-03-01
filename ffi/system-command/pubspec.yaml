@@ -1,7 +1,9 @@
 name: system_command
 description: A FFI application that invokes system commands.
 version: 1.0.0
-author: Michael Thomsen <mit@google.com>
+
+# This example isn't intended for publishing on pub.dev.
+publish_to: none
 
 environment:
   sdk: '>=2.6.0 <3.0.0'

@@ -3,6 +3,9 @@ description: >
   A command line application that can be compiled to native code using
   dart2native.
 
+# This example isn't intended for publishing on pub.dev.
+publish_to: none
+
 environment:
   sdk: '>=2.5.0 <3.0.0'
 

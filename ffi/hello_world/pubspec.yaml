@@ -2,7 +2,10 @@ name: hello_world_ffi
 version: 0.0.1
 description: >-
   A super simple example of calling C code from Dart with FFI
-author: Matt Sullivan <mattsullivan@google.com>
+
+# This example isn't intended for publishing on pub.dev.
+publish_to: none
+
 environment:
   sdk: ">=2.6.0 <3.0.0"
 
