@@ -55,7 +55,7 @@ main() {
 
   // calls int subtract(int *a, int b);
   // Create a pointer
-  Pointer<Int32> p = calloc<Int32>();
+  final p = calloc<Int32>();
   // Place a value into the address
   p.value = 3;
 
