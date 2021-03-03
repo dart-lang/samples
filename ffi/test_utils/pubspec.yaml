@@ -1,4 +1,6 @@
 name: test_utils
+
+# This example isn't intended for publishing on pub.dev.
 publish_to: none
 
 environment:
