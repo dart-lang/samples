@@ -10,48 +10,39 @@ import 'package:ffi/ffi.dart';
 // Example of handling a simple C struct
 class Coordinate extends Struct {
   @Double()
-  double latitude;
+  external double latitude;
 
   @Double()
-  double longitude;
-
-  factory Coordinate.allocate(double latitude, double longitude) =>
-      allocate<Coordinate>().ref
-        ..latitude = latitude
-        ..longitude = longitude;
+  external double longitude;
 }
 
-// Example of a complex struct (contains strings and other structs)
+// Example of a complex struct (contains a string and a nested struct)
 class Place extends Struct {
-  Pointer<Utf8> name;
+  external Pointer<Utf8> name;
 
-  Pointer<Coordinate> coordinate;
-
-  factory Place.allocate(Pointer<Utf8> name, Pointer<Coordinate> coordinate) =>
-      allocate<Place>().ref
-        ..name = name
-        ..coordinate;
+  external Coordinate coordinate;
 }
 
-// C string pointer return function - char *hello_world();
+// C function: char *hello_world();
 // There's no need for two typedefs here, as both the
 // C and Dart functions have the same signature
-typedef hello_world_func = Pointer<Utf8> Function();
+typedef hello_world = Pointer<Utf8> Function();
 
-// C string parameter pointer function - char *reverse(char *str, int length);
-typedef reverse_func = Pointer<Utf8> Function(Pointer<Utf8> str, Int32 length);
+// C function: char *reverse(char *str, int length)
+typedef reverse_native = Pointer<Utf8> Function(
+    Pointer<Utf8> str, Int32 length);
 typedef Reverse = Pointer<Utf8> Function(Pointer<Utf8> str, int length);
 
-// C struct pointer return function - struct Coordinate *create_coordinate(double latitude, double longitude);
-typedef create_coordinate_func = Pointer<Coordinate> Function(
+// C function: struct Coordinate create_coordinate(double latitude, double longitude)
+typedef create_coordinate_native = Coordinate Function(
     Double latitude, Double longitude);
-typedef CreateCoordinate = Pointer<Coordinate> Function(
+typedef CreateCoordinate = Coordinate Function(
     double latitude, double longitude);
 
-// C struct pointer return function - struct Place *create_place(char *name, double latitude, double longitude);
-typedef create_place_func = Pointer<Place> Function(
+// C function: struct Place create_place(char *name, double latitude, double longitude)
+typedef create_place_native = Place Function(
     Pointer<Utf8> name, Double latitude, Double longitude);
-typedef CreatePlace = Pointer<Place> Function(
+typedef CreatePlace = Place Function(
     Pointer<Utf8> name, double latitude, double longitude);
 
 main() {
@@ -66,33 +57,29 @@ main() {
         Directory.current.path, 'structs_library', 'Debug', 'structs.dll');
   final dylib = DynamicLibrary.open(libraryPath);
 
-  final helloWorldPointer =
-      dylib.lookup<NativeFunction<hello_world_func>>('hello_world');
-  final helloWorld = helloWorldPointer.asFunction<hello_world_func>();
-  final messagePointer = helloWorld();
-  final message = Utf8.fromUtf8(messagePointer);
+  final helloWorld =
+      dylib.lookupFunction<hello_world, hello_world>('hello_world');
+  final message = helloWorld().toDartString();
   print('$message');
 
-  final reversePointer = dylib.lookup<NativeFunction<reverse_func>>('reverse');
-  final reverse = reversePointer.asFunction<Reverse>();
-  final reversedMessage = Utf8.fromUtf8(reverse(Utf8.toUtf8('backwards'), 9));
-  print('$reversedMessage');
+  final reverse = dylib.lookupFunction<reverse_native, Reverse>('reverse');
+  final backwards = 'backwards';
+  final reversedMessage =
+      reverse(backwards.toNativeUtf8(), backwards.length).toDartString();
+  print('$backwards reversed is $reversedMessage');
 
-  final createCoordinatePointer =
-      dylib.lookup<NativeFunction<create_coordinate_func>>('create_coordinate');
   final createCoordinate =
-      createCoordinatePointer.asFunction<CreateCoordinate>();
-  final coordinatePointer = createCoordinate(1.0, 2.0);
-  final coordinate = coordinatePointer.ref;
-  print('Coordinate: ${coordinate.latitude}, ${coordinate.longitude}');
-
-  final createPlacePointer =
-      dylib.lookup<NativeFunction<create_place_func>>('create_place');
-  final createPlace = createPlacePointer.asFunction<CreatePlace>();
-  final placePointer = createPlace(messagePointer, 3.5, 4.6);
-  final place = placePointer.ref;
-  final placeName = Utf8.fromUtf8(place.name);
-  final placeCoordinate = place.coordinate.ref;
+      dylib.lookupFunction<create_coordinate_native, CreateCoordinate>(
+          'create_coordinate');
+  final coordinate = createCoordinate(3.5, 4.6);
   print(
-      'Place is called $placeName at ${placeCoordinate.latitude}, ${placeCoordinate.longitude}');
+      'Coordinate is lat ${coordinate.latitude}, long ${coordinate.longitude}');
+
+  final createPlace =
+      dylib.lookupFunction<create_place_native, CreatePlace>('create_place');
+  final place = createPlace('My Home'.toNativeUtf8(), 42.0, 24.0);
+  final name = place.name.toDartString();
+  final coord = place.coordinate;
+  print(
+      'The name of my place is $name at ${coord.latitude}, ${coord.longitude}');
 }
