@@ -45,15 +45,15 @@ int ShellExecute(String operation, String file) {
       dylib.lookupFunction<ShellExecuteC, ShellExecuteDart>('ShellExecuteW');
 
   // Allocate pointers to Utf8 arrays containing the command arguments.
-  final operationP = Utf16.toUtf16(operation);
-  final fileP = Utf16.toUtf16(file);
+  final operationP = operation.toNativeUtf16();
+  final fileP = file.toNativeUtf16();
   const int SW_SHOWNORMAL = 1;
 
   // Invoke the command, and free the pointers.
   var result = ShellExecuteP(
       ffi.nullptr, operationP, fileP, ffi.nullptr, ffi.nullptr, SW_SHOWNORMAL);
-  free(operationP);
-  free(fileP);
+  calloc.free(operationP);
+  calloc.free(fileP);
 
   return result;
 }
