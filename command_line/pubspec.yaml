@@ -27,11 +27,11 @@ executables:
 dependency_overrides:
   build_cli_annotations:
     git:
-      url: git@github.com:kevmoo/build_cli.git
+      url: https://github.com/kevmoo/build_cli.git
       ref: master
       path: build_cli_annotations
   build_cli:
     git:
-      url: git@github.com:kevmoo/build_cli.git
+      url: https://github.com/kevmoo/build_cli.git
       ref: master
       path: build_cli
