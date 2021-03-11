@@ -16,7 +16,7 @@ void main() {
 }
 
 extension _MyJsonHelper on Map<String, Object> {
-  int get id => this['id'];
+  int? get id => this['id'] as int?;
 
-  String get name => this['name'];
+  String? get name => this['name'] as String?;
 }

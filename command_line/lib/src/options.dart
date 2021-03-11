@@ -14,7 +14,7 @@ ArgParser get parser => _$populateOptionsParser(ArgParser(usageLineLength: 80));
 @CliOptions()
 class Options {
   @CliOption(abbr: 'u', help: 'Required. The GitHub user')
-  final String user;
+  final String? user;
 
   @CliOption(
     abbr: 'i',
@@ -24,15 +24,15 @@ class Options {
   )
   Interval interval;
 
-  @CliOption(abbr: 'v', help: 'Print additional event types')
-  final bool verbose;
+  @CliOption(abbr: 'v', defaultsTo: false, help: 'Print additional event types')
+  final bool? verbose;
 
   @CliOption(
       abbr: 'f',
       help: 'The format to display. Defaults to '
           '"Friday, October 18 at 13:55 PM: <User> opened <URL>"',
       allowed: ['default', 'markdown'])
-  final String format;
+  final String? format;
 
   @CliOption(abbr: 'h', negatable: false, help: 'Prints usage information.')
   final bool help;

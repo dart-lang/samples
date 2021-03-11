@@ -28,7 +28,10 @@ extension Sillier on int {
 
 extension Silliest on Object {
   int nah() => hashCode + 42;
-  String stop(String x) => toString() + x;
   Type please() => runtimeType;
   bool notAgain(Object other) => this != other;
+}
+
+extension ExtremelySilly on Null {
+  String stop(String x) => toString() + x;
 }
