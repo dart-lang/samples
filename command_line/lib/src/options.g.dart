@@ -6,21 +6,17 @@ part of 'options.dart';
 // CliGenerator
 // **************************************************************************
 
-T? _$enumValueHelper<T>(Map<T, String> enumValues, String? source) {
-  if (source == null) {
-    return null;
-  }
-  return enumValues.entries
-      .singleWhere((e) => e.value == source,
-          orElse: (() => throw ArgumentError(
-              '`$source` is not one of the supported values: '
-              '${enumValues.values.join(', ')}')) as MapEntry<T, String> Function()?)
-      .key;
-}
+T _$enumValueHelper<T>(Map<T, String> enumValues, String source) => enumValues
+    .entries
+    .singleWhere((e) => e.value == source,
+        orElse: () =>
+            throw ArgumentError('`$source` is not one of the supported values: '
+                '${enumValues.values.join(', ')}'))
+    .key;
 
 Options _$parseOptionsResult(ArgResults result) => Options(
-    result['user'] as String,
-    _$enumValueHelper(_$IntervalEnumMap, result['interval'] as String?),
+    result['user'] as String?,
+    _$enumValueHelper(_$IntervalEnumMap, result['interval'] as String),
     result['verbose'] as bool?,
     result['format'] as String?,
     result['help'] as bool);
@@ -38,7 +34,8 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
       help: 'The time interval to filter events.',
       defaultsTo: 'week',
       allowed: ['day', 'week', 'month'])
-  ..addFlag('verbose', abbr: 'v', help: 'Print additional event types')
+  ..addFlag('verbose',
+      abbr: 'v', help: 'Print additional event types', defaultsTo: false)
   ..addOption('format',
       abbr: 'f',
       help:

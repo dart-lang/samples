@@ -17,6 +17,9 @@ export 'src/options.dart';
 /// API rate-limiting.
 Authentication get authentication {
   var ghStatsToken = Platform.environment['GITHUB_TOKEN'];
+  if (ghStatsToken == null) {
+    return Authentication.anonymous();
+  }
   return Authentication.withToken(ghStatsToken);
 }
 
