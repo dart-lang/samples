@@ -12,13 +12,13 @@ The code works only with preview builds of null safety from the `beta`
 channel. If you're using Flutter, you can run:
 
 ```cmd
-flutter channel beta
+flutter channel stable
 flutter upgrade
 ```
 
-to switch to this channel; alternatively, you may download and install the
-latest null safety preview build of Dart from the [Dart SDK
-archive](https://dart.dev/tools/sdk/archive#beta-channel).
+to switch to this channel; alternatively, you may [download and install the Dart
+SDK archive](https://dart.dev/tools/sdk/archive#beta-channel) version 2.12 or
+above.
 
 ### Running from the terminal / command prompt
 
@@ -47,11 +47,10 @@ VSCode:
 
   1. Tell VSCode to use the preview Dart SDK: Open `bin/main.dart` and then
      locate the 'Dart: \<version number\>' selector in the status bar at the
-     bottom, and select `Dart: 2.12.0-xxx.0.beta` (where `xxx` is the latest
-     version available.)
+     bottom, and select `Dart: 2.12.0` (or greater.)
 
-  1. Select **Run > Run** and the project should run and print a message in the Debug
-     Console.
+  1. Select **Run > Run** and the project should run and print a message in the
+     Debug Console.
 
 
 ### Running from Android Studio
@@ -64,11 +63,11 @@ VSCode:
 
   1. Select 'Open Dart Settings' in the top banner.
 
-  1. Select both 'Enable Dart support' checkmarks at the top and bottom of the dialog.
+  1. Select both 'Enable Dart support' checkmarks at the top and bottom of the
+     dialog.
   
-  1. Under Dart SDK specify the path to the Dart preview SDK
-     (`2.12.0-xxx.0.beta`, where `xxx` is the latest version available). Click
-     OK.
+  1. Under Dart SDK specify the path to the Dart preview SDK (`2.12.0`, or the
+     latest version available). Click OK.
 
   1. Select Run > Run and the project should run and print a message in the Run
      pane.
