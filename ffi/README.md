@@ -23,7 +23,12 @@ The `make` command creates a `libhello.dylib` (macOS), `libhello.dll`
 
 ## Running
 
-Once the native library is built, run `dart <filename>.dart`.
+Once the native library is built, run:
+
+```bash
+dart pub get
+dart <filename>.dart
+```
 
 ## Using Docker
 
