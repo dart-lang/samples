@@ -37,7 +37,7 @@ jobs:
       - name: mono_repo self validate
         run: pub global run mono_repo generate --validate
   job_002:
-    name: "analyze; linux; Dart dev; PKGS: ffi/system-command, ffi/hello_world, extension_methods, command_line, ffi/structs, native_app, ffi/primitives; `dartanalyzer --fatal-infos --fatal-warnings .`"
+    name: "analyze; linux; Dart dev; PKGS: ffi/system-command, ffi/hello_world, extension_methods, command_line, ffi/structs, native_app, ffi/primitives; `dartanalyzer --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
@@ -60,64 +60,64 @@ jobs:
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: ffi/system-command
         run: pub upgrade --no-precompile
-      - name: "ffi/system-command; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "ffi/system-command; dartanalyzer --fatal-infos ."
         if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/system-command
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: ffi_hello_world_pub_upgrade
         name: "ffi/hello_world; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: ffi/hello_world
         run: pub upgrade --no-precompile
-      - name: "ffi/hello_world; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "ffi/hello_world; dartanalyzer --fatal-infos ."
         if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/hello_world
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: extension_methods_pub_upgrade
         name: "extension_methods; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: extension_methods
         run: pub upgrade --no-precompile
-      - name: "extension_methods; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "extension_methods; dartanalyzer --fatal-infos ."
         if: "always() && steps.extension_methods_pub_upgrade.conclusion == 'success'"
         working-directory: extension_methods
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: command_line_pub_upgrade
         name: "command_line; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: command_line
         run: pub upgrade --no-precompile
-      - name: "command_line; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "command_line; dartanalyzer --fatal-infos ."
         if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
         working-directory: command_line
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: ffi_structs_pub_upgrade
         name: "ffi/structs; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: ffi/structs
         run: pub upgrade --no-precompile
-      - name: "ffi/structs; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "ffi/structs; dartanalyzer --fatal-infos ."
         if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/structs
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: native_app_pub_upgrade
         name: "native_app; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: native_app
         run: pub upgrade --no-precompile
-      - name: "native_app; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "native_app; dartanalyzer --fatal-infos ."
         if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
         working-directory: native_app
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: ffi_primitives_pub_upgrade
         name: "ffi/primitives; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: ffi/primitives
         run: pub upgrade --no-precompile
-      - name: "ffi/primitives; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "ffi/primitives; dartanalyzer --fatal-infos ."
         if: "always() && steps.ffi_primitives_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/primitives
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
     needs:
       - job_001
   job_003:
@@ -205,7 +205,7 @@ jobs:
     needs:
       - job_001
   job_004:
-    name: "analyze; linux; Dart stable; PKGS: extension_methods, ffi/primitives, ffi/hello_world, ffi/structs, command_line, ffi/system-command, native_app; `dartanalyzer --fatal-infos --fatal-warnings .`"
+    name: "analyze; linux; Dart stable; PKGS: extension_methods, ffi/primitives, ffi/hello_world, ffi/structs, command_line, ffi/system-command, native_app; `dartanalyzer --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
@@ -228,64 +228,64 @@ jobs:
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: extension_methods
         run: pub upgrade --no-precompile
-      - name: "extension_methods; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "extension_methods; dartanalyzer --fatal-infos ."
         if: "always() && steps.extension_methods_pub_upgrade.conclusion == 'success'"
         working-directory: extension_methods
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: ffi_primitives_pub_upgrade
         name: "ffi/primitives; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: ffi/primitives
         run: pub upgrade --no-precompile
-      - name: "ffi/primitives; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "ffi/primitives; dartanalyzer --fatal-infos ."
         if: "always() && steps.ffi_primitives_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/primitives
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: ffi_hello_world_pub_upgrade
         name: "ffi/hello_world; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: ffi/hello_world
         run: pub upgrade --no-precompile
-      - name: "ffi/hello_world; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "ffi/hello_world; dartanalyzer --fatal-infos ."
         if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/hello_world
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: ffi_structs_pub_upgrade
         name: "ffi/structs; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: ffi/structs
         run: pub upgrade --no-precompile
-      - name: "ffi/structs; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "ffi/structs; dartanalyzer --fatal-infos ."
         if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/structs
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: command_line_pub_upgrade
         name: "command_line; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: command_line
         run: pub upgrade --no-precompile
-      - name: "command_line; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "command_line; dartanalyzer --fatal-infos ."
         if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
         working-directory: command_line
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: ffi_system-command_pub_upgrade
         name: "ffi/system-command; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: ffi/system-command
         run: pub upgrade --no-precompile
-      - name: "ffi/system-command; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "ffi/system-command; dartanalyzer --fatal-infos ."
         if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/system-command
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
       - id: native_app_pub_upgrade
         name: "native_app; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: native_app
         run: pub upgrade --no-precompile
-      - name: "native_app; dartanalyzer --fatal-infos --fatal-warnings ."
+      - name: "native_app; dartanalyzer --fatal-infos ."
         if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
         working-directory: native_app
-        run: dartanalyzer --fatal-infos --fatal-warnings .
+        run: dartanalyzer --fatal-infos .
     needs:
       - job_001
   job_005:
