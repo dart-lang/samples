@@ -21,6 +21,8 @@ Dart][awesome-dart].
 - [native_app](https://github.com/dart-lang/samples/blob/master/native_app) - A
   command line application that can be compiled to native code using
   `dart2native`.
+- [server](https://github.com/dart-lang/samples/blob/master/server) - Examples
+  of running Dart on the server.
 
 ## More samples
 

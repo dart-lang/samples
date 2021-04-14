@@ -37,16 +37,16 @@ jobs:
       - name: mono_repo self validate
         run: pub global run mono_repo generate --validate
   job_002:
-    name: "analyze; linux; Dart dev; PKGS: ffi/system-command, ffi/hello_world, extension_methods, command_line, ffi/structs, native_app, ffi/primitives; `dartanalyzer --fatal-infos .`"
+    name: "analyze; linux; Dart dev; PKGS: server/simple, extension_methods, command_line, ffi/hello_world, ffi/primitives, native_app, ffi/system-command, server/google_apis, ffi/structs; `dartanalyzer --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:ffi/system-command-ffi/hello_world-extension_methods-command_line-ffi/structs-native_app-ffi/primitives;commands:dartanalyzer"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:server/simple-extension_methods-command_line-ffi/hello_world-ffi/primitives-native_app-ffi/system-command-server/google_apis-ffi/structs;commands:dartanalyzer"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:ffi/system-command-ffi/hello_world-extension_methods-command_line-ffi/structs-native_app-ffi/primitives
+            os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:server/simple-extension_methods-command_line-ffi/hello_world-ffi/primitives-native_app-ffi/system-command-server/google_apis-ffi/structs
             os:ubuntu-latest;pub-cache-hosted;dart:dev
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -55,23 +55,14 @@ jobs:
           sdk: dev
       - id: checkout
         uses: actions/checkout@v2
-      - id: ffi_system-command_pub_upgrade
-        name: "ffi/system-command; pub upgrade --no-precompile"
+      - id: server_simple_pub_upgrade
+        name: "server/simple; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/system-command
+        working-directory: server/simple
         run: pub upgrade --no-precompile
-      - name: "ffi/system-command; dartanalyzer --fatal-infos ."
-        if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/system-command
-        run: dartanalyzer --fatal-infos .
-      - id: ffi_hello_world_pub_upgrade
-        name: "ffi/hello_world; pub upgrade --no-precompile"
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/hello_world
-        run: pub upgrade --no-precompile
-      - name: "ffi/hello_world; dartanalyzer --fatal-infos ."
-        if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/hello_world
+      - name: "server/simple; dartanalyzer --fatal-infos ."
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
         run: dartanalyzer --fatal-infos .
       - id: extension_methods_pub_upgrade
         name: "extension_methods; pub upgrade --no-precompile"
@@ -91,23 +82,14 @@ jobs:
         if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
         working-directory: command_line
         run: dartanalyzer --fatal-infos .
-      - id: ffi_structs_pub_upgrade
-        name: "ffi/structs; pub upgrade --no-precompile"
+      - id: ffi_hello_world_pub_upgrade
+        name: "ffi/hello_world; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/structs
+        working-directory: ffi/hello_world
         run: pub upgrade --no-precompile
-      - name: "ffi/structs; dartanalyzer --fatal-infos ."
-        if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/structs
-        run: dartanalyzer --fatal-infos .
-      - id: native_app_pub_upgrade
-        name: "native_app; pub upgrade --no-precompile"
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: native_app
-        run: pub upgrade --no-precompile
-      - name: "native_app; dartanalyzer --fatal-infos ."
-        if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
-        working-directory: native_app
+      - name: "ffi/hello_world; dartanalyzer --fatal-infos ."
+        if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/hello_world
         run: dartanalyzer --fatal-infos .
       - id: ffi_primitives_pub_upgrade
         name: "ffi/primitives; pub upgrade --no-precompile"
@@ -118,19 +100,55 @@ jobs:
         if: "always() && steps.ffi_primitives_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/primitives
         run: dartanalyzer --fatal-infos .
+      - id: native_app_pub_upgrade
+        name: "native_app; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: native_app
+        run: pub upgrade --no-precompile
+      - name: "native_app; dartanalyzer --fatal-infos ."
+        if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
+        working-directory: native_app
+        run: dartanalyzer --fatal-infos .
+      - id: ffi_system-command_pub_upgrade
+        name: "ffi/system-command; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/system-command
+        run: pub upgrade --no-precompile
+      - name: "ffi/system-command; dartanalyzer --fatal-infos ."
+        if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/system-command
+        run: dartanalyzer --fatal-infos .
+      - id: server_google_apis_pub_upgrade
+        name: "server/google_apis; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/google_apis
+        run: pub upgrade --no-precompile
+      - name: "server/google_apis; dartanalyzer --fatal-infos ."
+        if: "always() && steps.server_google_apis_pub_upgrade.conclusion == 'success'"
+        working-directory: server/google_apis
+        run: dartanalyzer --fatal-infos .
+      - id: ffi_structs_pub_upgrade
+        name: "ffi/structs; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: pub upgrade --no-precompile
+      - name: "ffi/structs; dartanalyzer --fatal-infos ."
+        if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: dartanalyzer --fatal-infos .
     needs:
       - job_001
   job_003:
-    name: "analyze; linux; Dart dev; PKGS: command_line, extension_methods, ffi/hello_world, native_app, ffi/system-command, ffi/structs, ffi/primitives; `dartfmt -n --set-exit-if-changed .`"
+    name: "analyze; linux; Dart dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/system-command, server/simple, server/google_apis, ffi/structs, native_app; `dartfmt -n --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:command_line-extension_methods-ffi/hello_world-native_app-ffi/system-command-ffi/structs-ffi/primitives;commands:dartfmt"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/system-command-server/simple-server/google_apis-ffi/structs-native_app;commands:dartfmt"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:command_line-extension_methods-ffi/hello_world-native_app-ffi/system-command-ffi/structs-ffi/primitives
+            os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/system-command-server/simple-server/google_apis-ffi/structs-native_app
             os:ubuntu-latest;pub-cache-hosted;dart:dev
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -166,14 +184,14 @@ jobs:
         if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/hello_world
         run: dartfmt -n --set-exit-if-changed .
-      - id: native_app_pub_upgrade
-        name: "native_app; pub upgrade --no-precompile"
+      - id: ffi_primitives_pub_upgrade
+        name: "ffi/primitives; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: native_app
+        working-directory: ffi/primitives
         run: pub upgrade --no-precompile
-      - name: "native_app; dartfmt -n --set-exit-if-changed ."
-        if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
-        working-directory: native_app
+      - name: "ffi/primitives; dartfmt -n --set-exit-if-changed ."
+        if: "always() && steps.ffi_primitives_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/primitives
         run: dartfmt -n --set-exit-if-changed .
       - id: ffi_system-command_pub_upgrade
         name: "ffi/system-command; pub upgrade --no-precompile"
@@ -184,6 +202,24 @@ jobs:
         if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/system-command
         run: dartfmt -n --set-exit-if-changed .
+      - id: server_simple_pub_upgrade
+        name: "server/simple; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub upgrade --no-precompile
+      - name: "server/simple; dartfmt -n --set-exit-if-changed ."
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+        run: dartfmt -n --set-exit-if-changed .
+      - id: server_google_apis_pub_upgrade
+        name: "server/google_apis; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/google_apis
+        run: pub upgrade --no-precompile
+      - name: "server/google_apis; dartfmt -n --set-exit-if-changed ."
+        if: "always() && steps.server_google_apis_pub_upgrade.conclusion == 'success'"
+        working-directory: server/google_apis
+        run: dartfmt -n --set-exit-if-changed .
       - id: ffi_structs_pub_upgrade
         name: "ffi/structs; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -193,28 +229,28 @@ jobs:
         if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/structs
         run: dartfmt -n --set-exit-if-changed .
-      - id: ffi_primitives_pub_upgrade
-        name: "ffi/primitives; pub upgrade --no-precompile"
+      - id: native_app_pub_upgrade
+        name: "native_app; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/primitives
+        working-directory: native_app
         run: pub upgrade --no-precompile
-      - name: "ffi/primitives; dartfmt -n --set-exit-if-changed ."
-        if: "always() && steps.ffi_primitives_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/primitives
+      - name: "native_app; dartfmt -n --set-exit-if-changed ."
+        if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
+        working-directory: native_app
         run: dartfmt -n --set-exit-if-changed .
     needs:
       - job_001
   job_004:
-    name: "analyze; linux; Dart stable; PKGS: extension_methods, ffi/primitives, ffi/hello_world, ffi/structs, command_line, ffi/system-command, native_app; `dartanalyzer --fatal-infos .`"
+    name: "analyze; linux; Dart stable; PKGS: ffi/primitives, extension_methods, ffi/hello_world, ffi/system-command, command_line, native_app, ffi/structs; `dartanalyzer --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:extension_methods-ffi/primitives-ffi/hello_world-ffi/structs-command_line-ffi/system-command-native_app;commands:dartanalyzer"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:ffi/primitives-extension_methods-ffi/hello_world-ffi/system-command-command_line-native_app-ffi/structs;commands:dartanalyzer"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:extension_methods-ffi/primitives-ffi/hello_world-ffi/structs-command_line-ffi/system-command-native_app
+            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:ffi/primitives-extension_methods-ffi/hello_world-ffi/system-command-command_line-native_app-ffi/structs
             os:ubuntu-latest;pub-cache-hosted;dart:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -223,15 +259,6 @@ jobs:
           sdk: stable
       - id: checkout
         uses: actions/checkout@v2
-      - id: extension_methods_pub_upgrade
-        name: "extension_methods; pub upgrade --no-precompile"
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: extension_methods
-        run: pub upgrade --no-precompile
-      - name: "extension_methods; dartanalyzer --fatal-infos ."
-        if: "always() && steps.extension_methods_pub_upgrade.conclusion == 'success'"
-        working-directory: extension_methods
-        run: dartanalyzer --fatal-infos .
       - id: ffi_primitives_pub_upgrade
         name: "ffi/primitives; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -240,6 +267,15 @@ jobs:
       - name: "ffi/primitives; dartanalyzer --fatal-infos ."
         if: "always() && steps.ffi_primitives_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/primitives
+        run: dartanalyzer --fatal-infos .
+      - id: extension_methods_pub_upgrade
+        name: "extension_methods; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: extension_methods
+        run: pub upgrade --no-precompile
+      - name: "extension_methods; dartanalyzer --fatal-infos ."
+        if: "always() && steps.extension_methods_pub_upgrade.conclusion == 'success'"
+        working-directory: extension_methods
         run: dartanalyzer --fatal-infos .
       - id: ffi_hello_world_pub_upgrade
         name: "ffi/hello_world; pub upgrade --no-precompile"
@@ -250,14 +286,14 @@ jobs:
         if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
         working-directory: ffi/hello_world
         run: dartanalyzer --fatal-infos .
-      - id: ffi_structs_pub_upgrade
-        name: "ffi/structs; pub upgrade --no-precompile"
+      - id: ffi_system-command_pub_upgrade
+        name: "ffi/system-command; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/structs
+        working-directory: ffi/system-command
         run: pub upgrade --no-precompile
-      - name: "ffi/structs; dartanalyzer --fatal-infos ."
-        if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/structs
+      - name: "ffi/system-command; dartanalyzer --fatal-infos ."
+        if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/system-command
         run: dartanalyzer --fatal-infos .
       - id: command_line_pub_upgrade
         name: "command_line; pub upgrade --no-precompile"
@@ -268,15 +304,6 @@ jobs:
         if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
         working-directory: command_line
         run: dartanalyzer --fatal-infos .
-      - id: ffi_system-command_pub_upgrade
-        name: "ffi/system-command; pub upgrade --no-precompile"
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/system-command
-        run: pub upgrade --no-precompile
-      - name: "ffi/system-command; dartanalyzer --fatal-infos ."
-        if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/system-command
-        run: dartanalyzer --fatal-infos .
       - id: native_app_pub_upgrade
         name: "native_app; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -286,41 +313,56 @@ jobs:
         if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
         working-directory: native_app
         run: dartanalyzer --fatal-infos .
+      - id: ffi_structs_pub_upgrade
+        name: "ffi/structs; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: pub upgrade --no-precompile
+      - name: "ffi/structs; dartanalyzer --fatal-infos ."
+        if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: dartanalyzer --fatal-infos .
     needs:
       - job_001
   job_005:
-    name: "unit_test; linux; Dart stable; PKG: ffi/hello_world; `pub run test`"
+    name: "analyze; linux; Dart 2.12.0; PKGS: server/google_apis, server/simple; `dartanalyzer --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:ffi/hello_world;commands:test"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:2.12.0;packages:server/google_apis-server/simple;commands:dartanalyzer"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:ffi/hello_world
-            os:ubuntu-latest;pub-cache-hosted;dart:stable
+            os:ubuntu-latest;pub-cache-hosted;dart:2.12.0;packages:server/google_apis-server/simple
+            os:ubuntu-latest;pub-cache-hosted;dart:2.12.0
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - uses: dart-lang/setup-dart@v1.0
         with:
-          sdk: stable
+          sdk: "2.12.0"
       - id: checkout
         uses: actions/checkout@v2
-      - id: ffi_hello_world_pub_upgrade
-        name: "ffi/hello_world; pub upgrade --no-precompile"
+      - id: server_google_apis_pub_upgrade
+        name: "server/google_apis; pub upgrade --no-precompile"
         if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/hello_world
+        working-directory: server/google_apis
         run: pub upgrade --no-precompile
-      - name: ffi/hello_world; pub run test
-        if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/hello_world
-        run: pub run test
+      - name: "server/google_apis; dartanalyzer --fatal-infos ."
+        if: "always() && steps.server_google_apis_pub_upgrade.conclusion == 'success'"
+        working-directory: server/google_apis
+        run: dartanalyzer --fatal-infos .
+      - id: server_simple_pub_upgrade
+        name: "server/simple; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub upgrade --no-precompile
+      - name: "server/simple; dartanalyzer --fatal-infos ."
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+        run: dartanalyzer --fatal-infos .
     needs:
       - job_001
-      - job_002
-      - job_003
-      - job_004
   job_006:
     name: "unit_test; linux; Dart stable; PKG: ffi/primitives; `pub run test`"
     runs-on: ubuntu-latest
@@ -354,7 +396,42 @@ jobs:
       - job_002
       - job_003
       - job_004
+      - job_005
   job_007:
+    name: "unit_test; linux; Dart stable; PKG: ffi/hello_world; `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:ffi/hello_world;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;dart:stable;packages:ffi/hello_world
+            os:ubuntu-latest;pub-cache-hosted;dart:stable
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.0
+        with:
+          sdk: stable
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: ffi_hello_world_pub_upgrade
+        name: "ffi/hello_world; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/hello_world
+        run: pub upgrade --no-precompile
+      - name: ffi/hello_world; pub run test
+        if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/hello_world
+        run: pub run test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_008:
     name: "unit_test; linux; Dart stable; PKG: extension_methods; `pub run test`"
     runs-on: ubuntu-latest
     steps:
@@ -387,7 +464,8 @@ jobs:
       - job_002
       - job_003
       - job_004
-  job_008:
+      - job_005
+  job_009:
     name: "unit_test; linux; Dart stable; PKG: command_line; `pub run test`"
     runs-on: ubuntu-latest
     steps:
@@ -420,39 +498,7 @@ jobs:
       - job_002
       - job_003
       - job_004
-  job_009:
-    name: "unit_test; linux; Dart dev; PKG: ffi/hello_world; `pub run test`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:ffi/hello_world;commands:test"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:ffi/hello_world
-            os:ubuntu-latest;pub-cache-hosted;dart:dev
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.0
-        with:
-          sdk: dev
-      - id: checkout
-        uses: actions/checkout@v2
-      - id: ffi_hello_world_pub_upgrade
-        name: "ffi/hello_world; pub upgrade --no-precompile"
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/hello_world
-        run: pub upgrade --no-precompile
-      - name: ffi/hello_world; pub run test
-        if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/hello_world
-        run: pub run test
-    needs:
-      - job_001
-      - job_002
-      - job_003
-      - job_004
+      - job_005
   job_010:
     name: "unit_test; linux; Dart dev; PKG: ffi/primitives; `pub run test`"
     runs-on: ubuntu-latest
@@ -486,7 +532,42 @@ jobs:
       - job_002
       - job_003
       - job_004
+      - job_005
   job_011:
+    name: "unit_test; linux; Dart dev; PKG: ffi/hello_world; `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:ffi/hello_world;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:ffi/hello_world
+            os:ubuntu-latest;pub-cache-hosted;dart:dev
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.0
+        with:
+          sdk: dev
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: ffi_hello_world_pub_upgrade
+        name: "ffi/hello_world; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/hello_world
+        run: pub upgrade --no-precompile
+      - name: ffi/hello_world; pub run test
+        if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/hello_world
+        run: pub run test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_012:
     name: "unit_test; linux; Dart dev; PKG: extension_methods; `pub run test`"
     runs-on: ubuntu-latest
     steps:
@@ -519,7 +600,8 @@ jobs:
       - job_002
       - job_003
       - job_004
-  job_012:
+      - job_005
+  job_013:
     name: "unit_test; linux; Dart dev; PKG: command_line; `pub run test`"
     runs-on: ubuntu-latest
     steps:
@@ -552,7 +634,42 @@ jobs:
       - job_002
       - job_003
       - job_004
-  job_013:
+      - job_005
+  job_014:
+    name: "unit_test; linux; Dart dev; PKG: server/simple; `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:server/simple;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;dart:dev;packages:server/simple
+            os:ubuntu-latest;pub-cache-hosted;dart:dev
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.0
+        with:
+          sdk: dev
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: server_simple_pub_upgrade
+        name: "server/simple; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub upgrade --no-precompile
+      - name: server/simple; pub run test
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub run test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_015:
     name: "unit_test; windows; Dart stable; PKG: extension_methods; `pub run test`"
     runs-on: windows-latest
     steps:
@@ -575,7 +692,8 @@ jobs:
       - job_002
       - job_003
       - job_004
-  job_014:
+      - job_005
+  job_016:
     name: "unit_test; windows; Dart stable; PKG: command_line; `pub run test`"
     runs-on: windows-latest
     steps:
@@ -598,72 +716,7 @@ jobs:
       - job_002
       - job_003
       - job_004
-  job_015:
-    name: "unit_test; macos; Dart stable; PKG: extension_methods; `pub run test`"
-    runs-on: macos-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:macos-latest;pub-cache-hosted;dart:stable;packages:extension_methods;commands:test"
-          restore-keys: |
-            os:macos-latest;pub-cache-hosted;dart:stable;packages:extension_methods
-            os:macos-latest;pub-cache-hosted;dart:stable
-            os:macos-latest;pub-cache-hosted
-            os:macos-latest
-      - uses: dart-lang/setup-dart@v1.0
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2
-      - id: extension_methods_pub_upgrade
-        name: "extension_methods; pub upgrade --no-precompile"
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: extension_methods
-        run: pub upgrade --no-precompile
-      - name: extension_methods; pub run test
-        if: "always() && steps.extension_methods_pub_upgrade.conclusion == 'success'"
-        working-directory: extension_methods
-        run: pub run test
-    needs:
-      - job_001
-      - job_002
-      - job_003
-      - job_004
-  job_016:
-    name: "unit_test; macos; Dart stable; PKG: command_line; `pub run test`"
-    runs-on: macos-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:macos-latest;pub-cache-hosted;dart:stable;packages:command_line;commands:test"
-          restore-keys: |
-            os:macos-latest;pub-cache-hosted;dart:stable;packages:command_line
-            os:macos-latest;pub-cache-hosted;dart:stable
-            os:macos-latest;pub-cache-hosted
-            os:macos-latest
-      - uses: dart-lang/setup-dart@v1.0
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v2
-      - id: command_line_pub_upgrade
-        name: "command_line; pub upgrade --no-precompile"
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: command_line
-        run: pub upgrade --no-precompile
-      - name: command_line; pub run test
-        if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
-        working-directory: command_line
-        run: pub run test
-    needs:
-      - job_001
-      - job_002
-      - job_003
-      - job_004
+      - job_005
   job_017:
     name: "unit_test; windows; Dart dev; PKG: extension_methods; `pub run test`"
     runs-on: windows-latest
@@ -687,6 +740,7 @@ jobs:
       - job_002
       - job_003
       - job_004
+      - job_005
   job_018:
     name: "unit_test; windows; Dart dev; PKG: command_line; `pub run test`"
     runs-on: windows-latest
@@ -710,7 +764,32 @@ jobs:
       - job_002
       - job_003
       - job_004
+      - job_005
   job_019:
+    name: "unit_test; windows; Dart dev; PKG: server/simple; `pub run test`"
+    runs-on: windows-latest
+    steps:
+      - uses: dart-lang/setup-dart@v1.0
+        with:
+          sdk: dev
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: server_simple_pub_upgrade
+        name: "server/simple; pub.bat upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub.bat upgrade --no-precompile
+      - name: server/simple; pub run test
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub.bat run test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_020:
     name: "unit_test; macos; Dart dev; PKG: extension_methods; `pub run test`"
     runs-on: macos-latest
     steps:
@@ -743,7 +822,8 @@ jobs:
       - job_002
       - job_003
       - job_004
-  job_020:
+      - job_005
+  job_021:
     name: "unit_test; macos; Dart dev; PKG: command_line; `pub run test`"
     runs-on: macos-latest
     steps:
@@ -776,3 +856,198 @@ jobs:
       - job_002
       - job_003
       - job_004
+      - job_005
+  job_022:
+    name: "unit_test; macos; Dart dev; PKG: server/simple; `pub run test`"
+    runs-on: macos-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:macos-latest;pub-cache-hosted;dart:dev;packages:server/simple;commands:test"
+          restore-keys: |
+            os:macos-latest;pub-cache-hosted;dart:dev;packages:server/simple
+            os:macos-latest;pub-cache-hosted;dart:dev
+            os:macos-latest;pub-cache-hosted
+            os:macos-latest
+      - uses: dart-lang/setup-dart@v1.0
+        with:
+          sdk: dev
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: server_simple_pub_upgrade
+        name: "server/simple; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub upgrade --no-precompile
+      - name: server/simple; pub run test
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub run test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_023:
+    name: "unit_test; macos; Dart stable; PKG: command_line; `pub run test`"
+    runs-on: macos-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:macos-latest;pub-cache-hosted;dart:stable;packages:command_line;commands:test"
+          restore-keys: |
+            os:macos-latest;pub-cache-hosted;dart:stable;packages:command_line
+            os:macos-latest;pub-cache-hosted;dart:stable
+            os:macos-latest;pub-cache-hosted
+            os:macos-latest
+      - uses: dart-lang/setup-dart@v1.0
+        with:
+          sdk: stable
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: command_line_pub_upgrade
+        name: "command_line; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: command_line
+        run: pub upgrade --no-precompile
+      - name: command_line; pub run test
+        if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
+        working-directory: command_line
+        run: pub run test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_024:
+    name: "unit_test; macos; Dart stable; PKG: extension_methods; `pub run test`"
+    runs-on: macos-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:macos-latest;pub-cache-hosted;dart:stable;packages:extension_methods;commands:test"
+          restore-keys: |
+            os:macos-latest;pub-cache-hosted;dart:stable;packages:extension_methods
+            os:macos-latest;pub-cache-hosted;dart:stable
+            os:macos-latest;pub-cache-hosted
+            os:macos-latest
+      - uses: dart-lang/setup-dart@v1.0
+        with:
+          sdk: stable
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: extension_methods_pub_upgrade
+        name: "extension_methods; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: extension_methods
+        run: pub upgrade --no-precompile
+      - name: extension_methods; pub run test
+        if: "always() && steps.extension_methods_pub_upgrade.conclusion == 'success'"
+        working-directory: extension_methods
+        run: pub run test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_025:
+    name: "unit_test; linux; Dart 2.12.0; PKG: server/simple; `pub run test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;dart:2.12.0;packages:server/simple;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;dart:2.12.0;packages:server/simple
+            os:ubuntu-latest;pub-cache-hosted;dart:2.12.0
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.0
+        with:
+          sdk: "2.12.0"
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: server_simple_pub_upgrade
+        name: "server/simple; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub upgrade --no-precompile
+      - name: server/simple; pub run test
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub run test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_026:
+    name: "unit_test; macos; Dart 2.12.0; PKG: server/simple; `pub run test`"
+    runs-on: macos-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v2
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:macos-latest;pub-cache-hosted;dart:2.12.0;packages:server/simple;commands:test"
+          restore-keys: |
+            os:macos-latest;pub-cache-hosted;dart:2.12.0;packages:server/simple
+            os:macos-latest;pub-cache-hosted;dart:2.12.0
+            os:macos-latest;pub-cache-hosted
+            os:macos-latest
+      - uses: dart-lang/setup-dart@v1.0
+        with:
+          sdk: "2.12.0"
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: server_simple_pub_upgrade
+        name: "server/simple; pub upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub upgrade --no-precompile
+      - name: server/simple; pub run test
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub run test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_027:
+    name: "unit_test; windows; Dart 2.12.0; PKG: server/simple; `pub run test`"
+    runs-on: windows-latest
+    steps:
+      - uses: dart-lang/setup-dart@v1.0
+        with:
+          sdk: "2.12.0"
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: server_simple_pub_upgrade
+        name: "server/simple; pub.bat upgrade --no-precompile"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub.bat upgrade --no-precompile
+      - name: server/simple; pub run test
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+        run: pub.bat run test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005

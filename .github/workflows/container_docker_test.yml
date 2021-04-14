@@ -1,0 +1,38 @@
+name: container_docker_test
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+  schedule:
+  - cron: "0 0 * * 0"
+
+defaults:
+  run:
+    shell: bash
+    working-directory: server/simple
+
+env:
+  PUB_ENVIRONMENT: bot.github
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dart: [ stable ]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache Pub hosted dependencies
+      uses: actions/cache@v2
+      with:
+        path: "~/.pub-cache/hosted"
+        key: "os:ubuntu-latest;pub-cache-hosted;dart:stable"
+        restore-keys: |
+          os:ubuntu-latest;pub-cache-hosted
+          os:ubuntu-latest
+    - uses: dart-lang/setup-dart@v1.0
+      with:
+        sdk: ${{ matrix.dart }}
+    - run: pub get
+    - run: tool/docker_test_script.sh
