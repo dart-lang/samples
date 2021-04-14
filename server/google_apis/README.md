@@ -1,4 +1,4 @@
-A Dart HTTP services meant to be deployed to to
+A Dart HTTP service meant to be deployed to
 [Google Cloud Run](https://cloud.google.com/run) and which uses the
 [Cloud Firestore](https://firebase.google.com/products/firestore) features in
 [package:googleapis](https://pub.dev/packages/googleapis).

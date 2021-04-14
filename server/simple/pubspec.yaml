@@ -1,5 +1,5 @@
 name: container_server_example
-publish_to: none # let's not accidentally publish this to pub.dev
+publish_to: none # not intended for publication to pub.dev
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
