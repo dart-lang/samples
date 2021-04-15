@@ -123,11 +123,19 @@ ${gcpProjectIdEnvironmentVariables.join('\n')}
   }
 }
 
-/// See https://cloud.google.com/functions/docs/env-var
-/// and https://cloud.google.com/compute/docs/gcloud-compute#default_project
-const gcpProjectIdEnvironmentVariables = [
+/// A set of typical environment variables that are likely to represent the
+/// current Google Cloud project ID.
+///
+/// For context, see:
+/// * https://cloud.google.com/functions/docs/env-var
+/// * https://cloud.google.com/compute/docs/gcloud-compute#default_project
+/// * https://github.com/GoogleContainerTools/gcp-auth-webhook/blob/08136ca171fe5713cc70ef822c911fbd3a1707f5/server.go#L38-L44
+///
+/// Note: these are ordered starting from the most current/canonical to least.
+/// (At least as could be determined at the time of writing.)
+const gcpProjectIdEnvironmentVariables = {
   'GCP_PROJECT',
   'GCLOUD_PROJECT',
   'CLOUDSDK_CORE_PROJECT',
   'GOOGLE_CLOUD_PROJECT',
-];
+};
