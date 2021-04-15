@@ -10,5 +10,5 @@ A Dart HTTP service meant to be deployed to
 - Follow instructions at
   https://cloud.google.com/run/docs/quickstarts/build-and-deploy to build and
   deploy on [Google Cloud Run](https://cloud.google.com/run).
-- To this demo, you will also need to enable the
+- To deploy this demo, you will also need to enable the
   [Cloud Firestore API](https://console.cloud.google.com/apis/api/firestore.googleapis.com).
