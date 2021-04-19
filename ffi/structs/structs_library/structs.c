@@ -28,6 +28,7 @@ char *hello_world()
 
 char *reverse(char *str, int length)
 {
+    // Allocates native memory in C.
     char *reversed_str = (char *)malloc((length + 1) * sizeof(char));
     for (int i = 0; i < length; i++)
     {
@@ -35,6 +36,12 @@ char *reverse(char *str, int length)
     }
     reversed_str[length] = '\0';
     return reversed_str;
+}
+
+void free_string(char *str)
+{
+    // Free native memory in C which was allocated in C.
+    free(str);
 }
 
 struct Coordinate create_coordinate(double latitude, double longitude)
