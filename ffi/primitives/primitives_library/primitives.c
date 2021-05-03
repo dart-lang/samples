@@ -27,9 +27,16 @@ int sum(int a, int b)
 
 int *multiply(int a, int b)
 {
+    // Allocates native memory in C.
     int *mult = (int *)malloc(sizeof(int));
     *mult = a * b;
     return mult;
+}
+
+void free_pointer(int *int_pointer)
+{
+    // Free native memory in C which was allocated in C.
+    free(int_pointer);
 }
 
 int subtract(int *a, int b)

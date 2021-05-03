@@ -33,6 +33,10 @@ typedef reverse_native = Pointer<Utf8> Function(
     Pointer<Utf8> str, Int32 length);
 typedef Reverse = Pointer<Utf8> Function(Pointer<Utf8> str, int length);
 
+// C function: void free_string(char *str)
+typedef free_string_native = Void Function(Pointer<Utf8> str);
+typedef FreeString = void Function(Pointer<Utf8> str);
+
 // C function: struct Coordinate create_coordinate(double latitude, double longitude)
 typedef create_coordinate_native = Coordinate Function(
     Double latitude, Double longitude);
@@ -64,9 +68,15 @@ main() {
 
   final reverse = dylib.lookupFunction<reverse_native, Reverse>('reverse');
   final backwards = 'backwards';
-  final reversedMessage =
-      reverse(backwards.toNativeUtf8(), backwards.length).toDartString();
+  final backwardsUtf8 = backwards.toNativeUtf8();
+  final reversedMessageUtf8 = reverse(backwardsUtf8, backwards.length);
+  final reversedMessage = reversedMessageUtf8.toDartString();
+  calloc.free(backwardsUtf8);
   print('$backwards reversed is $reversedMessage');
+
+  final freeString =
+      dylib.lookupFunction<free_string_native, FreeString>('free_string');
+  freeString(reversedMessageUtf8);
 
   final createCoordinate =
       dylib.lookupFunction<create_coordinate_native, CreateCoordinate>(
@@ -75,9 +85,11 @@ main() {
   print(
       'Coordinate is lat ${coordinate.latitude}, long ${coordinate.longitude}');
 
+  final myHomeUtf8 = 'My Home'.toNativeUtf8();
   final createPlace =
       dylib.lookupFunction<create_place_native, CreatePlace>('create_place');
-  final place = createPlace('My Home'.toNativeUtf8(), 42.0, 24.0);
+  final place = createPlace(myHomeUtf8, 42.0, 24.0);
+  calloc.free(myHomeUtf8);
   final name = place.name.toDartString();
   final coord = place.coordinate;
   print(

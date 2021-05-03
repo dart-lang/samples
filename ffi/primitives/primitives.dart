@@ -35,6 +35,12 @@ typedef multi_sum_func = Int32 Function(
     Int32 numCount, Int32 a, Int32 b, Int32 c);
 typedef MultiSum = int Function(int numCount, int a, int b, int c);
 
+// C free function - void free_pointer(int *int_pointer);
+//
+// Example of how to free pointers that were allocated in C.
+typedef free_pointer_func = Void Function(Pointer<Int32> a);
+typedef FreePointer = void Function(Pointer<Int32> a);
+
 main() {
   // Open the dynamic library
   var libraryPath = path.join(
@@ -64,6 +70,9 @@ main() {
   final subtract = subtractPointer.asFunction<Subtract>();
   print('3 - 5 = ${subtract(p, 5)}');
 
+  // Free up allocated memory.
+  calloc.free(p);
+
   // calls int *multiply(int a, int b);
   final multiplyPointer =
       dylib.lookup<NativeFunction<multiply_func>>('multiply');
@@ -73,13 +82,16 @@ main() {
   final int result = resultPointer.value;
   print('3 * 5 = $result');
 
+  // Free up allocated memory. This time in C, because it was allocated in C.
+  final freePointerPointer =
+      dylib.lookup<NativeFunction<free_pointer_func>>('free_pointer');
+  final freePointer = freePointerPointer.asFunction<FreePointer>();
+  freePointer(resultPointer);
+
   // example calling a C function with varargs
   // calls int multi_sum(int nr_count, ...);
   final multiSumPointer =
       dylib.lookup<NativeFunction<multi_sum_func>>('multi_sum');
   final multiSum = multiSumPointer.asFunction<MultiSum>();
   print('3 + 7 + 11 = ${multiSum(3, 3, 7, 11)}');
-
-  // Free up allocated memory.
-  calloc.free(p);
 }

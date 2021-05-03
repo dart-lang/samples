@@ -6,6 +6,12 @@ a.out
 sdk-version
 *snapshot*
 pubspec.lock
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+Makefile
+primitives/primitives_library/primitives_test
+structs/structs_library/structs_test
 
 # Windows
 *.obj
