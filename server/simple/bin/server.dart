@@ -7,24 +7,41 @@ import 'dart:io';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_router/shelf_router.dart';
+import 'package:shelf_static/shelf_static.dart';
 
 Future main() async {
   // Find port to listen on from environment variable.
   // https://cloud.google.com/run/docs/reference/container-contract#port
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
 
+  // Serve static files from a file system directory.
+  final _staticHandler = createStaticHandler('public');
+
+  // Cascade helps in chaining multiple handlers together.
+  final _cascade = Cascade().add(_staticHandler).add(_router);
+
   // Serve handler on given port.
   final server = await serve(
-    _router,
+    _cascade.handler,
     InternetAddress.anyIPv4, // Allows external connections
     port,
   );
+
   print('Serving at http://${server.address.host}:${server.port}');
 }
 
+// Router instance to handler requests.
 final _router = Router()
   ..get('/', _helloWorldHandler)
+  ..get('/dashland', _dashLandHandler)
   ..get('/time',
       (request) => Response.ok(DateTime.now().toUtc().toIso8601String()));
 
 Response _helloWorldHandler(Request request) => Response.ok('Hello, World!');
+
+Response _dashLandHandler(Request request) =>
+    Response.ok(_body, headers: {'content-type': 'text/html; charset="utf-8"'});
+
+// Helpers to get html file
+File _dashland = File(Directory.current.path + '/public/dashland.html');
+String _body = _dashland.readAsStringSync();

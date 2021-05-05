@@ -2,11 +2,12 @@ name: container_server_example
 publish_to: none # not intended for publication to pub.dev
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   shelf: ^1.0.0
   shelf_router: ^1.0.0
+  shelf_static: ^1.0.0
 
 dev_dependencies:
   http: ^0.13.0
