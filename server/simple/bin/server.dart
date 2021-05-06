@@ -15,7 +15,8 @@ Future main() async {
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
 
   // Serve static files from a file system directory.
-  final _staticHandler = createStaticHandler('public');
+  final _staticHandler =
+      createStaticHandler('public', defaultDocument: 'index.html');
 
   // Cascade helps in chaining multiple handlers together.
   final _cascade = Cascade().add(_staticHandler).add(_router);
@@ -32,16 +33,8 @@ Future main() async {
 
 // Router instance to handler requests.
 final _router = Router()
-  ..get('/', _helloWorldHandler)
-  ..get('/dashland', _dashLandHandler)
+  ..get('/helloworld', _helloWorldHandler)
   ..get('/time',
       (request) => Response.ok(DateTime.now().toUtc().toIso8601String()));
 
 Response _helloWorldHandler(Request request) => Response.ok('Hello, World!');
-
-Response _dashLandHandler(Request request) =>
-    Response.ok(_body, headers: {'content-type': 'text/html; charset="utf-8"'});
-
-// Helpers to get html file
-File _dashland = File(Directory.current.path + '/public/dashland.html');
-String _body = _dashland.readAsStringSync();
