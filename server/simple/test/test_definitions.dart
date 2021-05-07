@@ -11,7 +11,7 @@ void runTests(
   testServer('root', (host) async {
     final response = await get(Uri.parse(host));
     expect(response.statusCode, 200);
-    expect(response.body, 'Hello, World!');
+    expect(response.body, contains('Welcome to Dashland!'));
   });
 
   testServer('time', (host) async {
@@ -33,7 +33,8 @@ void runTests(
     expect(response.body, 'Not Found');
 
     response = await post(Uri.parse('$host'));
-    expect(response.statusCode, 404);
-    expect(response.body, 'Not Found');
+    // https://github.com/dart-lang/shelf_static/issues/53 - should 404
+    expect(response.statusCode, 200);
+    expect(response.body, contains('Welcome to Dashland!'));
   });
 }
