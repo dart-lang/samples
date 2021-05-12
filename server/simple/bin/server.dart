@@ -5,25 +5,31 @@
 import 'dart:io';
 
 import 'package:shelf/shelf.dart';
-import 'package:shelf/shelf_io.dart';
-import 'package:shelf_router/shelf_router.dart';
-import 'package:shelf_static/shelf_static.dart';
+import 'package:shelf/shelf_io.dart' as shelf_io;
+import 'package:shelf_router/shelf_router.dart' as shelf_router;
+import 'package:shelf_static/shelf_static.dart' as shelf_static;
 
 Future main() async {
-  // Find port to listen on from environment variable.
+  // If the "PORT" environment variable is set, listen to it. Otherwise, 8080.
   // https://cloud.google.com/run/docs/reference/container-contract#port
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
 
-  // Serve static files from a file system directory.
-  final _staticHandler =
-      createStaticHandler('public', defaultDocument: 'index.html');
+  // See https://pub.dev/documentation/shelf/latest/shelf/Cascade-class.html
+  final cascade = Cascade()
+      // First, serve files from the 'public' directory
+      .add(_staticHandler)
+      // If a corresponding file is not found, send requests to a `Router`
+      .add(_router);
 
-  // Cascade helps in chaining multiple handlers together.
-  final _cascade = Cascade().add(_staticHandler).add(_router);
+  // See https://pub.dev/documentation/shelf/latest/shelf/Pipeline-class.html
+  final pipeline = Pipeline()
+      // See https://pub.dev/documentation/shelf/latest/shelf/logRequests.html
+      // .addMiddleware(logRequests())
+      .addHandler(cascade.handler);
 
-  // Serve handler on given port.
-  final server = await serve(
-    _cascade.handler,
+  // See https://pub.dev/documentation/shelf/latest/shelf_io/serve.html
+  final server = await shelf_io.serve(
+    pipeline,
     InternetAddress.anyIPv4, // Allows external connections
     port,
   );
@@ -31,10 +37,16 @@ Future main() async {
   print('Serving at http://${server.address.host}:${server.port}');
 }
 
+// Serve files from the file system.
+final _staticHandler =
+    shelf_static.createStaticHandler('public', defaultDocument: 'index.html');
+
 // Router instance to handler requests.
-final _router = Router()
+final _router = shelf_router.Router()
   ..get('/helloworld', _helloWorldHandler)
-  ..get('/time',
-      (request) => Response.ok(DateTime.now().toUtc().toIso8601String()));
+  ..get(
+    '/time',
+    (request) => Response.ok(DateTime.now().toUtc().toIso8601String()),
+  );
 
 Response _helloWorldHandler(Request request) => Response.ok('Hello, World!');
