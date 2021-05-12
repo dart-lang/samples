@@ -24,7 +24,7 @@ Future main() async {
   // See https://pub.dev/documentation/shelf/latest/shelf/Pipeline-class.html
   final pipeline = Pipeline()
       // See https://pub.dev/documentation/shelf/latest/shelf/logRequests.html
-      // .addMiddleware(logRequests())
+      .addMiddleware(logRequests())
       .addHandler(cascade.handler);
 
   // See https://pub.dev/documentation/shelf/latest/shelf_io/serve.html
