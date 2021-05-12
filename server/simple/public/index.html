@@ -26,14 +26,29 @@
   img {
     max-width: 70vw;
   }
+
+  code {
+    background: #eee;
+    padding: 3px;
+  }
 </style>
 
 <body>
 <h1>Welcome to Dashland!</h1>
 <img src="/dashland.jpeg" alt="Dashland">
-<p>This file is being served by <a href="https://pub.dev/packages/shelf_static">package:shelf_static</a> from the <code>/public</code> directory.</p>
+<p>This file is being served by <a
+    href="https://pub.dev/packages/shelf_static">package:shelf_static</a> from the
+  <code>/public</code> directory.</p>
 <!-- TODO: Link to new pkg:shelf docs once https://github.com/dart-lang/site-www/issues/3058 is fixed -->
-<p>There are code-based handlers at <a href="/helloworld">/helloworld</a> and <a href="/time">/time</a></p>
+<p>There are several code-based handlers defined using <a
+    href="https://pub.dev/packages/shelf_router">package:shelf_router</a>.</p>
+<p>Try out <a href="/helloworld">/helloworld</a> and <a
+    href="/time">/time</a>.</p>
+<p>There is also a handler defined by route
+  <code>/sum/&lt;a|[0-9]+&gt;/&lt;b|[0-9]+&gt;</code>.<br>
+  This will handle requests to <a href="/sum/1/2">/sum/1/2</a> and <a href="/sum/35/7">/sum/35/7</a>,
+  but not <a href="/sum/bob/john">/sum/bob/john</a> or <a href="/sum/1/2/3">/sum/1/2/3</a>.
+</p>
 </body>
 
 </html>

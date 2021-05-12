@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:shelf/shelf.dart';
@@ -47,6 +48,20 @@ final _router = shelf_router.Router()
   ..get(
     '/time',
     (request) => Response.ok(DateTime.now().toUtc().toIso8601String()),
-  );
+  )
+  ..get('/sum/<a|[0-9]+>/<b|[0-9]+>', _sumHandler);
 
 Response _helloWorldHandler(Request request) => Response.ok('Hello, World!');
+
+Response _sumHandler(request, String a, String b) {
+  final aNum = int.parse(a);
+  final bNum = int.parse(b);
+  return Response.ok(
+    const JsonEncoder.withIndent(' ')
+        .convert({'a': aNum, 'b': bNum, 'sum': aNum + bNum}),
+    headers: {
+      'content-type': 'application/json',
+      'Cache-Control': 'public, max-age=604800',
+    },
+  );
+}
