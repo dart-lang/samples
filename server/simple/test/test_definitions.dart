@@ -20,10 +20,10 @@ void runTests(
     final serverTime = DateTime.parse(response.body);
     final now = DateTime.now();
     expect(
-      !serverTime.isAfter(now),
-      isTrue,
-      reason: 'Server time ($serverTime) should not be after current time '
-          'after server time ($now).',
+      serverTime.isAfter(now),
+      isFalse,
+      reason:
+          'Server time ($serverTime) should not be after current time ($now).',
     );
   });
 
@@ -33,7 +33,7 @@ void runTests(
     expect(response.body, 'Not Found');
 
     response = await post(Uri.parse('$host'));
-    // https://github.com/dart-lang/shelf_static/issues/53 - should 404
+    // https://github.com/dart-lang/shelf_static/issues/53 - should 405
     expect(response.statusCode, 200);
     expect(response.body, contains('Welcome to Dashland!'));
   });
