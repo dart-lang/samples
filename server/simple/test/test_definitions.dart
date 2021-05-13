@@ -11,7 +11,10 @@ void runTests(
   testServer('root', (host) async {
     final response = await get(Uri.parse(host));
     expect(response.statusCode, 200);
-    expect(response.body, contains('Welcome to Dashland!'));
+    expect(response.body, contains('pkg:shelf example'));
+    expect(response.headers, contains('last-modified'));
+    expect(response.headers, contains('date'));
+    expect(response.headers, containsPair('content-type', 'text/html'));
   });
 
   testServer('time', (host) async {
@@ -35,6 +38,6 @@ void runTests(
     response = await post(Uri.parse('$host'));
     // https://github.com/dart-lang/shelf_static/issues/53 - should 405
     expect(response.statusCode, 200);
-    expect(response.body, contains('Welcome to Dashland!'));
+    expect(response.body, contains('pkg:shelf example'));
   });
 }
