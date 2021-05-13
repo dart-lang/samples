@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" sizes="64x64" href="64.png">
-  <title>Dart Server</title>
+  <title>pkg:shelf example</title>
 </head>
 
 <style>
@@ -21,19 +21,38 @@
   p {
     margin-top: 1rem;
     font-size: large;
+    max-width: 600px;
   }
 
   img {
     max-width: 70vw;
   }
+
+  code {
+    background: #eee;
+    padding: 3px;
+  }
 </style>
 
 <body>
-<h1>Welcome to Dashland!</h1>
+<h1>pkg:shelf example</h1>
 <img src="/dashland.jpeg" alt="Dashland">
-<p>This file is being served by <a href="https://pub.dev/packages/shelf_static">package:shelf_static</a> from the <code>/public</code> directory.</p>
+<p>This file is being served by <a
+    href="https://pub.dev/packages/shelf_static">package:shelf_static</a> from the
+  <code>/public</code> directory.</p>
 <!-- TODO: Link to new pkg:shelf docs once https://github.com/dart-lang/site-www/issues/3058 is fixed -->
-<p>There are code-based handlers at <a href="/helloworld">/helloworld</a> and <a href="/time">/time</a></p>
+<p>This app uses <a
+    href="https://pub.dev/packages/shelf_router">package:shelf_router</a> to define several code-based handlers:</p>
+<ul>
+  <li><a href="/helloworld">/helloworld</a></li>
+  <li><a href="/time">/time</a>
+  <li><code>/sum/&lt;a|[0-9]+&gt;/&lt;b|[0-9]+&gt;</code></li>
+</ul>
+
+<p>
+  The last handler is defined with regular expressions to handle requests to <a href="/sum/1/2">/sum/1/2</a> and <a href="/sum/35/7">/sum/35/7</a>,
+  but not <a href="/sum/bob/john">/sum/bob/john</a> or <a href="/sum/1/2/3">/sum/1/2/3</a>.
+<p>
 </body>
 
 </html>
