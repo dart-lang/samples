@@ -1,4 +1,4 @@
-name: hello_world_ffi
+name: callbacks_ffi
 version: 0.0.1
 description: >-
   A super simple example of calling C code from Dart with FFI

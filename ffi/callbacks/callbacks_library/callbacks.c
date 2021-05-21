@@ -1,15 +1,29 @@
-#include <stdint.h>
+#include "callbacks.h"
+#include <unistd.h>
+#include <stdio.h>
 
-#include "include/dart_api.h"
-#include "include/dart_native_api.h"
-#include "include/dart_api_dl.h"
+//
+// This is defined so the linker doesn't complain about missing main.
+// This is odd because a shared library (dylib/.so/etc.) shouldn't need a main.
+// The other examples define a main, too.
+//
+// That said, the CmakeLists.txt causes a callbacks_test executable to be
+// generated and runing that does print out "main called" message and exits.
+//
+int main() {
+  printf("main called\n");
+  return 1;
+}
 
-typedef void (*callback_fn)(intptr_t) Callback;
-
-DART_EXPORT void PerformCallback(Callback cb) {
-    int i = 0;
-    for (;;) {
-        cb(i++);
-        sleep(1);
-    }
+//
+// Our PerformCallback function.
+// It just loops forever and once per second calls the Dart callback function with
+// an ever increasing number.
+//
+void PerformCallback(Callback cb) {
+  int i = 0;
+  for (;;) {
+    cb(i++);
+    sleep(1);
+  }
 }

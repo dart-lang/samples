@@ -1,2 +1,5 @@
 # Ignoring pub generated files.
 **/package_config.json
+.ccls-cache/
+.idea/
+*~
