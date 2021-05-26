@@ -1,7 +1,10 @@
 *.o
+*~
 *.dylib
 a.out
 .vscode/
+.idea/
+.ccls-cache/
 .packages
 sdk-version
 *snapshot*
