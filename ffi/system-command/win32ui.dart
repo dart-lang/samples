@@ -3,10 +3,11 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:ffi';
+
 import 'package:ffi/ffi.dart';
 
 main() {
-  MessageBox('こんにちは窓', 'Hello Windows');
+  messageBox('こんにちは窓', 'Hello Windows');
 }
 
 /* MessageBoxW is the UTF16 (wchar_t) version of MessageBox.
@@ -48,12 +49,12 @@ const MB_ICONSTOP = 0x00000010;
 const MB_ICONERROR = 0x00000010;
 const MB_ICONHAND = 0x00000010;
 
-int MessageBox(String message, String caption) {
+int messageBox(String message, String caption) {
   // Load user32.
   final user32 = DynamicLibrary.open('user32.dll');
 
   // Look up the `MessageBoxW` function.
-  final MessageBoxP =
+  final messageBoxP =
       user32.lookupFunction<MessageBoxC, MessageBoxDart>('MessageBoxW');
 
   // Allocate pointers to Utf16 arrays containing the command arguments.
@@ -62,7 +63,7 @@ int MessageBox(String message, String caption) {
 
   // Invoke the command, and free the pointers.
   final result =
-      MessageBoxP(nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
+      messageBoxP(nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
   calloc.free(messageP);
   calloc.free(captionP);
 
