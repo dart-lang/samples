@@ -1,7 +1,7 @@
-name: hello_world_ffi
+name: opaque_ffi
 version: 0.0.1
 description: >-
-  A super simple example of calling C code from Dart with FFI
+  A super simple example of using Opaque handles between C and Dart
 
 # This example isn't intended for publishing on pub.dev.
 publish_to: none
