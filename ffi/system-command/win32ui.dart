@@ -6,7 +6,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 main() {
-  MessageBox('こんにちは窓', 'Hello Windows');
+  messageBox('こんにちは窓', 'Hello Windows');
 }
 
 /* MessageBoxW is the UTF16 (wchar_t) version of MessageBox.
@@ -30,6 +30,7 @@ typedef MessageBoxDart = int Function(
   int type,
 );
 
+// ignore_for_file: constant_identifier_names
 const MB_ABORTRETRYIGNORE = 0x00000002;
 const MB_CANCELTRYCONTINUE = 0x00000006;
 const MB_HELP = 0x00004000;
@@ -48,12 +49,12 @@ const MB_ICONSTOP = 0x00000010;
 const MB_ICONERROR = 0x00000010;
 const MB_ICONHAND = 0x00000010;
 
-int MessageBox(String message, String caption) {
+int messageBox(String message, String caption) {
   // Load user32.
   final user32 = DynamicLibrary.open('user32.dll');
 
   // Look up the `MessageBoxW` function.
-  final MessageBoxP =
+  final messageBoxP =
       user32.lookupFunction<MessageBoxC, MessageBoxDart>('MessageBoxW');
 
   // Allocate pointers to Utf16 arrays containing the command arguments.
@@ -62,7 +63,7 @@ int MessageBox(String message, String caption) {
 
   // Invoke the command, and free the pointers.
   final result =
-      MessageBoxP(nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
+      messageBoxP(nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
   calloc.free(messageP);
   calloc.free(captionP);
 

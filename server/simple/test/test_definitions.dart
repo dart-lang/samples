@@ -35,7 +35,7 @@ void runTests(
     expect(response.statusCode, 404);
     expect(response.body, 'Not Found');
 
-    response = await post(Uri.parse('$host'));
+    response = await post(Uri.parse(host));
     // https://github.com/dart-lang/shelf_static/issues/53 - should 405
     expect(response.statusCode, 200);
     expect(response.body, contains('pkg:shelf example'));

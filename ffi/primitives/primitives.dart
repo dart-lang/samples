@@ -11,51 +11,53 @@ import 'package:ffi/ffi.dart';
 // C sum function - int sum(int a, int b);
 //
 // Example of how to pass parameters into C and use the returned result
-typedef sum_func = Int32 Function(Int32 a, Int32 b);
+typedef SumFunc = Int32 Function(Int32 a, Int32 b);
 typedef Sum = int Function(int a, int b);
 
 // C subtract function - int subtract(int *a, int b);
 //
 // Example of how to create pointers in Dart, alloc them, and pass them as
 // parameters
-typedef subtract_func = Int32 Function(Pointer<Int32> a, Int32 b);
+typedef SubtractFunc = Int32 Function(Pointer<Int32> a, Int32 b);
 typedef Subtract = int Function(Pointer<Int32> a, int b);
 
 // C multiply function - int *multiply(int a, int b);
 //
 // Example of how to receive pointers in Dart and access the data
-typedef multiply_func = Pointer<Int32> Function(Int32 a, Int32 b);
+typedef MultiplyFunc = Pointer<Int32> Function(Int32 a, Int32 b);
 typedef Multiply = Pointer<Int32> Function(int a, int b);
 
 // C multi sum function - int multi_sum(int nr_count, ...);
 //
 // Example of how to call C functions with varargs with a fixed arg count in
 // Dart
-typedef multi_sum_func = Int32 Function(
+typedef MultiSumFunc = Int32 Function(
     Int32 numCount, Int32 a, Int32 b, Int32 c);
 typedef MultiSum = int Function(int numCount, int a, int b, int c);
 
 // C free function - void free_pointer(int *int_pointer);
 //
 // Example of how to free pointers that were allocated in C.
-typedef free_pointer_func = Void Function(Pointer<Int32> a);
+typedef FreePointerFunc = Void Function(Pointer<Int32> a);
 typedef FreePointer = void Function(Pointer<Int32> a);
 
 main() {
   // Open the dynamic library
   var libraryPath = path.join(
       Directory.current.path, 'primitives_library', 'libprimitives.so');
-  if (Platform.isMacOS)
+  if (Platform.isMacOS) {
     libraryPath = path.join(
         Directory.current.path, 'primitives_library', 'libprimitives.dylib');
-  if (Platform.isWindows)
+  }
+  if (Platform.isWindows) {
     libraryPath = path.join(
         Directory.current.path, 'primitives_library', 'Debug', 'primtives.dll');
+  }
 
   final dylib = DynamicLibrary.open(libraryPath);
 
   // calls int sum(int a, int b);
-  final sumPointer = dylib.lookup<NativeFunction<sum_func>>('sum');
+  final sumPointer = dylib.lookup<NativeFunction<SumFunc>>('sum');
   final sum = sumPointer.asFunction<Sum>();
   print('3 + 5 = ${sum(3, 5)}');
 
@@ -66,7 +68,7 @@ main() {
   p.value = 3;
 
   final subtractPointer =
-      dylib.lookup<NativeFunction<subtract_func>>('subtract');
+      dylib.lookup<NativeFunction<SubtractFunc>>('subtract');
   final subtract = subtractPointer.asFunction<Subtract>();
   print('3 - 5 = ${subtract(p, 5)}');
 
@@ -75,7 +77,7 @@ main() {
 
   // calls int *multiply(int a, int b);
   final multiplyPointer =
-      dylib.lookup<NativeFunction<multiply_func>>('multiply');
+      dylib.lookup<NativeFunction<MultiplyFunc>>('multiply');
   final multiply = multiplyPointer.asFunction<Multiply>();
   final resultPointer = multiply(3, 5);
   // Fetch the result at the address pointed to
@@ -84,14 +86,14 @@ main() {
 
   // Free up allocated memory. This time in C, because it was allocated in C.
   final freePointerPointer =
-      dylib.lookup<NativeFunction<free_pointer_func>>('free_pointer');
+      dylib.lookup<NativeFunction<FreePointerFunc>>('free_pointer');
   final freePointer = freePointerPointer.asFunction<FreePointer>();
   freePointer(resultPointer);
 
   // example calling a C function with varargs
   // calls int multi_sum(int nr_count, ...);
   final multiSumPointer =
-      dylib.lookup<NativeFunction<multi_sum_func>>('multi_sum');
+      dylib.lookup<NativeFunction<MultiSumFunc>>('multi_sum');
   final multiSum = multiSumPointer.asFunction<MultiSum>();
   print('3 + 7 + 11 = ${multiSum(3, 3, 7, 11)}');
 }

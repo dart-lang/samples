@@ -6,7 +6,7 @@ import 'dart:ffi' as ffi;
 import 'package:ffi/ffi.dart';
 
 main() {
-  ShellExecute('open', 'https://dart.dev');
+  shellExecute('open', 'https://dart.dev');
 }
 
 /*
@@ -36,21 +36,22 @@ typedef ShellExecuteDart = int Function(
     ffi.Pointer directory,
     int showCmd);
 
-int ShellExecute(String operation, String file) {
+int shellExecute(String operation, String file) {
   // Load shell32.
   final dylib = ffi.DynamicLibrary.open('shell32.dll');
 
   // Look up the `ShellExecuteW` function.
-  final ShellExecuteP =
+  final shellExecuteP =
       dylib.lookupFunction<ShellExecuteC, ShellExecuteDart>('ShellExecuteW');
 
   // Allocate pointers to Utf8 arrays containing the command arguments.
   final operationP = operation.toNativeUtf16();
   final fileP = file.toNativeUtf16();
+  // ignore: constant_identifier_names
   const int SW_SHOWNORMAL = 1;
 
   // Invoke the command, and free the pointers.
-  var result = ShellExecuteP(
+  var result = shellExecuteP(
       ffi.nullptr, operationP, fileP, ffi.nullptr, ffi.nullptr, SW_SHOWNORMAL);
   calloc.free(operationP);
   calloc.free(fileP);

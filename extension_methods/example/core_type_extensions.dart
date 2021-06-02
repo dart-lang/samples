@@ -32,6 +32,7 @@ extension Silliest on Object {
   bool notAgain(Object other) => this != other;
 }
 
+// ignore: prefer_void_to_null
 extension ExtremelySilly on Null {
   String stop(String x) => toString() + x;
 }

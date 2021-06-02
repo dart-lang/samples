@@ -27,7 +27,7 @@ void main(List<String> arguments) {
       print('Lix is: ${l.readability}, ${l.describe()} to read ('
           'words: ${l.words}, long words: ${l.longWords}, '
           'periods: ${l.periods}).');
-    } catch (ArgumentError) {
+    } catch (argumentError) {
       print('Invalid input, could not calculate lix!\n'
           'The input text must contain at least one full sentence.');
     }
