@@ -2,10 +2,11 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'dart:io' show Directory, Platform;
 import 'dart:ffi';
-import 'package:path/path.dart' as path;
+import 'dart:io' show Directory, Platform;
+
 import 'package:ffi/ffi.dart';
+import 'package:path/path.dart' as path;
 
 // Example of handling a simple C struct
 class Coordinate extends Struct {
@@ -26,25 +27,24 @@ class Place extends Struct {
 // C function: char *hello_world();
 // There's no need for two typedefs here, as both the
 // C and Dart functions have the same signature
-typedef hello_world = Pointer<Utf8> Function();
+typedef HelloWorld = Pointer<Utf8> Function();
 
 // C function: char *reverse(char *str, int length)
-typedef reverse_native = Pointer<Utf8> Function(
-    Pointer<Utf8> str, Int32 length);
+typedef ReverseNative = Pointer<Utf8> Function(Pointer<Utf8> str, Int32 length);
 typedef Reverse = Pointer<Utf8> Function(Pointer<Utf8> str, int length);
 
 // C function: void free_string(char *str)
-typedef free_string_native = Void Function(Pointer<Utf8> str);
+typedef FreeStringNative = Void Function(Pointer<Utf8> str);
 typedef FreeString = void Function(Pointer<Utf8> str);
 
 // C function: struct Coordinate create_coordinate(double latitude, double longitude)
-typedef create_coordinate_native = Coordinate Function(
+typedef CreateCoordinateNative = Coordinate Function(
     Double latitude, Double longitude);
 typedef CreateCoordinate = Coordinate Function(
     double latitude, double longitude);
 
 // C function: struct Place create_place(char *name, double latitude, double longitude)
-typedef create_place_native = Place Function(
+typedef CreatePlaceNative = Place Function(
     Pointer<Utf8> name, Double latitude, Double longitude);
 typedef CreatePlace = Place Function(
     Pointer<Utf8> name, double latitude, double longitude);
@@ -53,20 +53,22 @@ main() {
   // Open the dynamic library
   var libraryPath =
       path.join(Directory.current.path, 'structs_library', 'libstructs.so');
-  if (Platform.isMacOS)
+  if (Platform.isMacOS) {
     libraryPath = path.join(
         Directory.current.path, 'structs_library', 'libstructs.dylib');
-  if (Platform.isWindows)
+  }
+  if (Platform.isWindows) {
     libraryPath = path.join(
         Directory.current.path, 'structs_library', 'Debug', 'structs.dll');
+  }
   final dylib = DynamicLibrary.open(libraryPath);
 
   final helloWorld =
-      dylib.lookupFunction<hello_world, hello_world>('hello_world');
+      dylib.lookupFunction<HelloWorld, HelloWorld>('hello_world');
   final message = helloWorld().toDartString();
-  print('$message');
+  print(message);
 
-  final reverse = dylib.lookupFunction<reverse_native, Reverse>('reverse');
+  final reverse = dylib.lookupFunction<ReverseNative, Reverse>('reverse');
   final backwards = 'backwards';
   final backwardsUtf8 = backwards.toNativeUtf8();
   final reversedMessageUtf8 = reverse(backwardsUtf8, backwards.length);
@@ -75,11 +77,11 @@ main() {
   print('$backwards reversed is $reversedMessage');
 
   final freeString =
-      dylib.lookupFunction<free_string_native, FreeString>('free_string');
+      dylib.lookupFunction<FreeStringNative, FreeString>('free_string');
   freeString(reversedMessageUtf8);
 
   final createCoordinate =
-      dylib.lookupFunction<create_coordinate_native, CreateCoordinate>(
+      dylib.lookupFunction<CreateCoordinateNative, CreateCoordinate>(
           'create_coordinate');
   final coordinate = createCoordinate(3.5, 4.6);
   print(
@@ -87,7 +89,7 @@ main() {
 
   final myHomeUtf8 = 'My Home'.toNativeUtf8();
   final createPlace =
-      dylib.lookupFunction<create_place_native, CreatePlace>('create_place');
+      dylib.lookupFunction<CreatePlaceNative, CreatePlace>('create_place');
   final place = createPlace(myHomeUtf8, 42.0, 24.0);
   calloc.free(myHomeUtf8);
   final name = place.name.toDartString();

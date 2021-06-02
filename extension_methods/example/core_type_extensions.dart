@@ -32,6 +32,6 @@ extension Silliest on Object {
   bool notAgain(Object other) => this != other;
 }
 
-extension ExtremelySilly on Null {
+extension ExtremelySilly on Object? {
   String stop(String x) => toString() + x;
 }

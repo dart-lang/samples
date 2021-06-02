@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'dart:io';
+
 import 'package:path/path.dart' as path;
 
 DynamicLibrary getLibrary(String directory, String filename) {
@@ -19,8 +20,9 @@ String getLibraryFilePath(String directory, String filename) {
 
   // Get the path to the library file
   var libraryPath = path.join(currentDirectory, directory, filename);
-  if (Platform.isWindows)
+  if (Platform.isWindows) {
     libraryPath = path.join(currentDirectory, directory, 'Debug', filename);
+  }
 
   // Add extension
   return path.setExtension(libraryPath, getPlatformExtension());

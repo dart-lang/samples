@@ -31,7 +31,7 @@ class Lix {
     required this.longWords,
     required this.periods,
   }) {
-    readability = this._calculate();
+    readability = _calculate();
   }
 
   factory Lix.fromString(String text) {
