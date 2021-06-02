@@ -4,9 +4,9 @@
 
 import 'dart:ffi';
 import 'dart:io';
-import 'package:path/path.dart' as path;
 
 import 'package:ffi/ffi.dart';
+import 'package:path/path.dart' as path;
 
 // C sum function - int sum(int a, int b);
 //

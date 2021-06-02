@@ -2,10 +2,11 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'dart:io' show Directory, Platform;
 import 'dart:ffi';
-import 'package:path/path.dart' as path;
+import 'dart:io' show Directory, Platform;
+
 import 'package:ffi/ffi.dart';
+import 'package:path/path.dart' as path;
 
 // Example of handling a simple C struct
 class Coordinate extends Struct {
