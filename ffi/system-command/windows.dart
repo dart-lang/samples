@@ -48,7 +48,6 @@ int shellExecute(String operation, String file) {
   // Allocate pointers to Utf8 arrays containing the command arguments.
   final operationP = operation.toNativeUtf16();
   final fileP = file.toNativeUtf16();
-  // ignore: constant_identifier_names
   const int SW_SHOWNORMAL = 1;
 
   // Invoke the command, and free the pointers.

@@ -31,7 +31,6 @@ typedef MessageBoxDart = int Function(
   int type,
 );
 
-// ignore_for_file: constant_identifier_names
 const MB_ABORTRETRYIGNORE = 0x00000002;
 const MB_CANCELTRYCONTINUE = 0x00000006;
 const MB_HELP = 0x00004000;
