@@ -13,7 +13,7 @@ executable.
 To build the executable:
 
 ```bash
-dart2native bin/main.dart -o hello_world
+dart compile exe bin/main.dart -o hello_world
 ```
 
 To run:
@@ -26,7 +26,7 @@ To run:
 To build the executable:
 
 ```bash
-dart2native bin\main.dart -o hello_world.exe
+dart compile exe bin\main.dart -o hello_world.exe
 ```
 
 To run:
@@ -39,7 +39,7 @@ hello_world.exe
 The `--output-kind` or `-k` flag can be used to create an AOT snapshot:
 
 ```bash
-dart2native bin/main.dart -k aot -o hello_world.aot
+dart compile aot-snapshot bin/main.dart -o hello_world.aot
 ```
 
 This AOT snapshot can be run using the `dartaotruntime` command:
