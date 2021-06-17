@@ -3,7 +3,7 @@ dart:
   - 2.12.0
 
 stages:
-  - analyze:
+  - analysis:
     - analyze: --fatal-infos .
     - format:
       dart: dev
