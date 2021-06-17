@@ -3,9 +3,9 @@ dart:
   - 2.12.0
 
 stages:
-  - analyze:
-    - dartanalyzer: --fatal-infos .
-    - dartfmt:
+  - analysis:
+    - analyze: --fatal-infos .
+    - format:
       dart: dev
 # This sample uses a live Google API, so no unit tests are provided – yet
 #  - unit_test:
