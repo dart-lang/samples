@@ -22,9 +22,9 @@ jobs:
       matrix:
         dart: [ stable ]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.3.4
     - name: Cache Pub hosted dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v2.1.6
       with:
         path: "~/.pub-cache/hosted"
         key: "os:ubuntu-latest;pub-cache-hosted;dart:stable"
