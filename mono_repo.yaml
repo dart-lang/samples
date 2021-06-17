@@ -6,4 +6,4 @@ github:
 
 # Merges all analyze stages into one bot, which is more efficient
 merge_stages:
-  - analyze
+  - analysis
