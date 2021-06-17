@@ -5,7 +5,7 @@ FFI sample demonstrating invoking operating system commands:
   * `windows.dart`: Invoke the `ShellExecute` command in `shell32.dll`
 
 To run these samples:
-  * Run `pub get` to get the dependencies
+  * Run `dart pub get` to get the dependencies
   * Run `dart macos.dart`, `dart linux.dart`, or `dart windows.dart`
     depending on the OS you are on.
 
@@ -16,4 +16,3 @@ Dart website, https://dart.dev
 
 To learn more about FFI, start with the [C interop using
 dart:ffi](https://dart.dev/guides/libraries/c-interop) guide on dart.dev.
-

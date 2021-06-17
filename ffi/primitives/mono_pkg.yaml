@@ -9,9 +9,9 @@ os:
 
 stages:
   - analyze:
-    - dartanalyzer: --fatal-infos .
+    - analyze: --fatal-infos .
       os: linux
-    - dartfmt:
+    - format:
       os: linux
       dart: dev
   - unit_test:
