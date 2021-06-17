@@ -2,17 +2,10 @@ dart:
   - dev
   - stable
 
-os:
-  - linux
-  - macos
-  - windows
-
 stages:
-  - analyze:
-    - dartanalyzer: --fatal-infos .
-      os: linux
-    - dartfmt:
-      os: linux
+  - analysis:
+    - analyze: --fatal-infos .
+    - format:
       dart: dev
   - unit_test:
     - test

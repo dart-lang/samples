@@ -9,7 +9,7 @@ To add new command line options to `lib/src/options.dart`, update the `Options`
 class and re-run `build_runner`:
 
 ```bash
-pub run build_runner build
+dart run build_runner build
 ```
 
 ## About this project

@@ -34,5 +34,5 @@ jobs:
     - uses: dart-lang/setup-dart@v1.0
       with:
         sdk: ${{ matrix.dart }}
-    - run: pub get
+    - run: dart pub get
     - run: tool/docker_test_script.sh
