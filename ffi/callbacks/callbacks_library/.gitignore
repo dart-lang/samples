@@ -1,0 +1,21 @@
+# CMake generated files and directories
+CMakeCache.txt
+CMakeFiles/
+CmakeScripts/
+Makefile
+cmake_install.cmake
+
+# Xcode tooling generated via `cmake -G Xcode .`
+hello_library.xcodeproj/
+
+# Xcode generated build and output directories
+hello_library.build/
+
+# Generated test binary
+hello_test
+
+# Generated shared library files
+*.dylib
+*.so
+*.so.*
+*.dll
