@@ -9,3 +9,9 @@ A simple Dart HTTP server using [package:shelf](https://pub.dev/packages/shelf).
 
 To deploy on [Cloud Run](https://cloud.google.com/run), follow
 [these instructions](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/other).
+
+To run this server locally, run as follows:
+
+```bash
+$ dart run bin/server.dart
+```

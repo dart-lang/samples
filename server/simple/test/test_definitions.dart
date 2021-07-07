@@ -33,7 +33,7 @@ void runTests(
   testServer('404', (host) async {
     var response = await get(Uri.parse('$host/not_here'));
     expect(response.statusCode, 404);
-    expect(response.body, 'Not Found');
+    expect(response.body, 'Route not found');
 
     response = await post(Uri.parse(host));
     // https://github.com/dart-lang/shelf_static/issues/53 - should 405
