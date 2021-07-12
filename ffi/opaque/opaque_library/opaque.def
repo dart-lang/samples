@@ -1,0 +1,12 @@
+LIBRARY   opaque
+EXPORTS
+   ncurses_initscr
+   ncurses_cbreak
+   ncurses_noecho
+   ncurses_wclear
+   ncurses_wprintw
+   ncurses_wrefresh
+   ncurses_wgetch
+   ncurses_wmove
+   ncurses_endwin
+   
