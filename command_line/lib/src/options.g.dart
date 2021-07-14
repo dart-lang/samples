@@ -40,10 +40,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
       abbr: 'f',
       help:
           'The format to display. Defaults to "Friday, October 18 at 13:55 PM: <User> opened <URL>"',
-      allowed: [
-        'default',
-        'markdown'
-      ])
+      allowed: ['default', 'markdown'])
   ..addFlag('help',
       abbr: 'h', help: 'Prints usage information.', negatable: false);
 
