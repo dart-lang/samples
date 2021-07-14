@@ -16,12 +16,12 @@ T _$enumValueHelper<T>(Map<T, String> enumValues, String source) => enumValues
 
 Options _$parseOptionsResult(ArgResults result) => Options(
     result['user'] as String?,
-    _$enumValueHelper(_$IntervalEnumMap, result['interval'] as String),
+    _$enumValueHelper(_$IntervalEnumMapBuildCli, result['interval'] as String),
     result['verbose'] as bool?,
     result['format'] as String?,
     result['help'] as bool);
 
-const _$IntervalEnumMap = <Interval, String>{
+const _$IntervalEnumMapBuildCli = <Interval, String>{
   Interval.day: 'day',
   Interval.week: 'week',
   Interval.month: 'month'

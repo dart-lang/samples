@@ -41,7 +41,7 @@ typedef MultiSum = int Function(int numCount, int a, int b, int c);
 typedef FreePointerFunc = Void Function(Pointer<Int32> a);
 typedef FreePointer = void Function(Pointer<Int32> a);
 
-main() {
+void main() {
   // Open the dynamic library
   var libraryPath = path.join(
       Directory.current.path, 'primitives_library', 'libprimitives.so');

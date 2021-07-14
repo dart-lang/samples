@@ -43,18 +43,19 @@ Future main() async {
   }
 }
 
-CommitRequest _incrementRequest(String projectId) {
-  final fieldTx = FieldTransform()
-    ..fieldPath = 'count'
-    ..increment = (Value()..integerValue = '1');
-
-  final docTx = DocumentTransform()
-    ..document =
-        'projects/$projectId/databases/(default)/documents/settings/count'
-    ..fieldTransforms = [fieldTx];
-
-  return CommitRequest()
-    ..writes = [
-      Write()..transform = docTx,
-    ];
-}
+CommitRequest _incrementRequest(String projectId) => CommitRequest(
+      writes: [
+        Write(
+          transform: DocumentTransform(
+            document:
+                'projects/$projectId/databases/(default)/documents/settings/count',
+            fieldTransforms: [
+              FieldTransform(
+                fieldPath: 'count',
+                increment: Value(integerValue: '1'),
+              )
+            ],
+          ),
+        ),
+      ],
+    );

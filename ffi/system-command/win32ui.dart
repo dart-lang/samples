@@ -6,7 +6,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-main() {
+void main() {
   messageBox('こんにちは窓', 'Hello Windows');
 }
 

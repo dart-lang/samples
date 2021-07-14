@@ -19,7 +19,7 @@ extension Silly on String {
 }
 
 extension Sillier on int {
-  void times(Function f) {
+  void times(void Function() f) {
     for (var i = 0; i < this; i++) {
       f();
     }

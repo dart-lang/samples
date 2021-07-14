@@ -12,7 +12,7 @@ typedef HelloWorldFunc = ffi.Void Function();
 // Dart type definition for calling the C foreign function
 typedef HelloWorld = void Function();
 
-main() {
+void main() {
   // Open the dynamic library
   var libraryPath =
       path.join(Directory.current.path, 'hello_library', 'libhello.so');

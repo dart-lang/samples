@@ -3,9 +3,8 @@ import 'dart:io';
 
 import 'package:path/path.dart' as path;
 
-DynamicLibrary getLibrary(String directory, String filename) {
-  return DynamicLibrary.open(getLibraryFilePath(directory, filename));
-}
+DynamicLibrary getLibrary(String directory, String filename) =>
+    DynamicLibrary.open(getLibraryFilePath(directory, filename));
 
 /// Gets the file path of a library, for the platform running this test
 ///
@@ -32,5 +31,5 @@ String getPlatformExtension() {
   if (Platform.isLinux) return '.so';
   if (Platform.isMacOS) return '.dylib';
   if (Platform.isWindows) return '.dll';
-  throw ('Unsupported platform ${Platform.operatingSystem}');
+  throw 'Unsupported platform ${Platform.operatingSystem}';
 }

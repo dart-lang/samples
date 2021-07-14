@@ -49,7 +49,7 @@ typedef CreatePlaceNative = Place Function(
 typedef CreatePlace = Place Function(
     Pointer<Utf8> name, double latitude, double longitude);
 
-main() {
+void main() {
   // Open the dynamic library
   var libraryPath =
       path.join(Directory.current.path, 'structs_library', 'libstructs.so');
