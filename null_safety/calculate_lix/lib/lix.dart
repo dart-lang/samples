@@ -36,7 +36,7 @@ class Lix {
 
   factory Lix.fromString(String text) {
     // Count periods: . : ; ! ?
-    var periods = (RegExp(r'[.:;!?]').allMatches(text).length);
+    var periods = RegExp(r'[.:;!?]').allMatches(text).length;
 
     // Count words.
     //
@@ -60,7 +60,7 @@ class Lix {
     int result;
 
     if (words == 0 || periods == 0) {
-      throw (ArgumentError('Text must contain at least one full sentence.'));
+      throw ArgumentError('Text must contain at least one full sentence.');
     } else {
       final sentenceLength = words / periods;
       final wordLength = (longWords * 100) / words;

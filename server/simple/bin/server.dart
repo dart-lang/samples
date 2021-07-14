@@ -22,15 +22,12 @@ Future main() async {
       // If a corresponding file is not found, send requests to a `Router`
       .add(_router);
 
-  // See https://pub.dev/documentation/shelf/latest/shelf/Pipeline-class.html
-  final pipeline = Pipeline()
-      // See https://pub.dev/documentation/shelf/latest/shelf/logRequests.html
-      .addMiddleware(logRequests())
-      .addHandler(cascade.handler);
-
   // See https://pub.dev/documentation/shelf/latest/shelf_io/serve.html
   final server = await shelf_io.serve(
-    pipeline,
+    // See https://pub.dev/documentation/shelf/latest/shelf/logRequests.html
+    logRequests()
+        // See https://pub.dev/documentation/shelf/latest/shelf/MiddlewareExtensions/addHandler.html
+        .addHandler(cascade.handler),
     InternetAddress.anyIPv4, // Allows external connections
     port,
   );

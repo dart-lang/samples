@@ -3,9 +3,10 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:ffi' as ffi;
+
 import 'package:ffi/ffi.dart';
 
-main() {
+void main() {
   var result = system('open https://dart.dev');
   print('Result: $result');
 }

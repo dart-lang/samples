@@ -6,7 +6,7 @@ import 'dart:ffi' as ffi;
 
 import 'package:ffi/ffi.dart';
 
-main() {
+void main() {
   shellExecute('open', 'https://dart.dev');
 }
 

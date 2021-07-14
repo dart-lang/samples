@@ -20,11 +20,8 @@ class Planet {
 ///     // No longer needed!
 ///     Map<String, Object> toJson() => _$PlanetJsonifier(this);
 extension PlanetExtensions on Planet {
-  static Planet from(Map<String, Object> json) {
-    return Planet(json['name'] as String, json['size'] as int);
-  }
+  static Planet from(Map<String, Object> json) =>
+      Planet(json['name'] as String, json['size'] as int);
 
-  Map<String, Object> toJson() {
-    return {'name': name, 'size': size};
-  }
+  Map<String, Object> toJson() => {'name': name, 'size': size};
 }

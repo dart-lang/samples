@@ -1,0 +1,9 @@
+dart:
+  - dev
+  - stable
+
+stages:
+  - analysis:
+    - analyze: --fatal-infos .
+    - format:
+      dart: dev
