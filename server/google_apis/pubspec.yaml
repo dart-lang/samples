@@ -5,7 +5,7 @@ environment:
   sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
-  googleapis: ^6.0.0
+  googleapis: ^7.0.0
   googleapis_auth: ^1.1.0
   shelf: ^1.0.0
   shelf_router: ^1.0.0
