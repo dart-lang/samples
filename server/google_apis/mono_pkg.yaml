@@ -1,12 +1,11 @@
-dart:
+sdk:
   - dev
-  - 2.13.0
+  - stable
 
 stages:
   - analysis:
     - analyze: --fatal-infos .
-    - format:
-      dart: dev
+    - format
 # This sample uses a live Google API, so no unit tests are provided – yet
 #  - unit_test:
 #    - test
