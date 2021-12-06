@@ -5,10 +5,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
-final files = [
-  File('json_01.json'),
-  File('json_02.json'),
-  File('json_03.json'),
+final fileNames = [
+  'json_01.json',
+  'json_02.json',
+  'json_03.json',
 ];
 
 // Reads multiple files and parses them on a separate isolate.
@@ -25,7 +25,7 @@ Future<void> main() async {
 // Reads multiple files simultaneously using Future.wait().
 Future<List<String>> _readFiles() async {
   return await Future.wait([
-    ...files.map((file) => file.readAsString()),
+    ...fileNames.map((f) => File(f)).map((file) => file.readAsString()),
   ]);
 }
 
