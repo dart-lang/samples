@@ -1,6 +1,6 @@
 sdk:
   - dev
-  - stable
+  - 2.15.0-268.18.beta
 
 stages:
   - analysis:
