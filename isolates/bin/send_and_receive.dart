@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
-final filename = 'citylots.json';
+final filename = 'json_01.json';
 
 Future<void> main() async {
   // Read some data.
