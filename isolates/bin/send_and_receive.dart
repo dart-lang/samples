@@ -17,8 +17,7 @@ Future<void> main() async {
 }
 
 // Sends a JSON string to the spawned isolate to be parsed.
-Future<Map<String, dynamic>> _spawnIsolateAndSendJson(
-    String jsonString) async {
+Future<Map<String, dynamic>> _spawnIsolateAndSendJson(String jsonString) async {
   final p = ReceivePort();
   await Isolate.spawn(_receiveAndParseJson, p.sendPort);
   await for (final message in p) {
