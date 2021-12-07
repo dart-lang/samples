@@ -1,3 +1,7 @@
+// Copyright (c) 2021, the Dart project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 // Read the file, spawn an isolate, send the file contents to the spawned
 // isolate, and wait for the parsed JSON.
 import 'dart:async';
@@ -7,7 +11,7 @@ import 'dart:isolate';
 
 const filename = 'json_01.json';
 
-Future<void> main() async {
+void main() async {
   // Read some data.
   final fileData = await File(filename).readAsString();
   final jsonData = await _spawnIsolateAndSendJson(fileData);

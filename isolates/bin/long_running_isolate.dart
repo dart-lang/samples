@@ -1,3 +1,7 @@
+// Copyright (c) 2021, the Dart project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 // Spawn an isolate, read multiple files, send their contents to the spawned
 // isolate, and wait for the parsed JSON.
 import 'dart:async';
@@ -5,18 +9,20 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
-final fileNames = [
+import 'package:async/async.dart';
+
+const filenames = [
   'json_01.json',
   'json_02.json',
   'json_03.json',
 ];
 
 // Reads multiple files and parses them on a separate isolate.
-Future<void> main() async {
+void main() async {
   // Read some data.
   final fileData = await _readFiles();
 
-  // Use that data.
+  // Print incoming events from the spawned isolate
   await for (final jsonData in _parseJsonStrings(fileData)) {
     print('Received JSON with ${jsonData.length} keys');
   }
@@ -25,11 +31,13 @@ Future<void> main() async {
 // Reads multiple files simultaneously using Future.wait().
 Future<List<String>> _readFiles() async {
   return await Future.wait([
-    ...fileNames.map((f) => File(f)).map((file) => file.readAsString()),
+    ...filenames.map((f) => File(f)).map((file) => file.readAsString()),
   ]);
 }
 
-// Sends multiple JSON strings to a separate isolate.
+// Sends strings to a separate isolate
+//
+// Returns a stream that emits events, where the event value the parsed JSON
 Stream<Map<String, dynamic>> _parseJsonStrings(
     List<String> jsonStrings) async* {
   final p = ReceivePort();
@@ -37,44 +45,38 @@ Stream<Map<String, dynamic>> _parseJsonStrings(
 
   // Send each JSON string in order, waiting for the previous result before
   // sending the next JSON string.
-  var i = 0;
+  final events = StreamQueue<dynamic>(p);
+  SendPort sendPort = await events.next;
 
-  // The port used to send JSON strings to be parsed.
-  // This is the first message sent by the spawned isolate.
-  late final SendPort sendPort;
+  for (var jsonString in jsonStrings) {
+    // Send the next JSON string to be parsed
+    sendPort.send(jsonString);
 
-  // Receive messages from the spawned isolate
-  await for (final message in p) {
-    if (message is SendPort) {
-      // This is the first message, assign the sendPort
-      sendPort = message;
-    } else if (message is Map<String, dynamic>) {
-      // This is a response, add it to the Stream returned by this function.
-      yield message;
-    }
+    // Receive the parsed JSON
+    Map<String, dynamic> message = await events.next;
 
-    // Send the next JSON string to be parsed.
-    if (i < jsonStrings.length) {
-      sendPort.send(jsonStrings[i++]);
-    } else {
-      // Send the final message to indicate that the spawned isolate should
-      // exit.
-      sendPort.send(null);
-      break;
-    }
+    // Add the result to the stream returned by this async* function.
+    yield message;
   }
+
+  // Send a signal to the spawned isolate indicating that it should exit.
+  sendPort.send(null);
+
+  // Dispose the StreamQueue
+  await events.cancel();
 }
 
 // The function runs on the spawned isolate. Waits for incoming strings and
 // sends the decoded JSON using the SendPort.
 Future<void> _receiveAndParseJsonService(SendPort p) async {
+  print('Spawned isolate started.');
   // Send a SendPort to the main isolate so that it can send JSON strings to
   // this isolate.
-  final rp = ReceivePort();
-  p.send(rp.sendPort);
+  final commandPort = ReceivePort();
+  p.send(commandPort.sendPort);
 
   // Wait for messages from the main isolate.
-  await for (final message in rp) {
+  await for (final message in commandPort) {
     if (message is String) {
       p.send(jsonDecode(message));
     } else if (message == null) {
