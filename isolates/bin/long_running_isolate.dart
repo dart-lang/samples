@@ -17,40 +17,33 @@ const filenames = [
   'json_03.json',
 ];
 
-// Reads multiple files and parses them on a separate isolate.
 void main() async {
-  // Read some data.
-  final fileData = await _readFiles();
-
-  // Print incoming events from the spawned isolate
-  await for (final jsonData in _parseJsonStrings(fileData)) {
+  await for (final jsonData in _sendAndReceive(filenames)) {
     print('Received JSON with ${jsonData.length} keys');
   }
 }
 
-// Reads multiple files simultaneously using Future.wait().
-Future<List<String>> _readFiles() async {
-  return await Future.wait([
-    ...filenames.map((f) => File(f)).map((file) => file.readAsString()),
-  ]);
-}
-
-// Sends strings to a separate isolate
+// Spawns an isolate and asynchronously sends a list of filenames for it to
+// read and decode. Waits for the response containing the decoded JSON
+// before sending the next.
 //
-// Returns a stream that emits events, where the event value the parsed JSON
-Stream<Map<String, dynamic>> _parseJsonStrings(
-    List<String> jsonStrings) async* {
+// Returns a stream that emits the JSON-decoded contents of each file.
+Stream<Map<String, dynamic>> _sendAndReceive(List<String> filenames) async* {
   final p = ReceivePort();
-  await Isolate.spawn(_receiveAndParseJsonService, p.sendPort);
+  await Isolate.spawn(_readAndParseJsonService, p.sendPort);
 
-  // Send each JSON string in order, waiting for the previous result before
-  // sending the next JSON string.
+  // Convert the ReceivePort into a StreamQueue to receive messages from the
+  // spawned isolate using a pull-based interface. Events are stored in this
+  // queue until they are accessed by `events.next`.
   final events = StreamQueue<dynamic>(p);
+
+  // The first message from the spawned isolate is a SendPort. This port is
+  // used to communicate with the spawned isolate.
   SendPort sendPort = await events.next;
 
-  for (var jsonString in jsonStrings) {
-    // Send the next JSON string to be parsed
-    sendPort.send(jsonString);
+  for (var filename in filenames) {
+    // Send the next filename to be read and parsed
+    sendPort.send(filename);
 
     // Receive the parsed JSON
     Map<String, dynamic> message = await events.next;
@@ -62,14 +55,16 @@ Stream<Map<String, dynamic>> _parseJsonStrings(
   // Send a signal to the spawned isolate indicating that it should exit.
   sendPort.send(null);
 
-  // Dispose the StreamQueue
+  // Dispose the StreamQueue.
   await events.cancel();
 }
 
-// The function runs on the spawned isolate. Waits for incoming strings and
-// sends the decoded JSON using the SendPort.
-Future<void> _receiveAndParseJsonService(SendPort p) async {
+// The entrypoint that runs on the spawned isolate. Receives messages from
+// the main isolate, reads the contents of the file, decodes the JSON, and
+// sends the result back to the main isolate.
+Future<void> _readAndParseJsonService(SendPort p) async {
   print('Spawned isolate started.');
+
   // Send a SendPort to the main isolate so that it can send JSON strings to
   // this isolate.
   final commandPort = ReceivePort();
@@ -78,13 +73,18 @@ Future<void> _receiveAndParseJsonService(SendPort p) async {
   // Wait for messages from the main isolate.
   await for (final message in commandPort) {
     if (message is String) {
-      p.send(jsonDecode(message));
+      // Read and decode the file.
+      final contents = await File(message).readAsString();
+
+      // Send the result to the main isolate.
+      p.send(jsonDecode(contents));
     } else if (message == null) {
       // Exit if the main isolate sends a null message, indicating there are no
-      // more strings to parse.
+      // more files to read and parse.
       break;
     }
   }
+
   print('Spawned isolate finished.');
   Isolate.exit();
 }

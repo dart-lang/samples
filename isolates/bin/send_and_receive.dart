@@ -11,38 +11,29 @@ import 'dart:isolate';
 
 const filename = 'json_01.json';
 
-void main() async {
-  // Read some data.
-  final fileData = await File(filename).readAsString();
-  final jsonData = await _spawnIsolateAndSendJson(fileData);
-
-  // Use that data.
+Future<void> main() async {
+  final filename = 'json_01.json';
+  final jsonData = await _spawnAndReceive(filename);
   print('Received JSON with ${jsonData.length} keys');
 }
 
-// Sends a JSON string to the spawned isolate to be parsed.
-Future<Map<String, dynamic>> _spawnIsolateAndSendJson(String jsonString) async {
+// Spawns an isolate and sends a [filename] as the first message.
+// Waits to receive a message from the the spawned isolate containing the
+// parsed JSON.
+Future<Map<String, dynamic>> _spawnAndReceive(String fileName) async {
   final p = ReceivePort();
-  await Isolate.spawn(_receiveAndParseJson, p.sendPort);
-  await for (final message in p) {
-    // The spawned isolate will first send a SendPort, and then it will send
-    // the parsed JSON. If it sends a SendPort, use it to send the JSON string.
-    if (message is SendPort) {
-      message.send(jsonString);
-    } else {
-      return message;
-    }
-  }
-  return {};
+  await Isolate.spawn(_readAndParseJson, [p.sendPort, fileName]);
+  return (await p.first) as Map<String, dynamic>;
 }
 
-Future _receiveAndParseJson(SendPort p) async {
-  final rp = ReceivePort();
+// The entrypoint that runs on the spawned isolate. Reads the contents of
+// fileName, decodes the JSON, and sends the result back the the main
+// isolate.
+void _readAndParseJson(List<dynamic> args) async {
+  SendPort responsePort = args[0];
+  String fileName = args[1];
 
-  // Send a port back to the main isolate. This port is used to send the JSON
-  // string.
-  p.send(rp.sendPort);
-
-  final jsonString = await rp.first;
-  Isolate.exit(p, jsonDecode(jsonString));
+  final fileData = await File(fileName).readAsString();
+  final result = jsonDecode(fileData);
+  Isolate.exit(responsePort, result);
 }
