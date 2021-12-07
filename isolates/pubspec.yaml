@@ -1,0 +1,13 @@
+name: isolates
+description: A sample command-line application.
+version: 1.0.0
+
+dependencies:
+  async: ^2.8.0
+
+environment:
+  sdk: '>=2.15.0-268.18.beta <3.0.0'
+
+dev_dependencies:
+  lints: ^1.0.0
+  test: ^1.16.0

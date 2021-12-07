@@ -1,11 +1,10 @@
-dart:
+sdk:
   - dev
-  - 2.12.0
+  - stable
 
 stages:
   - analysis:
     - analyze: --fatal-infos .
-    - format:
-      dart: dev
+    - format
   - unit_test:
     - test
