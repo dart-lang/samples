@@ -18,7 +18,10 @@ Dart][awesome-dart].
   implementation that uses the tech preview of Dart's new null safety feature.
 - [ffi](https://github.com/dart-lang/samples/blob/master/ffi) - A series of
   simple examples demonstrating how to call C libraries from Dart.
-- [isolates](https://github.com/dart-lang/samples/blob/master/isolates) - A command line application that demonstrate how to work with Concurrency in Dart. It read a single file or multiple files, spawn an isolate and send the contents to the spawned.
+- [isolates](https://github.com/dart-lang/samples/blob/master/isolates) - Command line
+  applications that demonstrate how to work with Concurrency in Dart using isolates.
+  The examples read and parse JSON content in a worker isolate, and return the result to
+  the main isolate.
 - [native_app](https://github.com/dart-lang/samples/blob/master/native_app) - A
   command line application that can be compiled to native code using
   `dart2native`.
