@@ -2,7 +2,7 @@
 
 A series of simple examples demonstrating how to call C libraries from Dart.
 
-This code is designed to work with *Dart version 2.6.0* and above.
+This code is designed to work with *Dart version 2.12.0* and above.
 
 To learn more about FFI, start with the [C interop using
 dart:ffi](https://dart.dev/guides/libraries/c-interop) guide on dart.dev.
@@ -27,7 +27,7 @@ Once the native library is built, run:
 
 ```bash
 dart pub get
-dart <filename>.dart
+dart run <filename>.dart
 ```
 
 ## Using Docker
@@ -40,6 +40,7 @@ docker run dart-ffi
 ```
 
 ## macOS code signing
+
 The Dart binary can only load shared libraries that are *signed*. For more
 information, see [dart-lang/sdk/issues/38314][signing-issue] for details.
 

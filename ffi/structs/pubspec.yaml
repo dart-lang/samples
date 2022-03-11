@@ -15,5 +15,8 @@ dependencies:
 dev_dependencies:
   lints: ^1.0.0
   test: ^1.16.0
+  # test_utils depends on code elsewhere in the samples repository.
+  # You can reference it for useful cross-platform testing functionality
+  # or remove it if you want to use this example standalone.
   test_utils:
     path: ../test_utils
