@@ -1,2 +1,6 @@
 # Ignoring pub generated files.
 **/package_config.json
+
+# Ignore system and IDE files
+.idea
+.DS_STORE

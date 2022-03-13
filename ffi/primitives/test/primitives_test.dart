@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:test/test.dart';
 import 'package:test_utils/test_utils.dart';
 
-// These tests are Linux-only. For platform-specific instructions, see the
-// README.
 void main() async {
   group('primitives', () {
     test('make dylib + execute', () async {
