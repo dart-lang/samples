@@ -1,3 +1,6 @@
+/// Complete example that showcases the different usecases for dart enums 
+/// in a real scenario.
+/// 
 /// Enum that represents different types of vehicles.
 enum Vehicle with FlatTireMixin, Traveler implements Comparable<Vehicle> {
   car(tires: 4, passengers: 5, carbonPerKilometer: 400),

@@ -8,18 +8,13 @@ compile in earlier versions.
 
 ## Instructions
 
-Read the source code in the `example/` directory. 
-
-TODO: Complete this sections
-
-The code is split into
+Read the source code in the `example/` directory. The code is split into
 separate files according to topics or use cases. For instance,
-`example/generics.dart` explores the intersection between extension methods
-and generic types, while `example/operator_extensions.dart` shows how
-you can extend classes with operators.
+`example/comparable_mixin.dart` demonstrates how a mixin can be used to add
+extra functionality to an enum.
 
-The files in `lib/` are support for the samples in `example/`. For instance,
-`lib/some_api.dart` is pretending to be an API from another package (because
-a common use case for extension methods is to modify classes whose source
-code we cannot edit).
+In `lib/` you will find a complete example using all the functionality from 
+enhanced enums.
 
+In `test/` you will find unit tests showing how the enums from the examples
+can be used. 
