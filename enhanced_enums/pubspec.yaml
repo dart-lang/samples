@@ -1,13 +1,11 @@
 name: enhanced_enums
 description: A sample command-line application.
-version: 1.0.0
-# homepage: https://www.example.com
+
+# This example isn't intended for publishing on pub.dev.
+publish_to: none
 
 environment:
   sdk: '>=2.17.0-182.1.beta <3.0.0'
-
-# dependencies:
-#   path: ^1.8.0
 
 dev_dependencies:
   lints: ^1.0.0
