@@ -1,6 +1,5 @@
+import 'package:enhanced_enums/plain.dart';
 import 'package:test/test.dart';
-
-import '../example/plain.dart';
 
 void main() {
   test('Plain enum names', () {
@@ -14,4 +13,9 @@ void main() {
     expect(Plain.bar.index, 1);
     expect(Plain.baz.index, 2);
   });
+
+  test('Get Plain enum values', () {
+    expect(Plain.values, [Plain.foo, Plain.bar, Plain.baz]);
+  });
+
 }

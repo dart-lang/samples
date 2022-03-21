@@ -1,6 +1,6 @@
+import 'package:enhanced_enums/comparable.dart';
 import 'package:test/test.dart';
 
-import '../example/comparable.dart';
 
 void main() {
   test('Sort Quantity enum using compareTo', () {

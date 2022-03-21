@@ -1,4 +1,4 @@
-import 'package:enhanced_enums/enhanced_enums.dart';
+import 'package:enhanced_enums/complete_example.dart';
 import 'package:test/test.dart';
 
 void main() {

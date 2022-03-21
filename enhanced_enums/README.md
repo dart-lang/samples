@@ -8,13 +8,13 @@ compile in earlier versions.
 
 ## Instructions
 
-Read the source code in the `example/` directory. The code is split into
+Read the source code in the `lib/` directory. The code is split into
 separate files according to topics or use cases. For instance,
-`example/comparable_mixin.dart` demonstrates how a mixin can be used to add
+`lin/comparable_mixin.dart` demonstrates how a mixin can be used to add
 extra functionality to an enum.
 
-In `lib/` you will find a complete example using all the functionality from 
-enhanced enums.
+In `lib/complete_example.dart` you will find a complete example
+using all the functionality from enhanced enums.
 
 In `test/` you will find unit tests showing how the enums from the examples
 can be used. 
