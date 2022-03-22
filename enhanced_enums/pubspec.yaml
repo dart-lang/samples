@@ -1,5 +1,5 @@
 name: enhanced_enums
-description: A sample command-line application.
+description: Samples that demonstrates the enhanced enums syntax
 
 # This example isn't intended for publishing on pub.dev.
 publish_to: none
