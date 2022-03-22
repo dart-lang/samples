@@ -2,7 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-/// Enum with a Type.
+/// Enum with a generic type.
 ///
 /// The type [T] is used to define the type of [List] the enum contains.
 enum EnumWithType<T> {
