@@ -1,4 +1,4 @@
-# Enhancend enums samples
+# Enhanced enums samples
 
 This a set of samples that demonstrates the enhanced enums syntax
 and shows some common use cases of the feature.
