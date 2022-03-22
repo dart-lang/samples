@@ -3,7 +3,7 @@
 This a set of samples that demonstrates the enhanced enums syntax
 and shows some common use cases of the feature.
 
-This feature was added in Dart 2.XX. The programs in this folder won't
+This feature is part of Dart 2.17. The programs in this folder won't
 compile in earlier versions.
 
 ## Instructions
