@@ -2,9 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-/// Complete example that showcases the different usecases for dart enums 
+/// Complete example that showcases the different usecases for dart enums
 /// in a real scenario.
-/// 
+///
 /// Enum that represents different types of vehicles.
 enum Vehicle with FlatTireMixin, Traveler implements Comparable<Vehicle> {
   car(tires: 4, passengers: 5, carbonPerKilometer: 400),
@@ -53,10 +53,10 @@ mixin FlatTireMixin {
 }
 
 /// Mixin that adds Enum specific functionality
-/// 
-/// This mixin adds the [travel] method, that returns a String 
+///
+/// This mixin adds the [travel] method, that returns a String
 /// with the Enum name in it.
-/// 
+///
 /// This mixin can access the property [name] from the Enum.
 mixin Traveler on Enum {
   String travel() {

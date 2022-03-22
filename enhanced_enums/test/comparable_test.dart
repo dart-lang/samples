@@ -5,7 +5,6 @@
 import 'package:enhanced_enums/comparable.dart';
 import 'package:test/test.dart';
 
-
 void main() {
   test('Sort Quantity enum using compareTo', () {
     // unsorted list

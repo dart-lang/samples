@@ -3,7 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 /// Enum with a Type.
-/// 
+///
 /// The type [T] is used to define the type of [List] the enum contains.
 enum EnumWithType<T> {
   numbers<int>([1, 2, 3]),

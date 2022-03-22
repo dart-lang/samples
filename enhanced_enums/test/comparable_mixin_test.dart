@@ -5,7 +5,6 @@
 import 'package:enhanced_enums/comparable_mixin.dart';
 import 'package:test/test.dart';
 
-
 void main() {
   test('Sort enum using compareTo in mixin', () {
     // unsorted list

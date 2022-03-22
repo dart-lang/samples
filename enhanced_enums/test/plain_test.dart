@@ -21,5 +21,4 @@ void main() {
   test('Get Plain enum values', () {
     expect(Plain.values, [Plain.foo, Plain.bar, Plain.baz]);
   });
-
 }

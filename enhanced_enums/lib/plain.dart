@@ -3,8 +3,6 @@
 // BSD-style license that can be found in the LICENSE file.
 
 /// Plain enum.
-/// 
+///
 /// This enum doesn't use any of enhancements.
-enum Plain {
-  foo, bar, baz
-}
+enum Plain { foo, bar, baz }
