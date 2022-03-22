@@ -46,7 +46,7 @@ mixin FlatTireMixin {
   /// Number of tires getter, to be implemented by Enum.
   int get tires;
 
-  /// Calcultes the price to replace all tires.
+  /// Calculates the price to replace all tires.
   int costToReplaceTires({required int pricePerTire}) {
     return tires * pricePerTire + fee;
   }
