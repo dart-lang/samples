@@ -3,15 +3,15 @@
 // BSD-style license that can be found in the LICENSE file.
 
 /// Enum that implements a Comparable
-enum Quantity implements Comparable<Quantity> {
+enum Ordering implements Comparable<Ordering> {
   zero(0),
   one(1),
   many(99);
 
   final int quantity;
 
-  const Quantity(this.quantity);
+  const Ordering(this.quantity);
 
   @override
-  int compareTo(Quantity other) => quantity - other.quantity;
+  int compareTo(Ordering other) => quantity - other.quantity;
 }
