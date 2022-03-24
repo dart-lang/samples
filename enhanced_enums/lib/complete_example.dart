@@ -2,7 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-/// Complete example that showcases the different usecases for dart enums
+/// Complete example that showcases the different use cases for dart enums
 /// in a real scenario.
 ///
 /// Enum that represents different types of vehicles.
