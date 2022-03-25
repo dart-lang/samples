@@ -1,4 +1,4 @@
-import 'package:parameters/parameters.dart';
+import 'package:parameters/named_parameters.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -6,6 +6,7 @@ void main() {
     final list = [0, 2, 42, 91];
 
     // `items` named argument appears after the positional argument `predicate`
+    // Default argument `skip` is not provided
     final total = countWhere<int>((item) {
       return item % 2 == 0;
     }, items: list);
@@ -17,6 +18,7 @@ void main() {
     final list = [0, 2, 42, 91];
 
     // `items` named argument appears before the positional argument `predicate`
+    // Default argument `skip` is not provided
     final total = countWhere<int>(items: list, (item) {
       return item % 2 == 0;
     });
@@ -27,11 +29,15 @@ void main() {
   test('positional argument between named arguments', () {
     final list = [0, 2, 42, 91];
 
-    // positional argument `predicate` appears between 
+    // positional argument `predicate` appears between
     // named arguments `items` and `skip`
-    final total = countWhere<int>(items: list, (item) {
-      return item % 2 == 0;
-    }, skip: 1);
+    final total = countWhere<int>(
+      items: list,
+      (item) {
+        return item % 2 == 0;
+      },
+      skip: 1,
+    );
 
     expect(total, 2);
   });

@@ -1,13 +1,11 @@
 name: parameters
-description: A sample command-line application.
+description: Function parameters and arguments sample
 version: 1.0.0
-# homepage: https://www.example.com
+
+publish_to: none
 
 environment:
   sdk: '>=2.17.0-182.1.beta <3.0.0'
-
-# dependencies:
-#   path: ^1.8.0
 
 dev_dependencies:
   lints: ^1.0.0
