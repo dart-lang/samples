@@ -1,3 +1,13 @@
+// Copyright (c) 2022, the Dart project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
+/// This example shows the use of super-initializer parameters.
+///
+/// Super-initializer parameters allow to forward constructor parameters
+/// to the superclass, avoiding having to write the parameter multiple times
+/// in the superclass contructor invocation.
+
 /// This class represents a synthesizer, a musical instrument similar to a
 /// piano which can be used to create new sounds.
 ///
@@ -26,6 +36,7 @@ class Synth {
 }
 
 /// This class represents an old vintage synthesizer.
+///
 /// [VintageSynth] can only have 1 oscilator.
 /// [polyphony] is optional and is 1 by default.
 class VintageSynth extends Synth {
@@ -35,6 +46,7 @@ class VintageSynth extends Synth {
 }
 
 /// This class represents a modern digital synthesizer.
+///
 /// [DigitalSynth] can only have 1 oscilator.
 /// Named parameter [polyphony] is required.
 class DigitalSynth extends Synth {
@@ -49,6 +61,7 @@ class DigitalSynth extends Synth {
 }
 
 /// This class represents a complex multi-oscilator synthesizer.
+///
 /// [MultiOscilator] requires all three parameters.
 class MultiOscilatorSynth extends Synth {
   /// This constructor has three positional parameters instead of one.
@@ -68,6 +81,7 @@ class MultiOscilatorSynth extends Synth {
 
 /// This class represents a synth with a fixed amount
 /// of polyphony and oscilators.
+///
 /// [FixedOscilatorSynth] only requires the positional parameter [model].
 class FixedOscilatorSynth extends Synth {
   /// [model] is forwarded to the super constructor.
