@@ -2,9 +2,9 @@
 /// piano which can be used to create new sounds.
 ///
 /// The class [Synth] contains three members:
-/// - [model]: model name.
-/// - [polyphony]: amount of notes that can be played simultaneously.
-/// - [oscilators]: amount of sound generators, default to 1.
+/// - [model] model name.
+/// - [polyphony] amount of notes that can be played simultaneously.
+/// - [oscilators] amount of sound generators, default to 1.
 ///
 /// [model] is a positional parameter,
 /// while [polyphony] and [oscilators] are named parameters.
