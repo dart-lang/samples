@@ -20,11 +20,11 @@ void main() {
     expect(dx7.toString(), "Synth DX7. Polyphony: 6, oscilators: 1");
 
     // Constructor with required positional arguments
-    final ob6 = MultiOscilatorSynth("OB6", 5, 3);
+    final ob6 = MultiOscillatorSynth("OB6", 5, 3);
     expect(ob6.toString(), "Synth OB6. Polyphony: 5, oscilators: 3");
 
     // Constructor with a single required positional arguments
-    final minimoog = FixedOscilatorSynth("MiniMoog");
+    final minimoog = FixedOscillatorSynth("MiniMoog");
     expect(minimoog.toString(), "Synth MiniMoog. Polyphony: 1, oscilators: 3");
   });
 }

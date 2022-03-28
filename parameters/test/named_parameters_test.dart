@@ -5,6 +5,13 @@
 import 'package:parameters/named_parameters.dart';
 import 'package:test/test.dart';
 
+/// This example shows the use of named arguments.
+///
+/// Starting in Dart 2.17, named arguments can be used at any position in the
+/// arguments list, instead of only after the positional arguments.
+///
+/// In the following tests, the method [countWhere] is called
+/// with a different argument list order to show this.
 void main() {
   test('named argument after positional argument', () {
     final list = [0, 2, 42, 91];

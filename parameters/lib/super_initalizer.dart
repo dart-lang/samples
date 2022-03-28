@@ -6,38 +6,41 @@
 ///
 /// Super-initializer parameters allow to forward constructor parameters
 /// to the superclass, avoiding having to write the parameter multiple times
-/// in the superclass contructor invocation.
+/// in the superclass constructor invocation.
 
-/// This class represents a synthesizer, a musical instrument similar to a
-/// piano which can be used to create new sounds.
+/// This example contains multiple classes representing different types of
+/// synthesizers, a musical instrument similar to a piano
+/// which can be used to create new sounds.
 ///
-/// The class [Synth] contains three members:
-/// - [model] model name.
-/// - [polyphony] amount of notes that can be played simultaneously.
-/// - [oscilators] amount of sound generators, default to 1.
-///
-/// [model] is a positional parameter,
-/// while [polyphony] and [oscilators] are named parameters.
+/// All subclasses inherit from the [Synth] class and take advantage of the
+/// different super-initializer capabilities.
 class Synth {
+  /// Model name
   final String model;
-  final int polyphony;
-  final int oscilators;
 
+  /// Amount of notes that can be played at the same time
+  final int polyphony;
+
+  /// Amount of sound generators, default to 1
+  final int oscillators;
+
+  /// In the class constructor [model] is a positional parameter,
+  /// while [polyphony] and [oscillators] are named parameters.
   Synth(
     this.model, {
     required this.polyphony,
-    this.oscilators = 1,
+    this.oscillators = 1,
   });
 
   @override
   String toString() {
-    return 'Synth $model. Polyphony: $polyphony, oscilators: $oscilators';
+    return 'Synth $model. Polyphony: $polyphony, oscillators: $oscillators';
   }
 }
 
 /// This class represents an old vintage synthesizer.
 ///
-/// [VintageSynth] can only have 1 oscilator.
+/// [VintageSynth] can only have 1 oscillator.
 /// [polyphony] is optional and is 1 by default.
 class VintageSynth extends Synth {
   /// [model] is forwarded to the super constructor.
@@ -47,7 +50,7 @@ class VintageSynth extends Synth {
 
 /// This class represents a modern digital synthesizer.
 ///
-/// [DigitalSynth] can only have 1 oscilator.
+/// [DigitalSynth] can only have 1 oscillator.
 /// Named parameter [polyphony] is required.
 class DigitalSynth extends Synth {
   /// [model] is forwarded to the super constructor.
@@ -55,40 +58,40 @@ class DigitalSynth extends Synth {
   DigitalSynth(super.model, {required super.polyphony});
 
   /// The following constructor declaration would not be possible
-  /// because [polyphony] is not positional.
+  /// because [polyphony] is not a positional argument.
   ///
   /// DigitalSynth(super.model, super.polyphony);
 }
 
-/// This class represents a complex multi-oscilator synthesizer.
+/// This class represents a complex multi-oscillator synthesizer.
 ///
-/// [MultiOscilator] requires all three parameters.
-class MultiOscilatorSynth extends Synth {
+/// [MultiOscillator] requires all three parameters.
+class MultiOscillatorSynth extends Synth {
   /// This constructor has three positional parameters instead of one.
   ///
   /// [model] is forwarded to the super constructor.
-  /// [polyphony] and [oscilators] positional parameters are then passed to the
+  /// [polyphony] and [oscillators] positional parameters are then passed to the
   /// named parameters in the super constructor.
-  MultiOscilatorSynth(
+  MultiOscillatorSynth(
     super.model,
     int polyphony,
-    int oscilators,
+    int oscillators,
   ) : super(
           polyphony: polyphony,
-          oscilators: oscilators,
+          oscillators: oscillators,
         );
 }
 
 /// This class represents a synth with a fixed amount
-/// of polyphony and oscilators.
+/// of polyphony and oscillators.
 ///
-/// [FixedOscilatorSynth] only requires the positional parameter [model].
-class FixedOscilatorSynth extends Synth {
+/// [FixedOscillatorSynth] only requires the positional parameter [model].
+class FixedOscillatorSynth extends Synth {
   /// [model] is forwarded to the super constructor.
-  /// [polyphony] and [oscilators] are hardcoded.
-  FixedOscilatorSynth(super.model)
+  /// [polyphony] and [oscillators] are hardcoded.
+  FixedOscillatorSynth(super.model)
       : super(
           polyphony: 1,
-          oscilators: 3,
+          oscillators: 3,
         );
 }
