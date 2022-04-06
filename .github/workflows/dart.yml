@@ -1,4 +1,4 @@
-# Created with package:mono_repo v6.0.0
+# Created with package:mono_repo v6.2.0
 name: Dart CI
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable"
@@ -31,9 +31,9 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - name: mono_repo self validate
-        run: dart pub global activate mono_repo 6.0.0
+        run: dart pub global activate mono_repo 6.2.0
       - name: mono_repo self validate
         run: dart pub global run mono_repo generate --validate
   job_002:
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0-268.18.beta;packages:isolates;commands:analyze"
@@ -54,7 +54,7 @@ jobs:
         with:
           sdk: "2.15.0-268.18.beta"
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: isolates_pub_upgrade
         name: isolates; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0-268.18.beta;packages:isolates;commands:format"
@@ -84,7 +84,7 @@ jobs:
         with:
           sdk: "2.15.0-268.18.beta"
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: isolates_pub_upgrade
         name: isolates; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -101,7 +101,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:analyze"
@@ -114,7 +114,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -230,7 +230,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:format"
@@ -243,7 +243,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -359,7 +359,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:analyze"
@@ -372,7 +372,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -479,7 +479,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:format"
@@ -492,7 +492,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -599,7 +599,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line;commands:test"
@@ -612,7 +612,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -635,7 +635,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:extension_methods;commands:test"
@@ -648,7 +648,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: extension_methods_pub_upgrade
         name: extension_methods; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -671,7 +671,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:ffi/hello_world;commands:test"
@@ -684,7 +684,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: ffi_hello_world_pub_upgrade
         name: ffi/hello_world; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -707,7 +707,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:ffi/primitives;commands:test"
@@ -720,7 +720,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: ffi_primitives_pub_upgrade
         name: ffi/primitives; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -743,7 +743,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:server/simple;commands:test"
@@ -756,7 +756,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: server_simple_pub_upgrade
         name: server/simple; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -779,7 +779,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line;commands:test"
@@ -792,7 +792,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -815,7 +815,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:extension_methods;commands:test"
@@ -828,7 +828,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: extension_methods_pub_upgrade
         name: extension_methods; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -851,7 +851,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:ffi/hello_world;commands:test"
@@ -864,7 +864,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: ffi_hello_world_pub_upgrade
         name: ffi/hello_world; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -887,7 +887,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:ffi/primitives;commands:test"
@@ -900,7 +900,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: ffi_primitives_pub_upgrade
         name: ffi/primitives; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -923,7 +923,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
           key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:server/simple;commands:test"
@@ -936,7 +936,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3.0.0
       - id: server_simple_pub_upgrade
         name: server/simple; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
