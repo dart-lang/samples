@@ -311,16 +311,16 @@ jobs:
     needs:
       - job_001
   job_004:
-    name: "analysis; Dart dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters, server/google_apis, server/simple; `dart analyze --fatal-infos .`"
+    name: "analysis; Dart dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, server/google_apis, server/simple; `dart analyze --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple;commands:analyze"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:analyze"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple
             os:ubuntu-latest;pub-cache-hosted;sdk:dev
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -418,15 +418,6 @@ jobs:
       - name: "null_safety/calculate_lix; dart analyze --fatal-infos ."
         if: "always() && steps.null_safety_calculate_lix_pub_upgrade.conclusion == 'success'"
         working-directory: null_safety/calculate_lix
-        run: dart analyze --fatal-infos .
-      - id: parameters_pub_upgrade
-        name: parameters; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: parameters
-        run: dart pub upgrade
-      - name: "parameters; dart analyze --fatal-infos ."
-        if: "always() && steps.parameters_pub_upgrade.conclusion == 'success'"
-        working-directory: parameters
         run: dart analyze --fatal-infos .
       - id: server_google_apis_pub_upgrade
         name: server/google_apis; dart pub upgrade
@@ -449,16 +440,16 @@ jobs:
     needs:
       - job_001
   job_005:
-    name: "analysis; Dart dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters, server/google_apis, server/simple; `dart format --output=none --set-exit-if-changed .`"
+    name: "analysis; Dart dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, server/google_apis, server/simple; `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple;commands:format"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:format"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple
             os:ubuntu-latest;pub-cache-hosted;sdk:dev
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -557,15 +548,6 @@ jobs:
         if: "always() && steps.null_safety_calculate_lix_pub_upgrade.conclusion == 'success'"
         working-directory: null_safety/calculate_lix
         run: "dart format --output=none --set-exit-if-changed ."
-      - id: parameters_pub_upgrade
-        name: parameters; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: parameters
-        run: dart pub upgrade
-      - name: "parameters; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.parameters_pub_upgrade.conclusion == 'success'"
-        working-directory: parameters
-        run: "dart format --output=none --set-exit-if-changed ."
       - id: server_google_apis_pub_upgrade
         name: server/google_apis; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -587,16 +569,16 @@ jobs:
     needs:
       - job_001
   job_006:
-    name: "analysis; Dart stable; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters, server/google_apis, server/simple; `dart analyze --fatal-infos .`"
+    name: "analysis; Dart stable; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, server/google_apis, server/simple; `dart analyze --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple;commands:analyze"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:analyze"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple
             os:ubuntu-latest;pub-cache-hosted;sdk:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -695,15 +677,6 @@ jobs:
         if: "always() && steps.null_safety_calculate_lix_pub_upgrade.conclusion == 'success'"
         working-directory: null_safety/calculate_lix
         run: dart analyze --fatal-infos .
-      - id: parameters_pub_upgrade
-        name: parameters; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: parameters
-        run: dart pub upgrade
-      - name: "parameters; dart analyze --fatal-infos ."
-        if: "always() && steps.parameters_pub_upgrade.conclusion == 'success'"
-        working-directory: parameters
-        run: dart analyze --fatal-infos .
       - id: server_google_apis_pub_upgrade
         name: server/google_apis; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -725,16 +698,16 @@ jobs:
     needs:
       - job_001
   job_007:
-    name: "analysis; Dart stable; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters, server/google_apis, server/simple; `dart format --output=none --set-exit-if-changed .`"
+    name: "analysis; Dart stable; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, server/google_apis, server/simple; `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple;commands:format"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:format"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple
             os:ubuntu-latest;pub-cache-hosted;sdk:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -832,15 +805,6 @@ jobs:
       - name: "null_safety/calculate_lix; dart format --output=none --set-exit-if-changed ."
         if: "always() && steps.null_safety_calculate_lix_pub_upgrade.conclusion == 'success'"
         working-directory: null_safety/calculate_lix
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: parameters_pub_upgrade
-        name: parameters; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: parameters
-        run: dart pub upgrade
-      - name: "parameters; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.parameters_pub_upgrade.conclusion == 'success'"
-        working-directory: parameters
         run: "dart format --output=none --set-exit-if-changed ."
       - id: server_google_apis_pub_upgrade
         name: server/google_apis; dart pub upgrade
