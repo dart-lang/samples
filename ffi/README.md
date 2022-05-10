@@ -30,15 +30,6 @@ dart pub get
 dart run <filename>.dart
 ```
 
-## Using Docker
-
-Samples with a Dockerfile can be tested using Docker:
-
-```
-docker build -t dart-ffi .
-docker run dart-ffi
-```
-
 ## macOS code signing
 
 The Dart binary can only load shared libraries that are *signed*. For more
