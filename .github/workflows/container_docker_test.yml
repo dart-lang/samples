@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dart: [ stable ]
+        dart: [ beta ]
     steps:
     - uses: actions/checkout@v2.3.4
     - name: Cache Pub hosted dependencies
