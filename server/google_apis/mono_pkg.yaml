@@ -1,7 +1,5 @@
 sdk:
-  - dev
   - beta
-  - stable
 
 stages:
   - analysis:
