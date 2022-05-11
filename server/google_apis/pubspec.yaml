@@ -9,6 +9,7 @@ dependencies:
   googleapis_auth: ^1.1.0
   shelf: ^1.0.0
   shelf_router: ^1.0.0
+  http: ^0.13.0
 
 dev_dependencies:
-  lints: ^1.0.0
+  lints: ^2.0.0

@@ -2,7 +2,11 @@
 # that everything is up to date
 self_validate: true
 github:
-  cron: '0 0 * * 0' # “At 00:00 (UTC) on Sunday.”
+  on:
+    push:
+      branches:
+        - main
+        - master
 
 # Merges all analyze stages into one bot, which is more efficient
 merge_stages:

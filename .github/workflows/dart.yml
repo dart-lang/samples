@@ -1,13 +1,10 @@
-# Created with package:mono_repo v6.2.0
+# Created with package:mono_repo v6.2.2
 name: Dart CI
 on:
   push:
     branches:
       - main
       - master
-  pull_request:
-  schedule:
-    - cron: "0 0 * * 0"
 defaults:
   run:
     shell: bash
@@ -31,82 +28,22 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - name: mono_repo self validate
-        run: dart pub global activate mono_repo 6.2.0
+        run: dart pub global activate mono_repo 6.2.2
       - name: mono_repo self validate
         run: dart pub global run mono_repo generate --validate
   job_002:
-    name: "analysis; Dart 2.15.0-268.18.beta; PKG: isolates; `dart analyze --fatal-infos .`"
+    name: "analysis; Dart dev; PKGS: command_line, enhanced_enums, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters, server/google_apis, server/simple; `dart analyze --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0-268.18.beta;packages:isolates;commands:analyze"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple;commands:analyze"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0-268.18.beta;packages:isolates
-            os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0-268.18.beta
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.3
-        with:
-          sdk: "2.15.0-268.18.beta"
-      - id: checkout
-        uses: actions/checkout@v3.0.0
-      - id: isolates_pub_upgrade
-        name: isolates; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: isolates
-        run: dart pub upgrade
-      - name: "isolates; dart analyze --fatal-infos ."
-        if: "always() && steps.isolates_pub_upgrade.conclusion == 'success'"
-        working-directory: isolates
-        run: dart analyze --fatal-infos .
-    needs:
-      - job_001
-  job_003:
-    name: "analysis; Dart 2.15.0-268.18.beta; PKG: isolates; `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v3
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0-268.18.beta;packages:isolates;commands:format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0-268.18.beta;packages:isolates
-            os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0-268.18.beta
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.3
-        with:
-          sdk: "2.15.0-268.18.beta"
-      - id: checkout
-        uses: actions/checkout@v3.0.0
-      - id: isolates_pub_upgrade
-        name: isolates; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: isolates
-        run: dart pub upgrade
-      - name: "isolates; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.isolates_pub_upgrade.conclusion == 'success'"
-        working-directory: isolates
-        run: "dart format --output=none --set-exit-if-changed ."
-    needs:
-      - job_001
-  job_004:
-    name: "analysis; Dart dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, server/google_apis, server/simple; `dart analyze --fatal-infos .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v3
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:analyze"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple
             os:ubuntu-latest;pub-cache-hosted;sdk:dev
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -114,7 +51,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -123,6 +60,15 @@ jobs:
       - name: "command_line; dart analyze --fatal-infos ."
         if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
         working-directory: command_line
+        run: dart analyze --fatal-infos .
+      - id: enhanced_enums_pub_upgrade
+        name: enhanced_enums; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: enhanced_enums
+        run: dart pub upgrade
+      - name: "enhanced_enums; dart analyze --fatal-infos ."
+        if: "always() && steps.enhanced_enums_pub_upgrade.conclusion == 'success'"
+        working-directory: enhanced_enums
         run: dart analyze --fatal-infos .
       - id: extension_methods_pub_upgrade
         name: extension_methods; dart pub upgrade
@@ -204,6 +150,309 @@ jobs:
       - name: "null_safety/calculate_lix; dart analyze --fatal-infos ."
         if: "always() && steps.null_safety_calculate_lix_pub_upgrade.conclusion == 'success'"
         working-directory: null_safety/calculate_lix
+        run: dart analyze --fatal-infos .
+      - id: parameters_pub_upgrade
+        name: parameters; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: parameters
+        run: dart pub upgrade
+      - name: "parameters; dart analyze --fatal-infos ."
+        if: "always() && steps.parameters_pub_upgrade.conclusion == 'success'"
+        working-directory: parameters
+        run: dart analyze --fatal-infos .
+      - id: server_google_apis_pub_upgrade
+        name: server/google_apis; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/google_apis
+        run: dart pub upgrade
+      - name: "server/google_apis; dart analyze --fatal-infos ."
+        if: "always() && steps.server_google_apis_pub_upgrade.conclusion == 'success'"
+        working-directory: server/google_apis
+        run: dart analyze --fatal-infos .
+      - id: server_simple_pub_upgrade
+        name: server/simple; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+        run: dart pub upgrade
+      - name: "server/simple; dart analyze --fatal-infos ."
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+        run: dart analyze --fatal-infos .
+    needs:
+      - job_001
+  job_003:
+    name: "analysis; Dart dev; PKGS: command_line, enhanced_enums, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters, server/google_apis, server/simple; `dart format --output=none --set-exit-if-changed .`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v3
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple;commands:format"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: dev
+      - id: checkout
+        uses: actions/checkout@v3
+      - id: command_line_pub_upgrade
+        name: command_line; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: command_line
+        run: dart pub upgrade
+      - name: "command_line; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
+        working-directory: command_line
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: enhanced_enums_pub_upgrade
+        name: enhanced_enums; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: enhanced_enums
+        run: dart pub upgrade
+      - name: "enhanced_enums; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.enhanced_enums_pub_upgrade.conclusion == 'success'"
+        working-directory: enhanced_enums
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: extension_methods_pub_upgrade
+        name: extension_methods; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: extension_methods
+        run: dart pub upgrade
+      - name: "extension_methods; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.extension_methods_pub_upgrade.conclusion == 'success'"
+        working-directory: extension_methods
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: ffi_hello_world_pub_upgrade
+        name: ffi/hello_world; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/hello_world
+        run: dart pub upgrade
+      - name: "ffi/hello_world; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/hello_world
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: ffi_primitives_pub_upgrade
+        name: ffi/primitives; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/primitives
+        run: dart pub upgrade
+      - name: "ffi/primitives; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.ffi_primitives_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/primitives
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: ffi_structs_pub_upgrade
+        name: ffi/structs; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: dart pub upgrade
+      - name: "ffi/structs; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: ffi_system-command_pub_upgrade
+        name: "ffi/system-command; dart pub upgrade"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/system-command
+        run: dart pub upgrade
+      - name: "ffi/system-command; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/system-command
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: ffi_test_utils_pub_upgrade
+        name: ffi/test_utils; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/test_utils
+        run: dart pub upgrade
+      - name: "ffi/test_utils; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.ffi_test_utils_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/test_utils
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: isolates_pub_upgrade
+        name: isolates; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: isolates
+        run: dart pub upgrade
+      - name: "isolates; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.isolates_pub_upgrade.conclusion == 'success'"
+        working-directory: isolates
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: native_app_pub_upgrade
+        name: native_app; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: native_app
+        run: dart pub upgrade
+      - name: "native_app; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
+        working-directory: native_app
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: null_safety_calculate_lix_pub_upgrade
+        name: null_safety/calculate_lix; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: null_safety/calculate_lix
+        run: dart pub upgrade
+      - name: "null_safety/calculate_lix; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.null_safety_calculate_lix_pub_upgrade.conclusion == 'success'"
+        working-directory: null_safety/calculate_lix
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: parameters_pub_upgrade
+        name: parameters; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: parameters
+        run: dart pub upgrade
+      - name: "parameters; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.parameters_pub_upgrade.conclusion == 'success'"
+        working-directory: parameters
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: server_google_apis_pub_upgrade
+        name: server/google_apis; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/google_apis
+        run: dart pub upgrade
+      - name: "server/google_apis; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.server_google_apis_pub_upgrade.conclusion == 'success'"
+        working-directory: server/google_apis
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: server_simple_pub_upgrade
+        name: server/simple; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+        run: dart pub upgrade
+      - name: "server/simple; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+        run: "dart format --output=none --set-exit-if-changed ."
+    needs:
+      - job_001
+  job_004:
+    name: "analysis; Dart stable; PKGS: command_line, enhanced_enums, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters, server/google_apis, server/simple; `dart analyze --fatal-infos .`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v3
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple;commands:analyze"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: stable
+      - id: checkout
+        uses: actions/checkout@v3
+      - id: command_line_pub_upgrade
+        name: command_line; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: command_line
+        run: dart pub upgrade
+      - name: "command_line; dart analyze --fatal-infos ."
+        if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
+        working-directory: command_line
+        run: dart analyze --fatal-infos .
+      - id: enhanced_enums_pub_upgrade
+        name: enhanced_enums; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: enhanced_enums
+        run: dart pub upgrade
+      - name: "enhanced_enums; dart analyze --fatal-infos ."
+        if: "always() && steps.enhanced_enums_pub_upgrade.conclusion == 'success'"
+        working-directory: enhanced_enums
+        run: dart analyze --fatal-infos .
+      - id: extension_methods_pub_upgrade
+        name: extension_methods; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: extension_methods
+        run: dart pub upgrade
+      - name: "extension_methods; dart analyze --fatal-infos ."
+        if: "always() && steps.extension_methods_pub_upgrade.conclusion == 'success'"
+        working-directory: extension_methods
+        run: dart analyze --fatal-infos .
+      - id: ffi_hello_world_pub_upgrade
+        name: ffi/hello_world; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/hello_world
+        run: dart pub upgrade
+      - name: "ffi/hello_world; dart analyze --fatal-infos ."
+        if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/hello_world
+        run: dart analyze --fatal-infos .
+      - id: ffi_primitives_pub_upgrade
+        name: ffi/primitives; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/primitives
+        run: dart pub upgrade
+      - name: "ffi/primitives; dart analyze --fatal-infos ."
+        if: "always() && steps.ffi_primitives_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/primitives
+        run: dart analyze --fatal-infos .
+      - id: ffi_structs_pub_upgrade
+        name: ffi/structs; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: dart pub upgrade
+      - name: "ffi/structs; dart analyze --fatal-infos ."
+        if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: dart analyze --fatal-infos .
+      - id: ffi_system-command_pub_upgrade
+        name: "ffi/system-command; dart pub upgrade"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/system-command
+        run: dart pub upgrade
+      - name: "ffi/system-command; dart analyze --fatal-infos ."
+        if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/system-command
+        run: dart analyze --fatal-infos .
+      - id: ffi_test_utils_pub_upgrade
+        name: ffi/test_utils; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/test_utils
+        run: dart pub upgrade
+      - name: "ffi/test_utils; dart analyze --fatal-infos ."
+        if: "always() && steps.ffi_test_utils_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/test_utils
+        run: dart analyze --fatal-infos .
+      - id: isolates_pub_upgrade
+        name: isolates; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: isolates
+        run: dart pub upgrade
+      - name: "isolates; dart analyze --fatal-infos ."
+        if: "always() && steps.isolates_pub_upgrade.conclusion == 'success'"
+        working-directory: isolates
+        run: dart analyze --fatal-infos .
+      - id: native_app_pub_upgrade
+        name: native_app; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: native_app
+        run: dart pub upgrade
+      - name: "native_app; dart analyze --fatal-infos ."
+        if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
+        working-directory: native_app
+        run: dart analyze --fatal-infos .
+      - id: null_safety_calculate_lix_pub_upgrade
+        name: null_safety/calculate_lix; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: null_safety/calculate_lix
+        run: dart pub upgrade
+      - name: "null_safety/calculate_lix; dart analyze --fatal-infos ."
+        if: "always() && steps.null_safety_calculate_lix_pub_upgrade.conclusion == 'success'"
+        working-directory: null_safety/calculate_lix
+        run: dart analyze --fatal-infos .
+      - id: parameters_pub_upgrade
+        name: parameters; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: parameters
+        run: dart pub upgrade
+      - name: "parameters; dart analyze --fatal-infos ."
+        if: "always() && steps.parameters_pub_upgrade.conclusion == 'success'"
+        working-directory: parameters
         run: dart analyze --fatal-infos .
       - id: server_google_apis_pub_upgrade
         name: server/google_apis; dart pub upgrade
@@ -226,24 +475,24 @@ jobs:
     needs:
       - job_001
   job_005:
-    name: "analysis; Dart dev; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, server/google_apis, server/simple; `dart format --output=none --set-exit-if-changed .`"
+    name: "analysis; Dart stable; PKGS: command_line, enhanced_enums, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters, server/google_apis, server/simple; `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v3
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:format"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple;commands:format"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-server/google_apis-server/simple
-            os:ubuntu-latest;pub-cache-hosted;sdk:dev
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/google_apis-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: dev
+          sdk: stable
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -252,6 +501,15 @@ jobs:
       - name: "command_line; dart format --output=none --set-exit-if-changed ."
         if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
         working-directory: command_line
+        run: "dart format --output=none --set-exit-if-changed ."
+      - id: enhanced_enums_pub_upgrade
+        name: enhanced_enums; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: enhanced_enums
+        run: dart pub upgrade
+      - name: "enhanced_enums; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.enhanced_enums_pub_upgrade.conclusion == 'success'"
+        working-directory: enhanced_enums
         run: "dart format --output=none --set-exit-if-changed ."
       - id: extension_methods_pub_upgrade
         name: extension_methods; dart pub upgrade
@@ -334,6 +592,15 @@ jobs:
         if: "always() && steps.null_safety_calculate_lix_pub_upgrade.conclusion == 'success'"
         working-directory: null_safety/calculate_lix
         run: "dart format --output=none --set-exit-if-changed ."
+      - id: parameters_pub_upgrade
+        name: parameters; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: parameters
+        run: dart pub upgrade
+      - name: "parameters; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.parameters_pub_upgrade.conclusion == 'success'"
+        working-directory: parameters
+        run: "dart format --output=none --set-exit-if-changed ."
       - id: server_google_apis_pub_upgrade
         name: server/google_apis; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -355,246 +622,6 @@ jobs:
     needs:
       - job_001
   job_006:
-    name: "analysis; Dart stable; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, native_app, null_safety/calculate_lix, server/google_apis, server/simple; `dart analyze --fatal-infos .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v3
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:analyze"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-native_app-null_safety/calculate_lix-server/google_apis-server/simple
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.3
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v3.0.0
-      - id: command_line_pub_upgrade
-        name: command_line; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: command_line
-        run: dart pub upgrade
-      - name: "command_line; dart analyze --fatal-infos ."
-        if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
-        working-directory: command_line
-        run: dart analyze --fatal-infos .
-      - id: extension_methods_pub_upgrade
-        name: extension_methods; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: extension_methods
-        run: dart pub upgrade
-      - name: "extension_methods; dart analyze --fatal-infos ."
-        if: "always() && steps.extension_methods_pub_upgrade.conclusion == 'success'"
-        working-directory: extension_methods
-        run: dart analyze --fatal-infos .
-      - id: ffi_hello_world_pub_upgrade
-        name: ffi/hello_world; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/hello_world
-        run: dart pub upgrade
-      - name: "ffi/hello_world; dart analyze --fatal-infos ."
-        if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/hello_world
-        run: dart analyze --fatal-infos .
-      - id: ffi_primitives_pub_upgrade
-        name: ffi/primitives; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/primitives
-        run: dart pub upgrade
-      - name: "ffi/primitives; dart analyze --fatal-infos ."
-        if: "always() && steps.ffi_primitives_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/primitives
-        run: dart analyze --fatal-infos .
-      - id: ffi_structs_pub_upgrade
-        name: ffi/structs; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/structs
-        run: dart pub upgrade
-      - name: "ffi/structs; dart analyze --fatal-infos ."
-        if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/structs
-        run: dart analyze --fatal-infos .
-      - id: ffi_system-command_pub_upgrade
-        name: "ffi/system-command; dart pub upgrade"
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/system-command
-        run: dart pub upgrade
-      - name: "ffi/system-command; dart analyze --fatal-infos ."
-        if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/system-command
-        run: dart analyze --fatal-infos .
-      - id: ffi_test_utils_pub_upgrade
-        name: ffi/test_utils; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/test_utils
-        run: dart pub upgrade
-      - name: "ffi/test_utils; dart analyze --fatal-infos ."
-        if: "always() && steps.ffi_test_utils_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/test_utils
-        run: dart analyze --fatal-infos .
-      - id: native_app_pub_upgrade
-        name: native_app; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: native_app
-        run: dart pub upgrade
-      - name: "native_app; dart analyze --fatal-infos ."
-        if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
-        working-directory: native_app
-        run: dart analyze --fatal-infos .
-      - id: null_safety_calculate_lix_pub_upgrade
-        name: null_safety/calculate_lix; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: null_safety/calculate_lix
-        run: dart pub upgrade
-      - name: "null_safety/calculate_lix; dart analyze --fatal-infos ."
-        if: "always() && steps.null_safety_calculate_lix_pub_upgrade.conclusion == 'success'"
-        working-directory: null_safety/calculate_lix
-        run: dart analyze --fatal-infos .
-      - id: server_google_apis_pub_upgrade
-        name: server/google_apis; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: server/google_apis
-        run: dart pub upgrade
-      - name: "server/google_apis; dart analyze --fatal-infos ."
-        if: "always() && steps.server_google_apis_pub_upgrade.conclusion == 'success'"
-        working-directory: server/google_apis
-        run: dart analyze --fatal-infos .
-      - id: server_simple_pub_upgrade
-        name: server/simple; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: server/simple
-        run: dart pub upgrade
-      - name: "server/simple; dart analyze --fatal-infos ."
-        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
-        working-directory: server/simple
-        run: dart analyze --fatal-infos .
-    needs:
-      - job_001
-  job_007:
-    name: "analysis; Dart stable; PKGS: command_line, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system-command, ffi/test_utils, native_app, null_safety/calculate_lix, server/google_apis, server/simple; `dart format --output=none --set-exit-if-changed .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@v3
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-native_app-null_safety/calculate_lix-server/google_apis-server/simple;commands:format"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system-command-ffi/test_utils-native_app-null_safety/calculate_lix-server/google_apis-server/simple
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@v1.3
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@v3.0.0
-      - id: command_line_pub_upgrade
-        name: command_line; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: command_line
-        run: dart pub upgrade
-      - name: "command_line; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.command_line_pub_upgrade.conclusion == 'success'"
-        working-directory: command_line
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: extension_methods_pub_upgrade
-        name: extension_methods; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: extension_methods
-        run: dart pub upgrade
-      - name: "extension_methods; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.extension_methods_pub_upgrade.conclusion == 'success'"
-        working-directory: extension_methods
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: ffi_hello_world_pub_upgrade
-        name: ffi/hello_world; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/hello_world
-        run: dart pub upgrade
-      - name: "ffi/hello_world; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.ffi_hello_world_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/hello_world
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: ffi_primitives_pub_upgrade
-        name: ffi/primitives; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/primitives
-        run: dart pub upgrade
-      - name: "ffi/primitives; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.ffi_primitives_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/primitives
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: ffi_structs_pub_upgrade
-        name: ffi/structs; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/structs
-        run: dart pub upgrade
-      - name: "ffi/structs; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/structs
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: ffi_system-command_pub_upgrade
-        name: "ffi/system-command; dart pub upgrade"
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/system-command
-        run: dart pub upgrade
-      - name: "ffi/system-command; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/system-command
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: ffi_test_utils_pub_upgrade
-        name: ffi/test_utils; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: ffi/test_utils
-        run: dart pub upgrade
-      - name: "ffi/test_utils; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.ffi_test_utils_pub_upgrade.conclusion == 'success'"
-        working-directory: ffi/test_utils
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: native_app_pub_upgrade
-        name: native_app; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: native_app
-        run: dart pub upgrade
-      - name: "native_app; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.native_app_pub_upgrade.conclusion == 'success'"
-        working-directory: native_app
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: null_safety_calculate_lix_pub_upgrade
-        name: null_safety/calculate_lix; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: null_safety/calculate_lix
-        run: dart pub upgrade
-      - name: "null_safety/calculate_lix; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.null_safety_calculate_lix_pub_upgrade.conclusion == 'success'"
-        working-directory: null_safety/calculate_lix
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: server_google_apis_pub_upgrade
-        name: server/google_apis; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: server/google_apis
-        run: dart pub upgrade
-      - name: "server/google_apis; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.server_google_apis_pub_upgrade.conclusion == 'success'"
-        working-directory: server/google_apis
-        run: "dart format --output=none --set-exit-if-changed ."
-      - id: server_simple_pub_upgrade
-        name: server/simple; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: server/simple
-        run: dart pub upgrade
-      - name: "server/simple; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
-        working-directory: server/simple
-        run: "dart format --output=none --set-exit-if-changed ."
-    needs:
-      - job_001
-  job_008:
     name: "unit_test; Dart dev; PKG: command_line; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -612,7 +639,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -628,9 +655,41 @@ jobs:
       - job_003
       - job_004
       - job_005
-      - job_006
-      - job_007
-  job_009:
+  job_007:
+    name: "unit_test; Dart dev; PKG: enhanced_enums; `dart test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v3
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:enhanced_enums;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:enhanced_enums
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: dev
+      - id: checkout
+        uses: actions/checkout@v3
+      - id: enhanced_enums_pub_upgrade
+        name: enhanced_enums; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: enhanced_enums
+        run: dart pub upgrade
+      - name: enhanced_enums; dart test
+        if: "always() && steps.enhanced_enums_pub_upgrade.conclusion == 'success'"
+        working-directory: enhanced_enums
+        run: dart test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_008:
     name: "unit_test; Dart dev; PKG: extension_methods; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -648,7 +707,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: extension_methods_pub_upgrade
         name: extension_methods; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -664,9 +723,7 @@ jobs:
       - job_003
       - job_004
       - job_005
-      - job_006
-      - job_007
-  job_010:
+  job_009:
     name: "unit_test; Dart dev; PKG: ffi/hello_world; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -684,7 +741,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: ffi_hello_world_pub_upgrade
         name: ffi/hello_world; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -700,9 +757,7 @@ jobs:
       - job_003
       - job_004
       - job_005
-      - job_006
-      - job_007
-  job_011:
+  job_010:
     name: "unit_test; Dart dev; PKG: ffi/primitives; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -720,7 +775,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: ffi_primitives_pub_upgrade
         name: ffi/primitives; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -736,9 +791,7 @@ jobs:
       - job_003
       - job_004
       - job_005
-      - job_006
-      - job_007
-  job_012:
+  job_011:
     name: "unit_test; Dart dev; PKG: server/simple; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -756,7 +809,7 @@ jobs:
         with:
           sdk: dev
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: server_simple_pub_upgrade
         name: server/simple; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -772,9 +825,7 @@ jobs:
       - job_003
       - job_004
       - job_005
-      - job_006
-      - job_007
-  job_013:
+  job_012:
     name: "unit_test; Dart stable; PKG: command_line; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -792,7 +843,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -808,8 +859,40 @@ jobs:
       - job_003
       - job_004
       - job_005
-      - job_006
-      - job_007
+  job_013:
+    name: "unit_test; Dart stable; PKG: enhanced_enums; `dart test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v3
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:enhanced_enums;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:enhanced_enums
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: stable
+      - id: checkout
+        uses: actions/checkout@v3
+      - id: enhanced_enums_pub_upgrade
+        name: enhanced_enums; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: enhanced_enums
+        run: dart pub upgrade
+      - name: enhanced_enums; dart test
+        if: "always() && steps.enhanced_enums_pub_upgrade.conclusion == 'success'"
+        working-directory: enhanced_enums
+        run: dart test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
   job_014:
     name: "unit_test; Dart stable; PKG: extension_methods; `dart test`"
     runs-on: ubuntu-latest
@@ -828,7 +911,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: extension_methods_pub_upgrade
         name: extension_methods; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -844,8 +927,6 @@ jobs:
       - job_003
       - job_004
       - job_005
-      - job_006
-      - job_007
   job_015:
     name: "unit_test; Dart stable; PKG: ffi/hello_world; `dart test`"
     runs-on: ubuntu-latest
@@ -864,7 +945,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: ffi_hello_world_pub_upgrade
         name: ffi/hello_world; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -880,8 +961,6 @@ jobs:
       - job_003
       - job_004
       - job_005
-      - job_006
-      - job_007
   job_016:
     name: "unit_test; Dart stable; PKG: ffi/primitives; `dart test`"
     runs-on: ubuntu-latest
@@ -900,7 +979,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: ffi_primitives_pub_upgrade
         name: ffi/primitives; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -916,8 +995,6 @@ jobs:
       - job_003
       - job_004
       - job_005
-      - job_006
-      - job_007
   job_017:
     name: "unit_test; Dart stable; PKG: server/simple; `dart test`"
     runs-on: ubuntu-latest
@@ -936,7 +1013,7 @@ jobs:
         with:
           sdk: stable
       - id: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v3
       - id: server_simple_pub_upgrade
         name: server/simple; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -952,5 +1029,3 @@ jobs:
       - job_003
       - job_004
       - job_005
-      - job_006
-      - job_007
