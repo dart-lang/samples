@@ -7,7 +7,6 @@ github:
       branches:
         - main
         - master
-        - beta
 
 # Merges all analyze stages into one bot, which is more efficient
 merge_stages:
