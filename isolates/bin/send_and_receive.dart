@@ -27,7 +27,7 @@ Future<Map<String, dynamic>> _spawnAndReceive(String fileName) async {
 }
 
 // The entrypoint that runs on the spawned isolate. Reads the contents of
-// fileName, decodes the JSON, and sends the result back the the main
+// fileName, decodes the JSON, and sends the result back to the main
 // isolate.
 void _readAndParseJson(List<dynamic> args) async {
   SendPort responsePort = args[0];
