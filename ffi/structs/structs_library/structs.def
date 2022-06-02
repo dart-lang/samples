@@ -4,3 +4,5 @@ EXPORTS
     create_place
     create_coordinate
     reverse
+    distance
+
