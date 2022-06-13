@@ -792,6 +792,74 @@ jobs:
       - job_004
       - job_005
   job_011:
+    name: "unit_test; Dart dev; PKG: ffi/structs; `dart test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v3
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:ffi/structs;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:ffi/structs
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: dev
+      - id: checkout
+        uses: actions/checkout@v3
+      - id: ffi_structs_pub_upgrade
+        name: ffi/structs; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: dart pub upgrade
+      - name: ffi/structs; dart test
+        if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: dart test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_012:
+    name: "unit_test; Dart dev; PKG: ffi/system-command; `dart test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v3
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:ffi/system-command;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev;packages:ffi/system-command
+            os:ubuntu-latest;pub-cache-hosted;sdk:dev
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: dev
+      - id: checkout
+        uses: actions/checkout@v3
+      - id: ffi_system-command_pub_upgrade
+        name: "ffi/system-command; dart pub upgrade"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/system-command
+        run: dart pub upgrade
+      - name: "ffi/system-command; dart test"
+        if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/system-command
+        run: dart test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_013:
     name: "unit_test; Dart dev; PKG: server/simple; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -825,7 +893,7 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_012:
+  job_014:
     name: "unit_test; Dart stable; PKG: command_line; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -859,7 +927,7 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_013:
+  job_015:
     name: "unit_test; Dart stable; PKG: enhanced_enums; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -893,7 +961,7 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_014:
+  job_016:
     name: "unit_test; Dart stable; PKG: extension_methods; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -927,7 +995,7 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_015:
+  job_017:
     name: "unit_test; Dart stable; PKG: ffi/hello_world; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -961,7 +1029,7 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_016:
+  job_018:
     name: "unit_test; Dart stable; PKG: ffi/primitives; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -995,7 +1063,75 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_017:
+  job_019:
+    name: "unit_test; Dart stable; PKG: ffi/structs; `dart test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v3
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:ffi/structs;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:ffi/structs
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: stable
+      - id: checkout
+        uses: actions/checkout@v3
+      - id: ffi_structs_pub_upgrade
+        name: ffi/structs; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: dart pub upgrade
+      - name: ffi/structs; dart test
+        if: "always() && steps.ffi_structs_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/structs
+        run: dart test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_020:
+    name: "unit_test; Dart stable; PKG: ffi/system-command; `dart test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@v3
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:ffi/system-command;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:ffi/system-command
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: stable
+      - id: checkout
+        uses: actions/checkout@v3
+      - id: ffi_system-command_pub_upgrade
+        name: "ffi/system-command; dart pub upgrade"
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: ffi/system-command
+        run: dart pub upgrade
+      - name: "ffi/system-command; dart test"
+        if: "always() && steps.ffi_system-command_pub_upgrade.conclusion == 'success'"
+        working-directory: ffi/system-command
+        run: dart test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+  job_021:
     name: "unit_test; Dart stable; PKG: server/simple; `dart test`"
     runs-on: ubuntu-latest
     steps:
