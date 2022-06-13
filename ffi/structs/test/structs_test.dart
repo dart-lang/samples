@@ -30,9 +30,9 @@ void main() async {
       expect(
           dartProcess.stdout,
           equals('Hello World\n'
-              'sdrawkcab\n'
-              'Coordinate: 1.0, 2.0\n'
-              'Place is called Hello World at 3.5, 4.6\n'));
+              'backwards reversed is sdrawkcab\n'
+              'Coordinate is lat 3.5, long 4.6\n'
+              'The name of my place is My Home at 42.0, 24.0\n'));
     });
   });
 }

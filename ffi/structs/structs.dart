@@ -91,8 +91,8 @@ void main() {
   final createPlace =
       dylib.lookupFunction<CreatePlaceNative, CreatePlace>('create_place');
   final place = createPlace(myHomeUtf8, 42.0, 24.0);
-  calloc.free(myHomeUtf8);
   final name = place.name.toDartString();
+  calloc.free(myHomeUtf8);
   final coord = place.coordinate;
   print(
       'The name of my place is $name at ${coord.latitude}, ${coord.longitude}');
