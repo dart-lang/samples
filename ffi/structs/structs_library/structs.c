@@ -62,8 +62,8 @@ struct Place create_place(char *name, double latitude, double longitude)
 }
 
 double distance(struct Coordinate c1, struct Coordinate c2) {
-	double xd = c2.latitude - c1.latitude;
-	double yd = c2.longitude - c1.longitude;
-	return sqrt(xd*xd + yd*yd);
+    double xd = c2.latitude - c1.latitude;
+    double yd = c2.longitude - c1.longitude;
+    return sqrt(xd*xd + yd*yd);
 }
 
