@@ -27,13 +27,12 @@ void main() async {
 
       // Verify program output
       expect(dartProcess.stderr, isEmpty);
-      expect(dartProcess.stdout, equals(_expected));
+      expect(
+          dartProcess.stdout,
+          equals('Hello World\n'
+              'backwards reversed is sdrawkcab\n'
+              'Coordinate is lat 3.5, long 4.6\n'
+              'The name of my place is My Home at 42.0, 24.0\n'));
     });
   });
 }
-
-const _expected = 'Hello World\n'
-    'backwards reversed is sdrawkcab\n'
-    'Coordinate is lat 3.5, long 4.6\n'
-    'The name of my place is My Home at 42.0, 24.0\n'
-    'distance between (2,2) and (5,6) = 5.0\n';
