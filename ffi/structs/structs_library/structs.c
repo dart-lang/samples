@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "structs.h"
 
 int main()
@@ -58,5 +59,11 @@ struct Place create_place(char *name, double latitude, double longitude)
     place.name = name;
     place.coordinate = create_coordinate(latitude, longitude);
     return place;
+}
+
+double distance(struct Coordinate c1, struct Coordinate c2) {
+    double xd = c2.latitude - c1.latitude;
+    double yd = c2.longitude - c1.longitude;
+    return sqrt(xd*xd + yd*yd);
 }
 

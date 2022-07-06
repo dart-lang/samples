@@ -49,6 +49,9 @@ typedef CreatePlaceNative = Place Function(
 typedef CreatePlace = Place Function(
     Pointer<Utf8> name, double latitude, double longitude);
 
+typedef DistanceNative = Double Function(Coordinate p1, Coordinate p2);
+typedef Distance = double Function(Coordinate p1, Coordinate p2);
+
 void main() {
   // Open the dynamic library
   var libraryPath =
@@ -96,4 +99,7 @@ void main() {
   final coord = place.coordinate;
   print(
       'The name of my place is $name at ${coord.latitude}, ${coord.longitude}');
+  final distance = dylib.lookupFunction<DistanceNative, Distance>('distance');
+  final dist = distance(createCoordinate(2.0, 2.0), createCoordinate(5.0, 6.0));
+  print("distance between (2,2) and (5,6) = $dist");
 }
