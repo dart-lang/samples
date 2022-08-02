@@ -9,9 +9,13 @@ import 'test_definitions.dart';
 
 void main() {
   void testServer(String name, Future<void> Function(String host) func) {
-    test(name, () async {
-      await func('http://localhost:8080');
-    }, timeout: _defaultTimeout);
+    test(
+      name,
+      () async {
+        await func('http://localhost:8080');
+      },
+      timeout: _defaultTimeout,
+    );
   }
 
   runTests(testServer);
