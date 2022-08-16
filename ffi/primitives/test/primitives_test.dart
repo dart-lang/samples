@@ -31,8 +31,7 @@ void main() async {
           dartProcess.stdout,
           equals('3 + 5 = 8\n'
               '3 - 5 = -2\n'
-              '3 * 5 = 15\n'
-              '3 + 7 + 11 = 21\n'));
+              '3 * 5 = 15\n'));
     });
   });
 }

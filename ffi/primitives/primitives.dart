@@ -27,14 +27,6 @@ typedef Subtract = int Function(Pointer<Int32> a, int b);
 typedef MultiplyFunc = Pointer<Int32> Function(Int32 a, Int32 b);
 typedef Multiply = Pointer<Int32> Function(int a, int b);
 
-// C multi sum function - int multi_sum(int nr_count, ...);
-//
-// Example of how to call C functions with varargs with a fixed arg count in
-// Dart
-typedef MultiSumFunc = Int32 Function(
-    Int32 numCount, Int32 a, Int32 b, Int32 c);
-typedef MultiSum = int Function(int numCount, int a, int b, int c);
-
 // C free function - void free_pointer(int *int_pointer);
 //
 // Example of how to free pointers that were allocated in C.
@@ -89,11 +81,4 @@ void main() {
       dylib.lookup<NativeFunction<FreePointerFunc>>('free_pointer');
   final freePointer = freePointerPointer.asFunction<FreePointer>();
   freePointer(resultPointer);
-
-  // example calling a C function with varargs
-  // calls int multi_sum(int nr_count, ...);
-  final multiSumPointer =
-      dylib.lookup<NativeFunction<MultiSumFunc>>('multi_sum');
-  final multiSum = multiSumPointer.asFunction<MultiSum>();
-  print('3 + 7 + 11 = ${multiSum(3, 3, 7, 11)}');
 }
