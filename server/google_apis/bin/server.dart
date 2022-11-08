@@ -4,14 +4,14 @@
 
 import 'dart:convert';
 
-import 'package:cloud_run_google_apis/helpers.dart';
+import 'package:gcp/gcp.dart';
 import 'package:googleapis/firestore/v1.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
 Future main() async {
-  final projectId = await currentProjectId();
+  final projectId = await computeProjectId();
   print('Current GCP project id: $projectId');
 
   final authClient = await clientViaApplicationDefaultCredentials(
