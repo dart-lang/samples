@@ -12,7 +12,6 @@ import 'dart:isolate';
 const filename = 'json_01.json';
 
 Future<void> main() async {
-  final filename = 'json_01.json';
   final jsonData = await _spawnAndReceive(filename);
   print('Received JSON with ${jsonData.length} keys');
 }
