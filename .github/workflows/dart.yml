@@ -32,7 +32,7 @@ jobs:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - name: mono_repo self validate
         run: dart pub global activate mono_repo 6.4.2
       - name: mono_repo self validate
@@ -57,7 +57,7 @@ jobs:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -206,7 +206,7 @@ jobs:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -355,7 +355,7 @@ jobs:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -504,7 +504,7 @@ jobs:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -653,7 +653,7 @@ jobs:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -689,7 +689,7 @@ jobs:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: enhanced_enums_pub_upgrade
         name: enhanced_enums; dart pub upgrade
         run: dart pub upgrade
@@ -725,7 +725,7 @@ jobs:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: extension_methods_pub_upgrade
         name: extension_methods; dart pub upgrade
         run: dart pub upgrade
@@ -761,7 +761,7 @@ jobs:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: ffi_hello_world_pub_upgrade
         name: ffi/hello_world; dart pub upgrade
         run: dart pub upgrade
@@ -797,7 +797,7 @@ jobs:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: ffi_primitives_pub_upgrade
         name: ffi/primitives; dart pub upgrade
         run: dart pub upgrade
@@ -833,7 +833,7 @@ jobs:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: ffi_structs_pub_upgrade
         name: ffi/structs; dart pub upgrade
         run: dart pub upgrade
@@ -869,7 +869,7 @@ jobs:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: server_simple_pub_upgrade
         name: server/simple; dart pub upgrade
         run: dart pub upgrade
@@ -905,7 +905,7 @@ jobs:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -941,7 +941,7 @@ jobs:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: enhanced_enums_pub_upgrade
         name: enhanced_enums; dart pub upgrade
         run: dart pub upgrade
@@ -977,7 +977,7 @@ jobs:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: extension_methods_pub_upgrade
         name: extension_methods; dart pub upgrade
         run: dart pub upgrade
@@ -1013,7 +1013,7 @@ jobs:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: ffi_hello_world_pub_upgrade
         name: ffi/hello_world; dart pub upgrade
         run: dart pub upgrade
@@ -1049,7 +1049,7 @@ jobs:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: ffi_primitives_pub_upgrade
         name: ffi/primitives; dart pub upgrade
         run: dart pub upgrade
@@ -1085,7 +1085,7 @@ jobs:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: ffi_structs_pub_upgrade
         name: ffi/structs; dart pub upgrade
         run: dart pub upgrade
@@ -1121,7 +1121,7 @@ jobs:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - id: server_simple_pub_upgrade
         name: server/simple; dart pub upgrade
         run: dart pub upgrade
