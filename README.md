@@ -32,8 +32,6 @@ Dart][awesome-dart].
 
 - [Pop, Pop, Win!][pop-pop-win] **(Dart team)** - An implementation of
   Minesweeper in Dart.
-- [Dart tutorials samples][dart-tutorials-github] **(Dart team)** - A set of
-  small samples used by the online [Dart tutorials][dart-tutorials].
 
 ## Contributing
 
@@ -43,5 +41,4 @@ See the [Contributing guide][contributing] for details on how to contribute.
 [awesome-dart]: https://github.com/yissachar/awesome-dart
 [contributing]: https://github.com/dart-lang/samples/blob/master/CONTRIBUTING.md
 [pop-pop-win]: https://github.com/dart-lang/sample-pop_pop_win
-[dart-tutorials-github]: https://github.com/dart-lang/dart-tutorials-samples
 [dart-tutorials]: https://dart.dev/tutorials
