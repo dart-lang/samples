@@ -22,7 +22,7 @@ jobs:
       matrix:
         dart: [ stable ]
     steps:
-    - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+    - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
     - name: Cache Pub hosted dependencies
       uses: actions/cache@627f0f41f6904a5b1efbaed9f96d9eb58e92e920
       with:
