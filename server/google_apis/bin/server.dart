@@ -37,7 +37,7 @@ Future main() async {
 
     final router = Router()..get('/', incrementHandler);
 
-    await serveHandler(router);
+    await serveHandler(router.call);
   } finally {
     authClient.close();
   }
