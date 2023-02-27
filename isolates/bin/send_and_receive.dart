@@ -12,27 +12,17 @@ import 'dart:isolate';
 const filename = 'json_01.json';
 
 Future<void> main() async {
-  final jsonData = await _spawnAndReceive(filename);
+  // Read and parse JSON data in a new isolate,
+  // then store the returned Dart representation.
+  final jsonData = await Isolate.run(() => _readAndParseJson(filename));
+
   print('Received JSON with ${jsonData.length} keys');
 }
 
-// Spawns an isolate and sends a [filename] as the first message.
-// Waits to receive a message from the the spawned isolate containing the
-// parsed JSON.
-Future<Map<String, dynamic>> _spawnAndReceive(String fileName) async {
-  final p = ReceivePort();
-  await Isolate.spawn(_readAndParseJson, [p.sendPort, fileName]);
-  return (await p.first) as Map<String, dynamic>;
-}
-
-// The entrypoint that runs on the spawned isolate. Reads the contents of
-// fileName, decodes the JSON, and sends the result back to the main
-// isolate.
-void _readAndParseJson(List<dynamic> args) async {
-  SendPort responsePort = args[0];
-  String fileName = args[1];
-
-  final fileData = await File(fileName).readAsString();
-  final result = jsonDecode(fileData);
-  Isolate.exit(responsePort, result);
+/// Reads the contents of the file with [filename],
+/// decodes the JSON, and returns the result.
+Future<Map<String, dynamic>> _readAndParseJson(String filename) async {
+  final fileData = await File(filename).readAsString();
+  final jsonData = jsonDecode(fileData) as Map<String, dynamic>;
+  return jsonData;
 }
