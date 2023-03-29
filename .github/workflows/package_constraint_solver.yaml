@@ -1,9 +1,13 @@
 name: Package constraint_solver tests
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+      - master
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - master
 jobs:
   run-tests:
     runs-on: ubuntu-latest
