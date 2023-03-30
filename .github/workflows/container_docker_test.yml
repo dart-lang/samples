@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
     - name: Cache Pub hosted dependencies
-      uses: actions/cache@627f0f41f6904a5b1efbaed9f96d9eb58e92e920
+      uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8
       with:
         path: "~/.pub-cache/hosted"
         key: "os:ubuntu-latest;pub-cache-hosted;dart:stable"
