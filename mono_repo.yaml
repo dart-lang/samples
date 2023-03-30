@@ -6,7 +6,6 @@ github:
     push:
       branches:
         - main
-        - master
     pull_request:
 
 # Merges all analyze stages into one bot, which is more efficient
