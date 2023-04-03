@@ -27,6 +27,7 @@ Dart][awesome-dart].
   `dart2native`.
 - [server](https://github.com/dart-lang/samples/blob/master/server) - Examples
   of running Dart on the server.
+- [package_constraint_solver](https://github.com/dart-lang/samples/blob/master/package_constraint_solver) - Demonstrates best-practices for publishing packages on pub.dev.
 
 ## More samples
 
