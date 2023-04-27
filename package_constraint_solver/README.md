@@ -5,11 +5,11 @@ A general-purpose backtracking constraint satisfaction algorithm.
 ## Usage
 
 A constraint satisfaction problem (CSP) can be used to model problems where
-a solution must be found to satisfy one or more constraints. Examples of such a problem include event scheduling,
-or map coloring.
+a solution must be found to satisfy one or more constraints. 
+Examples of such a problem include event scheduling, or map coloring.
 
 A CSP framework is a set of _variables_ that can be assigned within a range
-called a _domain_. For example, If we are cooking dinner for three guests , we
+called a _domain_. For example, If we are cooking dinner for three guests, we
 would define them as variables that can be assigned a meal:
 
 ```dart
@@ -46,7 +46,7 @@ class AvoidDislikes extends Constraint<Person, String> {
 }
 ```
 
-To run a backtracking search of the solution space, instantiante the `CSP` class
+To run a backtracking search of the solution space, instantiate the `CSP` class
 and call the `backtrackingSearch` function:
 
 ```dart
@@ -59,7 +59,7 @@ print(result);
 ```
 
 For complete examples, see the
-[examples/](https://github.com/johnpryan/constraint_solver/tree/main/example)
+[examples/](https://github.com/dart-lang/samples/tree/main/package_constraint_solver/example)
 directory.
 
 ## References
