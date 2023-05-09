@@ -2,7 +2,6 @@
 *.dylib
 a.out
 .vscode/
-.packages
 .dart_tool
 sdk-version
 *snapshot*
