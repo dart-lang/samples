@@ -50,7 +50,7 @@ file you don't have to update the year.
 // BSD-style license that can be found in the LICENSE file.
 ```
 
-[dart-contributing]: https://github.com/dart-lang/sdk/blob/master/CONTRIBUTING.md
+[dart-contributing]: https://github.com/dart-lang/sdk/blob/main/CONTRIBUTING.md
 [issues]: https://github.com/dart-lang/samples/issues
 [pull-requests]: https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request
 [community]: https://dart.dev/community
