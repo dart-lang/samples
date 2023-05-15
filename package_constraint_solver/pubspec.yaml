@@ -4,7 +4,7 @@ version: 1.0.0
 repository: https://github.com/dart-lang/samples/tree/main/package_constraint_solver
 
 environment:
-  sdk: '>=2.19.2 <4.0.0'
+  sdk: ^3.0.0
 
 dependencies: 
   path: ^1.8.3

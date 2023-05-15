@@ -9,7 +9,7 @@ import 'package:ffi/ffi.dart';
 import 'package:path/path.dart' as path;
 
 // Example of handling a simple C struct
-class Coordinate extends Struct {
+final class Coordinate extends Struct {
   @Double()
   external double latitude;
 
@@ -18,7 +18,7 @@ class Coordinate extends Struct {
 }
 
 // Example of a complex struct (contains a string and a nested struct)
-class Place extends Struct {
+final class Place extends Struct {
   external Pointer<Utf8> name;
 
   external Coordinate coordinate;

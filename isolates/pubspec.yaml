@@ -1,9 +1,9 @@
 name: isolates
 description: A sample command-line application.
-pubish_to: none
+publish_to: none
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: ^3.0.0
 
 dependencies:
   async: ^2.10.0
