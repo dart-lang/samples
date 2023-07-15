@@ -23,8 +23,8 @@ void main() {
   }
 
   if (Platform.isWindows) {
-    libraryPath = path.join(
-        Directory.current.path, 'hello_library', 'Debug', 'hello.dll');
+    libraryPath = 
+        path.join(Directory.current.path, 'hello_library', 'Debug', 'hello.dll');
   }
 
   final dylib = ffi.DynamicLibrary.open(libraryPath);
