@@ -79,6 +79,10 @@ for PKG in ${PKGS}; do
         echo 'dart test'
         dart test || EXIT_CODE=$?
         ;;
+      test_with_coverage)
+        echo 'dart pub global run coverage:test_with_coverage'
+        dart pub global run coverage:test_with_coverage || EXIT_CODE=$?
+        ;;
       *)
         echo -e "\033[31mUnknown TASK '${TASK}' - TERMINATING JOB\033[0m"
         exit 64
