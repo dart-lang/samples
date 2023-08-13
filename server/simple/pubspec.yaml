@@ -10,7 +10,7 @@ dependencies:
   shelf_static: ^1.0.0
 
 dev_dependencies:
-  http: ^0.13.0
+  http: ^1.0.0
   lints: ^2.0.0
   test: ^1.15.0
   test_process: ^2.0.0
