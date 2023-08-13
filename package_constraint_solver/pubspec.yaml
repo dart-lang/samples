@@ -1,7 +1,7 @@
 name: constraint_solver
 description: A general-purpose backtracking constraint satisfaction algorithm.
-version: 1.0.0
 repository: https://github.com/dart-lang/samples/tree/main/package_constraint_solver
+publish_to: none
 
 environment:
   sdk: ^3.0.0
@@ -12,5 +12,5 @@ dependencies:
 dev_dependencies:
   checks: ^0.2.0
   lints: ^2.0.0
-  intl: ^0.17.0
+  intl: ^0.18.1
   test: ^1.21.0
