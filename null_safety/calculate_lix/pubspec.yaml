@@ -9,7 +9,7 @@ environment:
   sdk: ^3.0.0
 
 dependencies:
-  collection: ^1.17.0
+  collection: ^1.18.0
 
 dev_dependencies:
   lints: ^2.1.0

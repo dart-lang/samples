@@ -10,7 +10,7 @@ environment:
   sdk: ^3.0.0
 
 dependencies:
-  ffi: ^2.0.0
+  ffi: ^2.1.0
   path: ^1.8.3
 
 dev_dependencies:

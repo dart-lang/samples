@@ -12,5 +12,5 @@ dependencies:
 dev_dependencies:
   checks: ^0.2.0
   lints: ^2.1.0
-  intl: ^0.18.0
+  intl: ^0.18.1
   test: ^1.24.0

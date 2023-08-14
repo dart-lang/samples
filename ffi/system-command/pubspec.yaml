@@ -8,7 +8,7 @@ environment:
   sdk: ^3.0.0
 
 dependencies:
-  ffi: ^2.0.0
+  ffi: ^2.1.0
 
 dev_dependencies:
   lints: ^2.1.0
