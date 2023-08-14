@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:gcp/gcp.dart';
+import 'package:google_cloud/google_cloud.dart';
 import 'package:googleapis/firestore/v1.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:shelf/shelf.dart';

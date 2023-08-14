@@ -5,7 +5,7 @@ environment:
   sdk: ^3.0.0
 
 dependencies:
-  gcp: ^0.1.0
+  google_cloud: ^0.2.0
   googleapis: ^11.2.0
   googleapis_auth: ^1.4.0
   shelf: ^1.4.0
