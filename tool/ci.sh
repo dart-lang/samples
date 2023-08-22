@@ -1,5 +1,5 @@
 #!/bin/bash
-# Created with package:mono_repo v6.5.5
+# Created with package:mono_repo v6.5.7
 
 # Support built in commands on windows out of the box.
 # When it is a flutter repo (check the pubspec.yaml for "sdk: flutter")
@@ -78,6 +78,10 @@ for PKG in ${PKGS}; do
       test)
         echo 'dart test'
         dart test || EXIT_CODE=$?
+        ;;
+      test_with_coverage)
+        echo 'dart pub global run coverage:test_with_coverage'
+        dart pub global run coverage:test_with_coverage || EXIT_CODE=$?
         ;;
       *)
         echo -e "\033[31mUnknown TASK '${TASK}' - TERMINATING JOB\033[0m"

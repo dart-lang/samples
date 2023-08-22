@@ -11,3 +11,6 @@ github:
 # Merges all analyze stages into one bot, which is more efficient
 merge_stages:
   - analysis
+
+coverage_service:
+  - coveralls
