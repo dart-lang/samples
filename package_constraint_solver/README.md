@@ -1,6 +1,7 @@
 A general-purpose backtracking constraint satisfaction algorithm.
 
-[![Dart tests](https://github.com/dart-lang/samples/actions/workflows/package_constraint_solver.yaml/badge.svg)](https://github.com/dart-lang/samples/actions/workflows/package_constraint_solver.yaml) [![Coverage Status](https://coveralls.io/repos/github/dart-lang/samples/badge.svg?branch=main)](https://coveralls.io/github/dart-lang/samples?branch=main) [![pub package](https://img.shields.io/pub/v/constraint_solver.svg)](https://pub.dev/packages/constraint_solver)
+[![Coverage Status](https://coveralls.io/repos/github/dart-lang/samples/badge.svg?branch=main)](https://coveralls.io/github/dart-lang/samples?branch=main)
+[![pub package](https://img.shields.io/pub/v/constraint_solver.svg)](https://pub.dev/packages/constraint_solver)
 
 ## Usage
 
