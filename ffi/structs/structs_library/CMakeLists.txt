@@ -1,9 +1,13 @@
 cmake_minimum_required(VERSION 3.7 FATAL_ERROR)
 project(structs_library VERSION 1.0.0 LANGUAGES C)
 add_library(structs_library SHARED structs.c structs.def)
-target_link_libraries(structs_library PUBLIC m)
+IF(!WIN32)
+    target_link_libraries(structs_library PUBLIC m)
+ENDIF()
 add_executable(structs_test structs.c)
-target_link_libraries(structs_test PUBLIC m)
+IF(!WIN32)
+    target_link_libraries(structs_test PUBLIC m)
+ENDIF()
 
 set_target_properties(structs_library PROPERTIES
     PUBLIC_HEADER structs.h

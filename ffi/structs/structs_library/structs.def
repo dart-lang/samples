@@ -5,4 +5,5 @@ EXPORTS
     create_coordinate
     reverse
     distance
+    free_string
 
