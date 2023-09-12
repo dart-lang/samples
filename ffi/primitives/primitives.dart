@@ -43,7 +43,7 @@ void main() {
   }
   if (Platform.isWindows) {
     libraryPath = path.join(
-        Directory.current.path, 'primitives_library', 'Debug', 'primtives.dll');
+        Directory.current.path, 'primitives_library', 'Debug', 'primitives.dll');
   }
 
   final dylib = DynamicLibrary.open(libraryPath);

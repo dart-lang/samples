@@ -3,3 +3,4 @@ EXPORTS
     sum
     subtract
     multiply
+    free_pointer
