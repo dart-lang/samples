@@ -1,4 +1,4 @@
-# Created with package:mono_repo v6.5.7
+# Created with package:mono_repo v6.6.0
 name: Dart CI
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
         name: Checkout repository
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
       - name: mono_repo self validate
-        run: dart pub global activate mono_repo 6.5.7
+        run: dart pub global activate mono_repo 6.6.0
       - name: mono_repo self validate
         run: dart pub global run mono_repo generate --validate
   job_002:
@@ -935,7 +935,7 @@ jobs:
         if: "always() && steps.package_constraint_solver_pub_upgrade.conclusion == 'success'"
         working-directory: package_constraint_solver
       - name: Upload coverage to Coveralls
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@main
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           path-to-lcov: package_constraint_solver/coverage/lcov.info
@@ -1204,7 +1204,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Mark Coveralls job finished
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@main
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           parallel-finished: true

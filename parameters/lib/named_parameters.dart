@@ -5,6 +5,7 @@
 /// This example shows the use of named arguments and parameters.
 ///
 /// See the test under `../test/named_parameters_test.dart` for its use.
+library;
 
 /// Function that counts the amount of [items] that match a given [predicate],
 /// with the option to skip the first [skip] elements.
