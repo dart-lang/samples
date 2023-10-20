@@ -2,7 +2,7 @@ name: cloud_run_google_apis
 publish_to: none # not intended for publication to pub.dev
 
 environment:
-  sdk: ^3.0.0
+  sdk: ^3.1.0
 
 dependencies:
   google_cloud: ^0.2.0
@@ -12,4 +12,4 @@ dependencies:
   shelf_router: ^1.1.0
 
 dev_dependencies:
-  dart_flutter_team_lints: ^1.0.0
+  lints: ^3.0.0

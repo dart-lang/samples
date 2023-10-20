@@ -7,6 +7,7 @@
 /// Super-initializer parameters allow to forward constructor parameters
 /// to the superclass, avoiding having to write the parameter multiple times
 /// in the superclass constructor invocation.
+library;
 
 /// This example contains multiple classes representing different types of
 /// synthesizers, a musical instrument similar to a piano

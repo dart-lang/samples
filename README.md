@@ -40,6 +40,6 @@ See the [Contributing guide][contributing] for details on how to contribute.
 
 [dart]: https://dart.dev
 [awesome-dart]: https://github.com/yissachar/awesome-dart
-[contributing]: https://github.com/dart-lang/samples/blob/master/CONTRIBUTING.md
+[contributing]: https://github.com/dart-lang/samples/blob/main/CONTRIBUTING.md
 [pop-pop-win]: https://github.com/dart-lang/sample-pop_pop_win
 [dart-tutorials]: https://dart.dev/tutorials

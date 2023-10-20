@@ -20,7 +20,7 @@ Future<void> main() async {
       // First, serve files from the 'public' directory
       .add(_staticHandler)
       // If a corresponding file is not found, send requests to a `Router`
-      .add(_router);
+      .add(_router.call);
 
   // See https://pub.dev/documentation/shelf/latest/shelf_io/serve.html
   final server = await shelf_io.serve(
