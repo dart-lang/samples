@@ -31,7 +31,7 @@ jobs:
         restore-keys: |
           os:ubuntu-latest;pub-cache-hosted
           os:ubuntu-latest
-    - uses: dart-lang/setup-dart@8a4b97ea2017cc079571daec46542f76189836b1
+    - uses: dart-lang/setup-dart@b64355ae6ca0b5d484f0106a033dd1388965d06d
       with:
         sdk: ${{ matrix.dart }}
     - run: dart pub get
