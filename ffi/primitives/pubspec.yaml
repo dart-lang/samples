@@ -5,7 +5,7 @@ description: A super simple example of calling C code from Dart with FFI
 publish_to: none
 
 environment:
-  sdk: ^3.1.0
+  sdk: ^3.2.0-0
 
 dependencies:
   ffi: ^2.1.0
