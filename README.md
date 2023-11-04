@@ -24,7 +24,7 @@ Dart][awesome-dart].
   the main isolate.
 - [native_app](https://github.com/dart-lang/samples/tree/main/native_app) - A
   command line application that can be compiled to native code using
-  `dart2native`.
+  `dart compile exe`.
 - [server](https://github.com/dart-lang/samples/tree/main/server) - Examples
   of running Dart on the server.
 - [package_constraint_solver](https://github.com/dart-lang/samples/tree/main/package_constraint_solver) - Demonstrates best-practices for publishing packages on pub.dev.
