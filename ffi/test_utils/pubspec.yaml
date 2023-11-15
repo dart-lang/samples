@@ -4,7 +4,7 @@ name: test_utils
 publish_to: none
 
 environment:
-  sdk: ^3.2.0-0
+  sdk: ^3.2.0
 
 dependencies:
   path: ^1.8.3

@@ -2,7 +2,7 @@ name: cloud_run_google_apis
 publish_to: none # not intended for publication to pub.dev
 
 environment:
-  sdk: ^3.2.0-0
+  sdk: ^3.2.0
 
 dependencies:
   google_cloud: ^0.2.0
