@@ -1,12 +1,12 @@
 name: extension_methods
-description: >
+description: >-
   A set of use cases for the extension methods feature.
 
 # This example isn't intended for publishing on pub.dev.
 publish_to: none
 
 environment:
-  sdk: ^3.1.0
+  sdk: ^3.2.0
 
 dev_dependencies:
   lints: ^3.0.0

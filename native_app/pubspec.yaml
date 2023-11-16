@@ -1,5 +1,5 @@
 name: native_app
-description: >
+description: >-
   A command line application that can be compiled to native code using
   dart compile exe.
 
@@ -7,7 +7,7 @@ description: >
 publish_to: none
 
 environment:
-  sdk: ^3.1.0
+  sdk: ^3.2.0
 
 dev_dependencies:
   lints: ^3.0.0
