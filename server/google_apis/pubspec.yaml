@@ -2,7 +2,7 @@ name: cloud_run_google_apis
 publish_to: none # not intended for publication to pub.dev
 
 environment:
-  sdk: ^3.3.0
+  sdk: ^3.4.0
 
 dependencies:
   google_cloud: ^0.2.0
@@ -12,4 +12,4 @@ dependencies:
   shelf_router: ^1.1.2
 
 dev_dependencies:
-  lints: ^3.0.0
+  lints: ^4.0.0
