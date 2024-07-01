@@ -26,12 +26,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - name: mono_repo self validate
         run: dart pub global activate mono_repo 6.6.1
       - name: mono_repo self validate
@@ -51,12 +51,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -209,12 +209,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -367,12 +367,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -516,12 +516,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -665,12 +665,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -701,12 +701,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: enhanced_enums_pub_upgrade
         name: enhanced_enums; dart pub upgrade
         run: dart pub upgrade
@@ -737,12 +737,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: extension_methods_pub_upgrade
         name: extension_methods; dart pub upgrade
         run: dart pub upgrade
@@ -773,12 +773,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: ffi_hello_world_pub_upgrade
         name: ffi/hello_world; dart pub upgrade
         run: dart pub upgrade
@@ -809,12 +809,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: ffi_primitives_pub_upgrade
         name: ffi/primitives; dart pub upgrade
         run: dart pub upgrade
@@ -845,12 +845,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: ffi_structs_pub_upgrade
         name: ffi/structs; dart pub upgrade
         run: dart pub upgrade
@@ -881,12 +881,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: server_simple_pub_upgrade
         name: server/simple; dart pub upgrade
         run: dart pub upgrade
@@ -917,14 +917,14 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: dev
       - name: "Activate package:coverage"
         run: "dart pub global activate coverage '>=1.5.0'"
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: package_constraint_solver_pub_upgrade
         name: package_constraint_solver; dart pub upgrade
         run: dart pub upgrade
@@ -962,12 +962,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: command_line_pub_upgrade
         name: command_line; dart pub upgrade
         run: dart pub upgrade
@@ -998,12 +998,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: enhanced_enums_pub_upgrade
         name: enhanced_enums; dart pub upgrade
         run: dart pub upgrade
@@ -1034,12 +1034,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: extension_methods_pub_upgrade
         name: extension_methods; dart pub upgrade
         run: dart pub upgrade
@@ -1070,12 +1070,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: ffi_hello_world_pub_upgrade
         name: ffi/hello_world; dart pub upgrade
         run: dart pub upgrade
@@ -1106,12 +1106,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: ffi_primitives_pub_upgrade
         name: ffi/primitives; dart pub upgrade
         run: dart pub upgrade
@@ -1142,12 +1142,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: ffi_structs_pub_upgrade
         name: ffi/structs; dart pub upgrade
         run: dart pub upgrade
@@ -1178,12 +1178,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+        uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
         with:
           sdk: stable
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - id: server_simple_pub_upgrade
         name: server/simple; dart pub upgrade
         run: dart pub upgrade
