@@ -22,7 +22,7 @@ jobs:
       matrix:
         dart: [ stable ]
     steps:
-    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
     - name: Cache Pub hosted dependencies
       uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9
       with:
@@ -31,7 +31,7 @@ jobs:
         restore-keys: |
           os:ubuntu-latest;pub-cache-hosted
           os:ubuntu-latest
-    - uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
+    - uses: dart-lang/setup-dart@0a8a0fc875eb934c15d08629302413c671d3f672
       with:
         sdk: ${{ matrix.dart }}
     - run: dart pub get
