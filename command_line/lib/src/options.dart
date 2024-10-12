@@ -44,5 +44,11 @@ class Options {
 enum Interval {
   day,
   week,
-  month,
+  month;
+
+  Duration get duration => switch (this) {
+        Interval.day => const Duration(days: 1),
+        Interval.week => const Duration(days: 7),
+        Interval.month => const Duration(days: 30),
+      };
 }
