@@ -7,7 +7,7 @@
 ///
 /// Imagine that this code is coming from a different package, so we can't
 /// directly change it.
-library some_api;
+library;
 
 final betty = Person('Betty Holberton', DateTime(1917, 3, 7));
 

@@ -11,10 +11,10 @@ abstract class EventFormatter {
   String format(Event event);
 }
 
-/// Returns a formatted string of the form `Friday, October 18 at 13:55 PM:
-/// <User> opened <URL>`.
+/// Returns a formatted string of the form:
+/// `Friday, October 18 at 13:55 PM: <User> opened <URL>`.
 class DefaultEventFormatter implements EventFormatter {
-  static final dateFormat = DateFormat("EEEE, MMMM d 'at' HH:mm a");
+  static final DateFormat dateFormat = DateFormat("EEEE, MMMM d 'at' HH:mm a");
 
   const DefaultEventFormatter();
 
@@ -23,30 +23,31 @@ class DefaultEventFormatter implements EventFormatter {
     var date = dateFormat.format(event.createdAt!.toLocal());
     var type = event.type;
     var username = event.actor!.login;
-    var url = util.getUrl(event);
+    var url = util.extractUrl(event);
     if (url == null) {
       return '$date: [$type]';
     }
-    var action = util.getAction(event);
+    var action = util.extractAction(event);
 
     return '$date: $username $action $url';
   }
 }
 
 class MarkdownEventFormatter implements EventFormatter {
-  static final dateFormat = DateFormat('EEE, M/d/y');
+  static final DateFormat dateFormat = DateFormat('EEE, M/d/y');
+
   @override
   String format(Event event) {
     var date = dateFormat.format(event.createdAt!.toLocal());
     var type = event.type;
-    var action = util.getAction(event);
-    var url = util.getUrl(event);
+    var action = util.extractAction(event);
+    var url = util.extractUrl(event);
     if (url == null) {
       return '- ($date): [$type]';
     }
-    var title = util.getTitle(event);
+    var title = util.extractTitle(event);
     var repoName = event.repo!.name;
-    var issueNumber = util.getIssueNumber(event);
+    var issueNumber = util.extractIssueNumber(event);
 
     return '- ($date): $action "$title" ([$repoName/$issueNumber]($url))';
   }

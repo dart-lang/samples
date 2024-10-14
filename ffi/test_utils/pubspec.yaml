@@ -4,10 +4,10 @@ name: test_utils
 publish_to: none
 
 environment:
-  sdk: ^3.4.0
+  sdk: ^3.5.0
 
 dependencies:
   path: ^1.9.0
 
 dev_dependencies:
-  lints: ^4.0.0
+  lints: ^5.0.0

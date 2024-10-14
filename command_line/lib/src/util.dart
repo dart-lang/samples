@@ -6,62 +6,25 @@ import 'package:github/github.dart';
 
 import 'options.dart';
 
-String? getAction(Event event) {
-  return event.payload!['action'];
-}
+String? extractAction(Event event) => event.payload!['action'];
 
-String? getUrl(Event event) {
-  var type = event.type;
+String? extractUrl(Event event) => switch (event.type) {
+      'PullRequestEvent' => event.payload!['pull_request']['html_url'],
+      'IssuesEvent' => event.payload!['issue']['html_url'],
+      _ => null,
+    };
 
-  if (type == 'PullRequestEvent') {
-    return event.payload!['pull_request']['html_url'];
-  }
+String? extractTitle(Event event) => switch (event.type) {
+      'PullRequestEvent' => event.payload!['pull_request']['title'],
+      'IssuesEvent' => event.payload!['issue']['title'],
+      _ => null,
+    };
 
-  if (type == 'IssuesEvent') {
-    return event.payload!['issue']['html_url'];
-  }
+int? extractIssueNumber(Event event) => switch (event.type) {
+      'PullRequestEvent' => event.payload!['pull_request']['number'],
+      'IssuesEvent' => event.payload!['issue']['number'],
+      _ => null,
+    };
 
-  return null;
-}
-
-String? getTitle(Event event) {
-  var type = event.type;
-
-  if (type == 'PullRequestEvent') {
-    return event.payload!['pull_request']['title'];
-  }
-
-  if (type == 'IssuesEvent') {
-    return event.payload!['issue']['title'];
-  }
-
-  return null;
-}
-
-int? getIssueNumber(Event event) {
-  var type = event.type;
-
-  if (type == 'PullRequestEvent') {
-    return event.payload!['pull_request']['number'];
-  }
-
-  if (type == 'IssuesEvent') {
-    return event.payload!['issue']['number'];
-  }
-
-  return null;
-}
-
-bool isTooOld(DateTime? date, Interval interval) {
-  var now = DateTime.now();
-  switch (interval) {
-    case Interval.day:
-      return date!.isBefore(now.subtract(Duration(days: 1)));
-    case Interval.week:
-      return date!.isBefore(now.subtract(Duration(days: 7)));
-    case Interval.month:
-      return date!.isBefore(now.subtract(Duration(days: 30)));
-    default:
-      return true;
-  }
-}
+bool isTooOld(DateTime? date, Interval interval) =>
+    date?.isBefore(DateTime.now().subtract(interval.duration)) ?? true;
