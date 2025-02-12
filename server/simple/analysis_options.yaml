@@ -4,4 +4,3 @@ linter:
   rules:
   - prefer_const_constructors
   - prefer_expression_function_bodies
-  - require_trailing_commas
