@@ -24,12 +24,16 @@ void main(List<String> arguments) {
     // Calculate lix.
     try {
       final l = Lix.fromString(File(fileName).readAsStringSync());
-      print('Lix is: ${l.readability}, ${l.describe()} to read '
-          '(words: ${l.words}, long words: ${l.longWords}, '
-          'periods: ${l.periods}).');
+      print(
+        'Lix is: ${l.readability}, ${l.describe()} to read '
+        '(words: ${l.words}, long words: ${l.longWords}, '
+        'periods: ${l.periods}).',
+      );
     } catch (error) {
-      print('Invalid input, could not calculate lix!\n'
-          'The input text must contain at least one full sentence.');
+      print(
+        'Invalid input, could not calculate lix!\n'
+        'The input text must contain at least one full sentence.',
+      );
     }
   }
 }

@@ -24,14 +24,10 @@ void main() {
   });
 
   void testServer(String name, Future<void> Function(String host) func) {
-    test(
-      name,
-      () async {
-        await func('http://localhost:$port');
-        await proc.kill();
-      },
-      timeout: _defaultTimeout,
-    );
+    test(name, () async {
+      await func('http://localhost:$port');
+      await proc.kill();
+    }, timeout: _defaultTimeout);
   }
 
   runTests(testServer);

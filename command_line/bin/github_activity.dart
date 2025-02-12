@@ -20,13 +20,16 @@ void main(List<String> args) {
   }
 
   var fetcher = ActivityService(
-      options.user!, options.verbose!, options.interval,
-      formatter: _getFormatter(options));
+    options.user!,
+    options.verbose!,
+    options.interval,
+    formatter: _getFormatter(options),
+  );
 
   // Stream the github activity to the console
   fetcher.getActivityStrings().listen((s) {
-    print(s);
-  })
+      print(s);
+    })
     ..onDone(() => exit(0))
     ..onError((e) => print('Unable to fetch stats:\n$e'));
 }

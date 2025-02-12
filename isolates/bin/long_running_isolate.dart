@@ -11,11 +11,7 @@ import 'dart:isolate';
 
 import 'package:async/async.dart';
 
-const filenames = [
-  'json_01.json',
-  'json_02.json',
-  'json_03.json',
-];
+const filenames = ['json_01.json', 'json_02.json', 'json_03.json'];
 
 void main() async {
   await for (final jsonData in _sendAndReceive(filenames)) {

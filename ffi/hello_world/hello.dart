@@ -14,25 +14,36 @@ typedef HelloWorld = void Function();
 
 void main() {
   // Open the dynamic library
-  var libraryPath =
-      path.join(Directory.current.path, 'hello_library', 'libhello.so');
+  var libraryPath = path.join(
+    Directory.current.path,
+    'hello_library',
+    'libhello.so',
+  );
 
   if (Platform.isMacOS) {
-    libraryPath =
-        path.join(Directory.current.path, 'hello_library', 'libhello.dylib');
+    libraryPath = path.join(
+      Directory.current.path,
+      'hello_library',
+      'libhello.dylib',
+    );
   }
 
   if (Platform.isWindows) {
     libraryPath = path.join(
-        Directory.current.path, 'hello_library', 'Debug', 'hello.dll');
+      Directory.current.path,
+      'hello_library',
+      'Debug',
+      'hello.dll',
+    );
   }
 
   final dylib = ffi.DynamicLibrary.open(libraryPath);
 
   // Look up the C function 'hello_world'
-  final HelloWorld hello = dylib
-      .lookup<ffi.NativeFunction<HelloWorldFunc>>('hello_world')
-      .asFunction();
+  final HelloWorld hello =
+      dylib
+          .lookup<ffi.NativeFunction<HelloWorldFunc>>('hello_world')
+          .asFunction();
   // Call the function
   hello();
 }

@@ -12,11 +12,7 @@ void main() {
 
   var meals = ['artichoke', 'bananas', 'broccoli'];
 
-  var domains = {
-    doug: meals,
-    patrick: meals,
-    susan: meals,
-  };
+  var domains = {doug: meals, patrick: meals, susan: meals};
 
   var csp = CSP<Guest, String>(variables, domains);
 
@@ -30,10 +26,7 @@ class Guest {
   final String name;
   final List<String> dislikes;
 
-  Guest(
-    this.name, {
-    this.dislikes = const [],
-  });
+  Guest(this.name, {this.dislikes = const []});
 
   @override
   String toString() {

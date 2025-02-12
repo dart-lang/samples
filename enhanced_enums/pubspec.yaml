@@ -5,7 +5,7 @@ description: Samples that demonstrates the enhanced enums syntax
 publish_to: none
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.7.0
 
 dev_dependencies:
   lints: ^5.0.0

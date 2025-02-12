@@ -28,10 +28,12 @@ class Options {
   final bool? verbose;
 
   @CliOption(
-      abbr: 'f',
-      help: 'The format to display. Defaults to '
-          '"Friday, October 18 at 13:55 PM: <User> opened <URL>"',
-      allowed: ['default', 'markdown'])
+    abbr: 'f',
+    help:
+        'The format to display. Defaults to '
+        '"Friday, October 18 at 13:55 PM: <User> opened <URL>"',
+    allowed: ['default', 'markdown'],
+  )
   final String? format;
 
   @CliOption(abbr: 'h', negatable: false, help: 'Prints usage information.')
@@ -47,8 +49,8 @@ enum Interval {
   month;
 
   Duration get duration => switch (this) {
-        Interval.day => const Duration(days: 1),
-        Interval.week => const Duration(days: 7),
-        Interval.month => const Duration(days: 30),
-      };
+    Interval.day => const Duration(days: 1),
+    Interval.week => const Duration(days: 7),
+    Interval.month => const Duration(days: 30),
+  };
 }

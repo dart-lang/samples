@@ -7,13 +7,17 @@ void main() async {
   group('hello_world', () {
     test('make dylib + execute', () async {
       // run 'cmake .'
-      var cmake =
-          await Process.run('cmake', ['.'], workingDirectory: 'hello_library');
+      var cmake = await Process.run('cmake', [
+        '.',
+      ], workingDirectory: 'hello_library');
       expect(cmake.exitCode, 0);
 
       // run 'make'
-      var make =
-          await Process.run('make', [], workingDirectory: 'hello_library');
+      var make = await Process.run(
+        'make',
+        [],
+        workingDirectory: 'hello_library',
+      );
       expect(make.exitCode, 0);
 
       var filePath = getLibraryFilePath('hello_library', 'hello');

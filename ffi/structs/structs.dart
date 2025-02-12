@@ -38,36 +38,47 @@ typedef FreeStringNative = Void Function(Pointer<Utf8> str);
 typedef FreeString = void Function(Pointer<Utf8> str);
 
 // C function: struct Coordinate create_coordinate(double latitude, double longitude)
-typedef CreateCoordinateNative = Coordinate Function(
-    Double latitude, Double longitude);
-typedef CreateCoordinate = Coordinate Function(
-    double latitude, double longitude);
+typedef CreateCoordinateNative =
+    Coordinate Function(Double latitude, Double longitude);
+typedef CreateCoordinate =
+    Coordinate Function(double latitude, double longitude);
 
 // C function: struct Place create_place(char *name, double latitude, double longitude)
-typedef CreatePlaceNative = Place Function(
-    Pointer<Utf8> name, Double latitude, Double longitude);
-typedef CreatePlace = Place Function(
-    Pointer<Utf8> name, double latitude, double longitude);
+typedef CreatePlaceNative =
+    Place Function(Pointer<Utf8> name, Double latitude, Double longitude);
+typedef CreatePlace =
+    Place Function(Pointer<Utf8> name, double latitude, double longitude);
 
 typedef DistanceNative = Double Function(Coordinate p1, Coordinate p2);
 typedef Distance = double Function(Coordinate p1, Coordinate p2);
 
 void main() {
   // Open the dynamic library
-  var libraryPath =
-      path.join(Directory.current.path, 'structs_library', 'libstructs.so');
+  var libraryPath = path.join(
+    Directory.current.path,
+    'structs_library',
+    'libstructs.so',
+  );
   if (Platform.isMacOS) {
     libraryPath = path.join(
-        Directory.current.path, 'structs_library', 'libstructs.dylib');
+      Directory.current.path,
+      'structs_library',
+      'libstructs.dylib',
+    );
   }
   if (Platform.isWindows) {
     libraryPath = path.join(
-        Directory.current.path, 'structs_library', 'Debug', 'structs.dll');
+      Directory.current.path,
+      'structs_library',
+      'Debug',
+      'structs.dll',
+    );
   }
   final dylib = DynamicLibrary.open(libraryPath);
 
-  final helloWorld =
-      dylib.lookupFunction<HelloWorld, HelloWorld>('hello_world');
+  final helloWorld = dylib.lookupFunction<HelloWorld, HelloWorld>(
+    'hello_world',
+  );
   final message = helloWorld().toDartString();
   print(message);
 
@@ -79,26 +90,31 @@ void main() {
   calloc.free(backwardsUtf8);
   print('$backwards reversed is $reversedMessage');
 
-  final freeString =
-      dylib.lookupFunction<FreeStringNative, FreeString>('free_string');
+  final freeString = dylib.lookupFunction<FreeStringNative, FreeString>(
+    'free_string',
+  );
   freeString(reversedMessageUtf8);
 
-  final createCoordinate =
-      dylib.lookupFunction<CreateCoordinateNative, CreateCoordinate>(
-          'create_coordinate');
+  final createCoordinate = dylib
+      .lookupFunction<CreateCoordinateNative, CreateCoordinate>(
+        'create_coordinate',
+      );
   final coordinate = createCoordinate(3.5, 4.6);
   print(
-      'Coordinate is lat ${coordinate.latitude}, long ${coordinate.longitude}');
+    'Coordinate is lat ${coordinate.latitude}, long ${coordinate.longitude}',
+  );
 
   final myHomeUtf8 = 'My Home'.toNativeUtf8();
-  final createPlace =
-      dylib.lookupFunction<CreatePlaceNative, CreatePlace>('create_place');
+  final createPlace = dylib.lookupFunction<CreatePlaceNative, CreatePlace>(
+    'create_place',
+  );
   final place = createPlace(myHomeUtf8, 42.0, 24.0);
   final name = place.name.toDartString();
   calloc.free(myHomeUtf8);
   final coord = place.coordinate;
   print(
-      'The name of my place is $name at ${coord.latitude}, ${coord.longitude}');
+    'The name of my place is $name at ${coord.latitude}, ${coord.longitude}',
+  );
   final distance = dylib.lookupFunction<DistanceNative, Distance>('distance');
   final dist = distance(createCoordinate(2.0, 2.0), createCoordinate(5.0, 6.0));
   print("distance between (2,2) and (5,6) = $dist");

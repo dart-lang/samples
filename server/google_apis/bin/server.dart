@@ -29,9 +29,7 @@ Future main() async {
 
       return Response.ok(
         JsonUtf8Encoder(' ').convert(result),
-        headers: {
-          'content-type': 'application/json',
-        },
+        headers: {'content-type': 'application/json'},
       );
     }
 
@@ -44,18 +42,18 @@ Future main() async {
 }
 
 CommitRequest _incrementRequest(String projectId) => CommitRequest(
-      writes: [
-        Write(
-          transform: DocumentTransform(
-            document:
-                'projects/$projectId/databases/(default)/documents/settings/count',
-            fieldTransforms: [
-              FieldTransform(
-                fieldPath: 'count',
-                increment: Value(integerValue: '1'),
-              )
-            ],
+  writes: [
+    Write(
+      transform: DocumentTransform(
+        document:
+            'projects/$projectId/databases/(default)/documents/settings/count',
+        fieldTransforms: [
+          FieldTransform(
+            fieldPath: 'count',
+            increment: Value(integerValue: '1'),
           ),
-        ),
-      ],
-    );
+        ],
+      ),
+    ),
+  ],
+);

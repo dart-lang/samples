@@ -36,14 +36,24 @@ typedef FreePointer = void Function(Pointer<Int32> a);
 void main() {
   // Open the dynamic library
   var libraryPath = path.join(
-      Directory.current.path, 'primitives_library', 'libprimitives.so');
+    Directory.current.path,
+    'primitives_library',
+    'libprimitives.so',
+  );
   if (Platform.isMacOS) {
     libraryPath = path.join(
-        Directory.current.path, 'primitives_library', 'libprimitives.dylib');
+      Directory.current.path,
+      'primitives_library',
+      'libprimitives.dylib',
+    );
   }
   if (Platform.isWindows) {
     libraryPath = path.join(
-        Directory.current.path, 'primitives_library', 'Debug', 'primtives.dll');
+      Directory.current.path,
+      'primitives_library',
+      'Debug',
+      'primtives.dll',
+    );
   }
 
   final dylib = DynamicLibrary.open(libraryPath);
@@ -59,8 +69,9 @@ void main() {
   // Place a value into the address
   p.value = 3;
 
-  final subtractPointer =
-      dylib.lookup<NativeFunction<SubtractFunc>>('subtract');
+  final subtractPointer = dylib.lookup<NativeFunction<SubtractFunc>>(
+    'subtract',
+  );
   final subtract = subtractPointer.asFunction<Subtract>();
   print('3 - 5 = ${subtract(p, 5)}');
 
@@ -68,8 +79,9 @@ void main() {
   calloc.free(p);
 
   // calls int *multiply(int a, int b);
-  final multiplyPointer =
-      dylib.lookup<NativeFunction<MultiplyFunc>>('multiply');
+  final multiplyPointer = dylib.lookup<NativeFunction<MultiplyFunc>>(
+    'multiply',
+  );
   final multiply = multiplyPointer.asFunction<Multiply>();
   final resultPointer = multiply(3, 5);
   // Fetch the result at the address pointed to
@@ -77,8 +89,9 @@ void main() {
   print('3 * 5 = $result');
 
   // Free up allocated memory. This time in C, because it was allocated in C.
-  final freePointerPointer =
-      dylib.lookup<NativeFunction<FreePointerFunc>>('free_pointer');
+  final freePointerPointer = dylib.lookup<NativeFunction<FreePointerFunc>>(
+    'free_pointer',
+  );
   final freePointer = freePointerPointer.asFunction<FreePointer>();
   freePointer(resultPointer);
 }

@@ -3,11 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 /// Enum that implements a Comparable using a mixin
-enum Ordering with EnumIndexOrdering<Ordering> {
-  zero,
-  few,
-  many;
-}
+enum Ordering with EnumIndexOrdering<Ordering> { zero, few, many }
 
 /// Mixin that uses the enum index to create a comparable
 mixin EnumIndexOrdering<T extends Enum> on Enum implements Comparable<T> {

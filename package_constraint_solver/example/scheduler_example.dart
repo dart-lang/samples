@@ -17,14 +17,8 @@ void main() {
   ];
 
   final timeSlots = [
-    TimeSlot(
-      DateTime(2023, 2, 14, 8),
-      DateTime(2023, 2, 14, 9),
-    ),
-    TimeSlot(
-      DateTime(2023, 2, 14, 11),
-      DateTime(2023, 2, 14, 12),
-    ),
+    TimeSlot(DateTime(2023, 2, 14, 8), DateTime(2023, 2, 14, 9)),
+    TimeSlot(DateTime(2023, 2, 14, 11), DateTime(2023, 2, 14, 12)),
   ];
 
   final scheduledTasks = scheduleTasks(tasks, timeSlots);
@@ -115,8 +109,9 @@ class TaskConstraint extends Constraint<Task, TimeSlot> {
     // Create a map containing the remaining time for each time slot
     Map<TimeSlot, Duration> remainingTime = {};
     for (var timeSlot in assignment.values) {
-      remainingTime[timeSlot] =
-          Duration(milliseconds: timeSlot.duration.inMilliseconds);
+      remainingTime[timeSlot] = Duration(
+        milliseconds: timeSlot.duration.inMilliseconds,
+      );
     }
 
     // Check that each task fits in the available time slot.

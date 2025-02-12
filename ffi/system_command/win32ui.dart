@@ -18,18 +18,20 @@ int MessageBoxW(
   UINT    uType
 );
  */
-typedef MessageBoxC = Int32 Function(
-  Pointer hwnd,
-  Pointer<Utf16> lpText,
-  Pointer<Utf16> lpCaption,
-  Uint32 uType,
-);
-typedef MessageBoxDart = int Function(
-  Pointer parentWindow,
-  Pointer<Utf16> message,
-  Pointer<Utf16> caption,
-  int type,
-);
+typedef MessageBoxC =
+    Int32 Function(
+      Pointer hwnd,
+      Pointer<Utf16> lpText,
+      Pointer<Utf16> lpCaption,
+      Uint32 uType,
+    );
+typedef MessageBoxDart =
+    int Function(
+      Pointer parentWindow,
+      Pointer<Utf16> message,
+      Pointer<Utf16> caption,
+      int type,
+    );
 
 const MB_ABORTRETRYIGNORE = 0x00000002;
 const MB_CANCELTRYCONTINUE = 0x00000006;
@@ -54,16 +56,21 @@ int messageBox(String message, String caption) {
   final user32 = DynamicLibrary.open('user32.dll');
 
   // Look up the `MessageBoxW` function.
-  final messageBoxP =
-      user32.lookupFunction<MessageBoxC, MessageBoxDart>('MessageBoxW');
+  final messageBoxP = user32.lookupFunction<MessageBoxC, MessageBoxDart>(
+    'MessageBoxW',
+  );
 
   // Allocate pointers to Utf16 arrays containing the command arguments.
   final messageP = message.toNativeUtf16();
   final captionP = caption.toNativeUtf16();
 
   // Invoke the command, and free the pointers.
-  final result =
-      messageBoxP(nullptr, messageP, captionP, MB_OK | MB_ICONINFORMATION);
+  final result = messageBoxP(
+    nullptr,
+    messageP,
+    captionP,
+    MB_OK | MB_ICONINFORMATION,
+  );
   calloc.free(messageP);
   calloc.free(captionP);
 

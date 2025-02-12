@@ -26,11 +26,7 @@ class Lix {
   /// the fields 'required', meaning that a value must be passed to the
   /// constructor. 'required' is a new keyword introduced as part of null safety
   /// which replaces the previous '@required' annotation.
-  Lix({
-    required this.words,
-    required this.longWords,
-    required this.periods,
-  }) {
+  Lix({required this.words, required this.longWords, required this.periods}) {
     readability = _calculate();
   }
 
