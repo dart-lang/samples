@@ -4,7 +4,7 @@ repository: https://github.com/dart-lang/samples/tree/main/package_constraint_so
 publish_to: none
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.7.0
 
 dependencies:
   path: ^1.9.0

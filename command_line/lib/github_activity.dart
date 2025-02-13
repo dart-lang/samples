@@ -32,8 +32,12 @@ class ActivityService {
   final EventFormatter formatter;
   static const _supportedEventTypes = ['PullRequestEvent', 'IssuesEvent'];
 
-  ActivityService(this.username, this.verbose, this.interval,
-      {this.formatter = const DefaultEventFormatter()});
+  ActivityService(
+    this.username,
+    this.verbose,
+    this.interval, {
+    this.formatter = const DefaultEventFormatter(),
+  });
 
   /// Returns a stream of formatted lines for printing to the console.
   Stream<String> getActivityStrings() async* {

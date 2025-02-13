@@ -10,10 +10,7 @@ class Guest {
   final String name;
   final List<String> dislikes;
 
-  Guest(
-    this.name, {
-    this.dislikes = const [],
-  });
+  Guest(this.name, {this.dislikes = const []});
 
   @override
   String toString() {
@@ -48,32 +45,15 @@ class AvoidDislikes extends Constraint<Guest, String> {
 void main() {
   group('constraint satisfaction framework', () {
     test('Satisfies constraints', () {
-      var doug = Guest(
-        'Doug',
-        dislikes: ['artichoke'],
-      );
-      var patrick = Guest(
-        'Patrick',
-        dislikes: ['bananas'],
-      );
-      var susan = Guest(
-        'Susan',
-        dislikes: ['broccoli'],
-      );
+      var doug = Guest('Doug', dislikes: ['artichoke']);
+      var patrick = Guest('Patrick', dislikes: ['bananas']);
+      var susan = Guest('Susan', dislikes: ['broccoli']);
 
       var variables = [doug, patrick, susan];
 
-      var meals = [
-        'artichoke',
-        'bananas',
-        'broccoli',
-      ];
+      var meals = ['artichoke', 'bananas', 'broccoli'];
 
-      var domains = {
-        doug: meals,
-        patrick: meals,
-        susan: meals,
-      };
+      var domains = {doug: meals, patrick: meals, susan: meals};
 
       var csp = CSP<Guest, String>(variables, domains);
       csp.addConstraint(AvoidDislikes(variables));

@@ -7,13 +7,17 @@ void main() async {
   group('structs', () {
     test('make dylib + execute', () async {
       // run 'cmake .'
-      var cmake = await Process.run('cmake', ['.'],
-          workingDirectory: 'structs_library');
+      var cmake = await Process.run('cmake', [
+        '.',
+      ], workingDirectory: 'structs_library');
       expect(cmake.exitCode, 0);
 
       // run 'make'
-      var make =
-          await Process.run('make', [], workingDirectory: 'structs_library');
+      var make = await Process.run(
+        'make',
+        [],
+        workingDirectory: 'structs_library',
+      );
       expect(make.exitCode, 0);
 
       // Verify dynamic library was created
@@ -32,7 +36,8 @@ void main() async {
   });
 }
 
-const _expected = 'Hello World\n'
+const _expected =
+    'Hello World\n'
     'backwards reversed is sdrawkcab\n'
     'Coordinate is lat 3.5, long 4.6\n'
     'The name of my place is My Home at 42.0, 24.0\n'

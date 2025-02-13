@@ -21,7 +21,7 @@ void main() {
       payload: {
         'action': 'closed',
         'pull_request': {
-          'html_url': 'https://github.com/peermaps/random-slicing/issues/2'
+          'html_url': 'https://github.com/peermaps/random-slicing/issues/2',
         },
       },
       org: org,
@@ -32,8 +32,10 @@ void main() {
     // Don't check exact date since it is formatted as local time.
     expect(output, contains('Tuesday, October 1 at '));
     expect(
-        output,
-        contains(
-            'substack closed https://github.com/peermaps/random-slicing/issues/2'));
+      output,
+      contains(
+        'substack closed https://github.com/peermaps/random-slicing/issues/2',
+      ),
+    );
   });
 }

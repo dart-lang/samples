@@ -27,11 +27,7 @@ class Synth {
 
   /// In the class constructor [model] is a positional parameter,
   /// while [polyphony] and [oscillators] are named parameters.
-  Synth(
-    this.model, {
-    required this.polyphony,
-    this.oscillators = 1,
-  });
+  Synth(this.model, {required this.polyphony, this.oscillators = 1});
 
   @override
   String toString() {
@@ -73,14 +69,8 @@ class MultiOscillatorSynth extends Synth {
   /// [model] is forwarded to the super constructor.
   /// [polyphony] and [oscillators] positional parameters are then passed to the
   /// named parameters in the super constructor.
-  MultiOscillatorSynth(
-    super.model,
-    int polyphony,
-    int oscillators,
-  ) : super(
-          polyphony: polyphony,
-          oscillators: oscillators,
-        );
+  MultiOscillatorSynth(super.model, int polyphony, int oscillators)
+    : super(polyphony: polyphony, oscillators: oscillators);
 }
 
 /// This class represents a synth with a fixed amount
@@ -90,9 +80,5 @@ class MultiOscillatorSynth extends Synth {
 class FixedOscillatorSynth extends Synth {
   /// [model] is forwarded to the super constructor.
   /// [polyphony] and [oscillators] are hardcoded.
-  FixedOscillatorSynth(super.model)
-      : super(
-          polyphony: 1,
-          oscillators: 3,
-        );
+  FixedOscillatorSynth(super.model) : super(polyphony: 1, oscillators: 3);
 }

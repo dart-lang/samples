@@ -7,13 +7,17 @@ void main() async {
   group('primitives', () {
     test('make dylib + execute', () async {
       // run 'cmake .'
-      var cmake = await Process.run('cmake', ['.'],
-          workingDirectory: 'primitives_library');
+      var cmake = await Process.run('cmake', [
+        '.',
+      ], workingDirectory: 'primitives_library');
       expect(cmake.exitCode, 0);
 
       // run 'make'
-      var make =
-          await Process.run('make', [], workingDirectory: 'primitives_library');
+      var make = await Process.run(
+        'make',
+        [],
+        workingDirectory: 'primitives_library',
+      );
       expect(make.exitCode, 0);
 
       // Verify dynamic library was created
@@ -28,10 +32,13 @@ void main() async {
       // Verify program output
       expect(dartProcess.stderr, isEmpty);
       expect(
-          dartProcess.stdout,
-          equals('3 + 5 = 8\n'
-              '3 - 5 = -2\n'
-              '3 * 5 = 15\n'));
+        dartProcess.stdout,
+        equals(
+          '3 + 5 = 8\n'
+          '3 - 5 = -2\n'
+          '3 * 5 = 15\n',
+        ),
+      );
     });
   });
 }

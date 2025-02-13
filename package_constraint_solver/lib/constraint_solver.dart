@@ -55,7 +55,8 @@ class CSP<V, D> {
       // Check that each variable is present in the domains map
       if (!domains.containsKey(variable)) {
         throw ArgumentError(
-            'Each variable should have a domain associated with it.');
+          'Each variable should have a domain associated with it.',
+        );
       }
     }
   }
@@ -66,7 +67,8 @@ class CSP<V, D> {
       // Check that this constraint's variable is present in this CSP
       if (!variables.contains(variable)) {
         throw ArgumentError(
-            "The constraint's variable is not present in this CSP");
+          "The constraint's variable is not present in this CSP",
+        );
       }
 
       // Add the constraint to the `constraints` map. As long as the previous

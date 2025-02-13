@@ -42,13 +42,9 @@ void main() {
 
     // positional argument `predicate` appears between
     // named arguments `items` and `skip`
-    final total = countWhere<int>(
-      items: list,
-      (item) {
-        return item % 2 == 0;
-      },
-      skip: 1,
-    );
+    final total = countWhere<int>(items: list, (item) {
+      return item % 2 == 0;
+    }, skip: 1);
 
     expect(total, 2);
   });

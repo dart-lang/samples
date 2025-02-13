@@ -7,10 +7,7 @@
 ///
 /// This might create a false sense of (type) security, so use with caution.
 void main() {
-  var json = {
-    'id': 100,
-    'name': 'Dash',
-  };
+  var json = {'id': 100, 'name': 'Dash'};
 
   print("${json.name}'s ID is ${json.id}."); // Dash's ID is 100.
 }

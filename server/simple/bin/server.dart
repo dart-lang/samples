@@ -26,8 +26,8 @@ Future<void> main() async {
   final server = await shelf_io.serve(
     // See https://pub.dev/documentation/shelf/latest/shelf/logRequests.html
     logRequests()
-        // See https://pub.dev/documentation/shelf/latest/shelf/MiddlewareExtensions/addHandler.html
-        .addHandler(cascade.handler),
+    // See https://pub.dev/documentation/shelf/latest/shelf/MiddlewareExtensions/addHandler.html
+    .addHandler(cascade.handler),
     InternetAddress.anyIPv4, // Allows external connections
     port,
   );
@@ -39,27 +39,28 @@ Future<void> main() async {
 }
 
 // Serve files from the file system.
-final _staticHandler =
-    shelf_static.createStaticHandler('public', defaultDocument: 'index.html');
+final _staticHandler = shelf_static.createStaticHandler(
+  'public',
+  defaultDocument: 'index.html',
+);
 
 // Router instance to handler requests.
-final _router = shelf_router.Router()
-  ..get('/helloworld', _helloWorldHandler)
-  ..get(
-    '/time',
-    (request) => Response.ok(DateTime.now().toUtc().toIso8601String()),
-  )
-  ..get('/info.json', _infoHandler)
-  ..get('/sum/<a|[0-9]+>/<b|[0-9]+>', _sumHandler);
+final _router =
+    shelf_router.Router()
+      ..get('/helloworld', _helloWorldHandler)
+      ..get(
+        '/time',
+        (request) => Response.ok(DateTime.now().toUtc().toIso8601String()),
+      )
+      ..get('/info.json', _infoHandler)
+      ..get('/sum/<a|[0-9]+>/<b|[0-9]+>', _sumHandler);
 
 Response _helloWorldHandler(Request request) => Response.ok('Hello, World!');
 
 String _jsonEncode(Object? data) =>
     const JsonEncoder.withIndent(' ').convert(data);
 
-const _jsonHeaders = {
-  'content-type': 'application/json',
-};
+const _jsonHeaders = {'content-type': 'application/json'};
 
 Response _sumHandler(Request request, String a, String b) {
   final aNum = int.parse(a);
@@ -83,16 +84,11 @@ final _dartVersion = () {
 }();
 
 Response _infoHandler(Request request) => Response(
-      200,
-      headers: {
-        ..._jsonHeaders,
-        'Cache-Control': 'no-store',
-      },
-      body: _jsonEncode(
-        {
-          'Dart version': _dartVersion,
-          'uptime': _watch.elapsed.toString(),
-          'requestCount': ++_requestCount,
-        },
-      ),
-    );
+  200,
+  headers: {..._jsonHeaders, 'Cache-Control': 'no-store'},
+  body: _jsonEncode({
+    'Dart version': _dartVersion,
+    'uptime': _watch.elapsed.toString(),
+    'requestCount': ++_requestCount,
+  }),
+);
