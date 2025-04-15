@@ -6,8 +6,8 @@ environment:
 
 dependencies:
   google_cloud: ^0.2.0
-  googleapis: ^13.2.0
-  googleapis_auth: ^1.6.0
+  googleapis: ^14.0.0
+  googleapis_auth: ^2.0.0
   shelf: ^1.4.2
   shelf_router: ^1.1.4
 

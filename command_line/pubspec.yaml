@@ -13,7 +13,7 @@ dependencies:
   args: ^2.5.0
   build_cli_annotations: ^2.1.0
   github: ^9.24.0
-  intl: ^0.19.0
+  intl: ^0.20.0
 
 dev_dependencies:
   build_cli: ^2.2.3
