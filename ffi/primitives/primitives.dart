@@ -52,7 +52,7 @@ void main() {
       Directory.current.path,
       'primitives_library',
       'Debug',
-      'primtives.dll',
+      'primitives.dll',
     );
   }
 
