@@ -7,10 +7,10 @@ description: >-
 publish_to: none
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.10.0
 
 dev_dependencies:
-  lints: ^5.0.0
+  lints: ^6.0.0
 
 executables:
   main: hello_world

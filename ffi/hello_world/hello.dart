@@ -40,10 +40,9 @@ void main() {
   final dylib = ffi.DynamicLibrary.open(libraryPath);
 
   // Look up the C function 'hello_world'
-  final HelloWorld hello =
-      dylib
-          .lookup<ffi.NativeFunction<HelloWorldFunc>>('hello_world')
-          .asFunction();
+  final HelloWorld hello = dylib
+      .lookup<ffi.NativeFunction<HelloWorldFunc>>('hello_world')
+      .asFunction();
   // Call the function
   hello();
 }

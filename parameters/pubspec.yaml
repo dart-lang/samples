@@ -5,8 +5,8 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.10.0
 
 dev_dependencies:
-  lints: ^5.0.0
-  test: ^1.25.8
+  lints: ^6.0.0
+  test: ^1.27.0

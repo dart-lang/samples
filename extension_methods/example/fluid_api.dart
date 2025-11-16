@@ -18,8 +18,8 @@ void main() {
 
 extension on Group {
   void removeYoungest() {
-    var sorted =
-        people.toList()..sort((a, b) => a.dayOfBirth.compareTo(b.dayOfBirth));
+    var sorted = people.toList()
+      ..sort((a, b) => a.dayOfBirth.compareTo(b.dayOfBirth));
     var youngest = sorted.last;
     people.remove(youngest);
   }
