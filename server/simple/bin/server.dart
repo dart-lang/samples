@@ -45,15 +45,14 @@ final _staticHandler = shelf_static.createStaticHandler(
 );
 
 // Router instance to handler requests.
-final _router =
-    shelf_router.Router()
-      ..get('/helloworld', _helloWorldHandler)
-      ..get(
-        '/time',
-        (request) => Response.ok(DateTime.now().toUtc().toIso8601String()),
-      )
-      ..get('/info.json', _infoHandler)
-      ..get('/sum/<a|[0-9]+>/<b|[0-9]+>', _sumHandler);
+final _router = shelf_router.Router()
+  ..get('/helloworld', _helloWorldHandler)
+  ..get(
+    '/time',
+    (request) => Response.ok(DateTime.now().toUtc().toIso8601String()),
+  )
+  ..get('/info.json', _infoHandler)
+  ..get('/sum/<a|[0-9]+>/<b|[0-9]+>', _sumHandler);
 
 Response _helloWorldHandler(Request request) => Response.ok('Hello, World!');
 
