@@ -34,5 +34,7 @@ deploy using the
 feature.
 
 > [!NOTE]
-> As of January 2026, this feature is in "Preview" and requires the "beta"
-> gcloud component.
+> As of January 2026, this feature is in "Preview" and
+> requires the ["beta" gcloud component][gcloud-beta].
+
+[cloud-beta]: https://docs.cloud.google.com/sdk/docs/components#alpha_and_beta_components
