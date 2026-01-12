@@ -19,7 +19,7 @@ $ dart run bin/server.dart
 
 ### With Docker
 
-To deploy on [Cloud Run](https://cloud.google.com/run), click here
+To deploy on [Cloud Run](https://cloud.google.com/run), click
 
 [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/dart-lang/samples.git&dir=server/simple)
 
