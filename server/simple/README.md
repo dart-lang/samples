@@ -7,11 +7,17 @@ A simple Dart HTTP server using [package:shelf](https://pub.dev/packages/shelf).
   [Cloud Run](https://cloud.google.com/run).)
 - Includes `Dockerfile` for easy containerization
 
+## Run locally
+
 To run this server locally, run as follows:
 
 ```bash
 $ dart run bin/server.dart
 ```
+
+## Deploy to Google Cloud Run
+
+### With Docker
 
 To deploy on [Cloud Run](https://cloud.google.com/run), click here
 
@@ -19,3 +25,14 @@ To deploy on [Cloud Run](https://cloud.google.com/run), click here
 
 or follow
 [these instructions](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/other).
+
+### With OS-only runtimes (preview).
+
+Use [`tool/deploy_source.sh`](tool/deploy_source.sh) to build and 
+deploy using the
+[OS-only runtimes](https://docs.cloud.google.com/docs/buildpacks/osonly)
+feature.
+
+> [!NOTE]
+> As of January 2026, this feature is in "Preview" and requires the "beta"
+> gcloud component.
