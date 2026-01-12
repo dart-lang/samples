@@ -6,7 +6,7 @@
 
 set -e
 
-# Get the directory of this script
+# Get the directory of this script.
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 # Get the parent directory of the script's directory
 EXPECTED_DIR=$(dirname "$SCRIPT_DIR")
