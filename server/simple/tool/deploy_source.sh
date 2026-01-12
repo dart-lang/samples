@@ -17,7 +17,7 @@ if [ "$CURRENT_DIR" != "$EXPECTED_DIR" ]; then
   exit 1
 fi
 
-# Environment Variable Configuration
+# Configure project from environment variables.
 DEFAULT_SERVICE_NAME="dart-sample"
 DEFAULT_GCP_REGION="us-central1"
 
