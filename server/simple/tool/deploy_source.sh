@@ -46,7 +46,7 @@ mkdir -p ${BUILD_DIR}/bin
 dart compile exe bin/server.dart -o ${BUILD_DIR}/${BINARY_LOCATION} --target-arch x64 --target-os linux
 cp -r public ${BUILD_DIR}/
 
-# Deploy to Google Cloud Run
+# Deploy to Google Cloud Run without using build.
 gcloud beta run deploy ${SERVICE_NAME} \
   ${PROJECT_ARG} \
   --region=${GCP_REGION} \
