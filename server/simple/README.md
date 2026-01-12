@@ -26,7 +26,7 @@ To deploy on [Cloud Run](https://cloud.google.com/run), click
 or follow
 [these instructions](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/other).
 
-### With OS-only runtimes (preview).
+### With OS-only runtime
 
 Use [`tool/deploy_source.sh`](tool/deploy_source.sh) to build and 
 deploy using the
