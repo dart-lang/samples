@@ -41,7 +41,7 @@ fi
 BUILD_DIR="build"
 BINARY_LOCATION="bin/server"
 
-# Build and prepare source
+# Build and prepare Dart source.
 mkdir -p ${BUILD_DIR}/bin
 dart compile exe bin/server.dart -o ${BUILD_DIR}/${BINARY_LOCATION} --target-arch x64 --target-os linux
 cp -r public ${BUILD_DIR}/
