@@ -15,7 +15,7 @@ Dart][awesome-dart].
   common use cases of the feature.
 - [null_safety/calculate_lix](https://github.com/dart-lang/samples/tree/main/null_safety/calculate_lix) -
   A sample app that calculates the 'lix' readability index with an
-  implementation that uses the tech preview of Dart's new null safety feature.
+  implementation that uses the Dart null safety feature.
 - [ffi](https://github.com/dart-lang/samples/tree/main/ffi) - A series of
   simple examples demonstrating how to call C libraries from Dart.
 - [isolates](https://github.com/dart-lang/samples/tree/main/isolates) - Command line
