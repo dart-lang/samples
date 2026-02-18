@@ -1,5 +1,6 @@
-LIBRARY   structs
+LIBRARY   primitives
 EXPORTS
     sum
     subtract
     multiply
+    free_pointer
