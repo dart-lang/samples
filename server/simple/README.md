@@ -26,9 +26,19 @@ To deploy on [Cloud Run](https://cloud.google.com/run), click
 or follow
 [these instructions](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/other).
 
+#### Update deployment
+
+To redeploy your changes to Cloud Run, run the following command from this directory:
+
+```bash
+gcloud run deploy --source .
+```
+
+This command will build a container image using the local `Dockerfile` and update your service.
+
 ### With OS-only runtime
 
-Use [`tool/deploy_source.sh`](tool/deploy_source.sh) to build and 
+Use [`tool/deploy_source.sh`](tool/deploy_source.sh) to build and
 deploy using the
 [OS-only runtimes](https://docs.cloud.google.com/docs/buildpacks/osonly)
 feature.
