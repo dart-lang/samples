@@ -3,8 +3,9 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:io' hide exit;
+
 import 'package:args/args.dart';
-import 'package:path/path.dart' as path;
+import 'package:path/path.dart' as p;
 
 Future<void> main(List<String> arguments) async {
   ArgResults results;
@@ -27,8 +28,7 @@ Future<void> main(List<String> arguments) async {
   var expectedDir = scriptFile.parent.parent;
   var currentDir = Directory.current;
 
-  if (path.canonicalize(currentDir.path) !=
-      path.canonicalize(expectedDir.path)) {
+  if (p.canonicalize(currentDir.path) != p.canonicalize(expectedDir.path)) {
     stderr.writeln('Error: This script must be run from: ${expectedDir.path}');
     exitCode = 1;
     return;
@@ -59,7 +59,7 @@ Future<void> main(List<String> arguments) async {
     warningMessage: 'GCP_REGION environment variable and --region flag not set',
   )!;
 
-  var buildBinDir = Directory(path.join('build', 'bin'));
+  var buildBinDir = Directory(p.join('build', 'bin'));
   if (!buildBinDir.existsSync()) {
     buildBinDir.createSync(recursive: true);
   }
@@ -69,9 +69,9 @@ Future<void> main(List<String> arguments) async {
   var compileArgs = [
     'compile',
     'exe',
-    path.join('bin', 'server.dart'),
+    p.join('bin', 'server.dart'),
     '-o',
-    path.join('build', 'bin', 'server'),
+    p.join('build', 'bin', 'server'),
     '--target-arch',
     'x64',
     '--target-os',
@@ -83,7 +83,7 @@ Future<void> main(List<String> arguments) async {
   // Copy public directory to build directory.
   var publicDir = Directory('public');
   if (publicDir.existsSync()) {
-    _copyDirectory(publicDir, Directory(path.join('build', 'public')));
+    _copyDirectory(publicDir, Directory(p.join('build', 'public')));
   } else {
     stderr.writeln('Warning: public directory not found.');
   }
@@ -148,7 +148,7 @@ void _copyDirectory(Directory source, Directory destination) {
     destination.createSync(recursive: true);
   }
   for (var entity in source.listSync(recursive: false)) {
-    var newPath = path.join(destination.path, path.basename(entity.path));
+    var newPath = p.join(destination.path, p.basename(entity.path));
     if (entity is Directory) {
       _copyDirectory(entity, Directory(newPath));
     } else if (entity is File) {
