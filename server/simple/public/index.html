@@ -7,57 +7,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" sizes="64x64" href="64.png">
   <title>pkg:shelf example</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<style>
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: sans-serif;
-  }
-
-  p {
-    margin-top: 1rem;
-    font-size: large;
-    max-width: 600px;
-  }
-
-  img {
-    max-width: 70vw;
-  }
-
-  code {
-    background: #eee;
-    padding: 3px;
-  }
-</style>
-
 <body>
-<h1>pkg:shelf example</h1>
-<img src="/dashland.jpeg" alt="Dashland">
-<p>This file is being served by <a
-    href="https://pub.dev/packages/shelf_static">package:shelf_static</a> from the
-  <code>/public</code> directory.</p>
-<!-- TODO: Link to new pkg:shelf docs once https://github.com/dart-lang/site-www/issues/3058 is fixed -->
-<p>This app uses <a
-    href="https://pub.dev/packages/shelf_router">package:shelf_router</a> to define several
-  code-based handlers:</p>
-<ul>
-  <li><a href="/helloworld">/helloworld</a></li>
-  <li><a href="/time">/time</a>
-  <li><a href="/info.json">/info.json</a> (also embedded as an <code>iframe</code> below)</li>
-  <li><code>/sum/&lt;a|[0-9]+&gt;/&lt;b|[0-9]+&gt;</code></li>
-</ul>
+  <img src="/welcome_dart_server.png" alt="Welcome Dart Server" width="519" height="300">
+  <p>This application is built using the following packages:</p>
+  <dl>
+    <dt><a href="https://pub.dev/packages/shelf">package:shelf</a></dt>
+    <dd>Provides the core HTTP server middleware and request/response handling.</dd>
+    <dt><a href="https://pub.dev/packages/shelf_static">package:shelf_static</a></dt>
+    <dd>Serves static files from the local filesystem (including this page and images from the <code>/public</code>
+      directory).</dd>
+    <dt><a href="https://pub.dev/packages/shelf_router">package:shelf_router</a></dt>
+    <dd>Defines dynamic route handlers and regular expression URL pattern matching.</dd>
+  </dl>
 
-<p>
-  The last handler is defined with regular expressions to handle requests to <a href="/sum/1/2">/sum/1/2</a>
-  and <a href="/sum/35/7">/sum/35/7</a>,
-  but not <a href="/sum/bob/john">/sum/bob/john</a> or <a href="/sum/1/2/3">/sum/1/2/3</a>.
-<p>
+  <p>The router defines several code-based handlers:</p>
+  <ul>
+    <li><a href="/helloworld">/helloworld</a><br>Returns plain text.
+    </li>
+    <li><a href="/time">/time</a><br>Returns <code>application/json</code> with the current UTC date and
+      time.</li>
+    <li><code>/sum/&lt;a|[0-9]+&gt;/&lt;b|[0-9]+&gt;</code><br>Uses regular expressions to handle
+      requests to <a href="/sum/1/2">/sum/1/2</a>
+      and <a href="/sum/35/7">/sum/35/7</a>, but not <a href="/sum/bob/john">/sum/bob/john</a>.
+    </li>
+    <li><a href="/info.json">/info.json</a><br>Returns the info.json shown in the iframe below.</li>
+  </ul>
 
-<iframe width="400" height="100" src="info.json"></iframe>
+  <iframe width="650" height="300" src="info.json"></iframe>
 
 </body>
 

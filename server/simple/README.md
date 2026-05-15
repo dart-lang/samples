@@ -1,3 +1,5 @@
+![Welcome Dart Server](public/welcome_dart_server.png)
+
 A simple Dart HTTP server using [package:shelf](https://pub.dev/packages/shelf).
 
 - Listens on "any IP" (0.0.0.0) instead of loop-back (localhost, 127.0.0.1) to
@@ -28,13 +30,13 @@ or follow
 
 ### With OS-only runtime
 
-Use [`tool/deploy_source.sh`](tool/deploy_source.sh) to build and 
+Use [`tool/deploy_source.dart`](tool/deploy_source.dart) to build and
 deploy using the
 [OS-only runtimes](https://docs.cloud.google.com/docs/buildpacks/osonly)
 feature.
 
 > [!NOTE]
-> As of January 2026, this feature is in "Preview" and
+> As of May 2026, this feature is in "Preview" and
 > requires the ["beta" gcloud component][gcloud-beta].
 
 [cloud-beta]: https://docs.cloud.google.com/sdk/docs/components#alpha_and_beta_components

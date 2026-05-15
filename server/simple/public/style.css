@@ -1,0 +1,134 @@
+:root {
+  --bg-color: #f8fafc;
+  --text-color: #1e293b;
+  --link-color: #2563eb;
+  --link-hover: #1d4ed8;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --code-bg: #f1f5f9;
+  --accent-color: #0284c7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #0f172a;
+    --text-color: #f1f5f9;
+    --link-color: #38bdf8;
+    --link-hover: #7dd3fc;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --code-bg: #0b0f19;
+    --accent-color: #38bdf8;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 2rem 1rem;
+  line-height: 1.6;
+}
+
+p {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  max-width: 650px;
+  width: 100%;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+code {
+  background-color: var(--code-bg);
+  padding: 0.2rem 0.4rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.95em;
+  color: var(--accent-color);
+}
+
+dl,
+ul {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem 2rem;
+  max-width: 650px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  margin: 1rem 0;
+}
+
+dt {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: var(--link-color);
+}
+
+dt:first-child {
+  margin-top: 0;
+}
+
+dd {
+  margin-bottom: 1.2rem;
+  margin-left: 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--link-color);
+  color: var(--text-color);
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+li::before {
+  content: "•";
+  color: var(--link-color);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+iframe {
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
