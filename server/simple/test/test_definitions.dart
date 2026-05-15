@@ -40,4 +40,17 @@ void runTests(
     expect(response.statusCode, 200);
     expect(response.body, contains('pkg:shelf example'));
   });
+
+  testServer('sum', (host) async {
+    var response = await get(Uri.parse('$host/sum/1/2'));
+    expect(response.statusCode, 200);
+    expect(response.body, contains('"sum": 3'));
+
+    // Test integer overflow / invalid integer handling.
+    response = await get(
+      Uri.parse('$host/sum/9999999999999999999999999999999999999999999/2'),
+    );
+    expect(response.statusCode, 400);
+    expect(response.body, 'Invalid integer arguments');
+  });
 }

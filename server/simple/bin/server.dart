@@ -14,7 +14,7 @@ import 'package:shelf_static/shelf_static.dart' as shelf_static;
 Future<void> main() async {
   // If the "PORT" environment variable is set, listen to it. Otherwise, 8080.
   // https://cloud.google.com/run/docs/reference/container-contract#port
-  final port = int.parse(Platform.environment['PORT'] ?? '8080');
+  final port = int.tryParse(Platform.environment['PORT'] ?? '8080') ?? 8080;
 
   // See https://pub.dev/documentation/shelf/latest/shelf/Cascade-class.html
   final cascade = Cascade()
@@ -63,8 +63,11 @@ String _jsonEncode(Object? data) =>
 const _jsonHeaders = {'content-type': 'application/json'};
 
 Response _sumHandler(Request request, String a, String b) {
-  final aNum = int.parse(a);
-  final bNum = int.parse(b);
+  final aNum = int.tryParse(a);
+  final bNum = int.tryParse(b);
+  if (aNum == null || bNum == null) {
+    return Response.badRequest(body: 'Invalid integer arguments');
+  }
   return Response.ok(
     _jsonEncode({'a': aNum, 'b': bNum, 'sum': aNum + bNum}),
     headers: {

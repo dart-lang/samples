@@ -1,3 +1,5 @@
+![Welcome Dart Server](public/welcome_dart_server.png)
+
 A simple Dart HTTP server using [package:shelf](https://pub.dev/packages/shelf).
 
 - Listens on "any IP" (0.0.0.0) instead of loop-back (localhost, 127.0.0.1) to
