@@ -55,7 +55,15 @@ dart test
 
 ## Deploying to Cloud Run
 
-Deploy with your bucket configuration:
+### Fast Direct Source Deployment (osonly)
+
+From the repository root:
+
+```sh
+dart tool/deploy_server.dart server/cloud_storage --set-env-vars=STORAGE_BUCKET="my-demo-bucket"
+```
+
+### Standard Container Deployment (Docker)
 
 ```sh
 gcloud run deploy dart-storage-sample \

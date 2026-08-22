@@ -40,7 +40,15 @@ dart test
 
 ## Deploying to Cloud Run
 
-Deploy directly from source with the Google Cloud SDK:
+### Fast Direct Source Deployment (osonly)
+
+From the repository root:
+
+```sh
+dart tool/deploy_server.dart server/cloud_run
+```
+
+### Standard Container Deployment (Docker)
 
 ```sh
 gcloud run deploy dart-cloud-run-sample \

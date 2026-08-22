@@ -21,5 +21,28 @@ Examples demonstrating how to build, test, and deploy HTTP services in Dart usin
    and [`package:google_cloud_shelf`](https://pub.dev/packages/google_cloud_shelf).
    Demonstrates bucket listing, file upload/download, and Application Default Credentials.
 
-Each sample includes a `Dockerfile` for turnkey deployment to Cloud Run or any container host.
-See the `README.md` in each directory for detailed setup and deployment instructions.
+## Deploying to Cloud Run
+
+Each sample can be deployed to Cloud Run using either of two methods:
+
+### Method 1: Fast Direct Source Deployment (Recommended)
+
+Use the shared [`tool/deploy_server.dart`](../tool/deploy_server.dart) script to compile
+the Dart server to a native Linux AOT binary locally and deploy directly via Cloud Run's
+`osonly24` base image:
+
+```sh
+# Deploy any sample from the repository root (~15-20 seconds):
+dart tool/deploy_server.dart server/simple
+dart tool/deploy_server.dart server/cloud_run
+dart tool/deploy_server.dart server/cloud_storage --set-env-vars=STORAGE_BUCKET=my-bucket
+```
+
+### Method 2: Standard Docker Container Deployment
+
+Each sample includes a multi-stage `Dockerfile` that compiles to a minimal `scratch` image:
+
+```sh
+cd server/cloud_run
+gcloud run deploy dart-cloud-run-sample --source . --region us-central1 --allow-unauthenticated
+```
