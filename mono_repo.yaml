@@ -2,6 +2,8 @@
 # that everything is up to date
 self_validate: true
 github:
+  permissions:
+    contents: read
   on:
     push:
       branches:
