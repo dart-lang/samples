@@ -40,6 +40,110 @@ jobs:
       - name: mono_repo self validate
         run: dart pub global run mono_repo generate --validate
   job_002:
+    name: "analysis; Dart 3.10.0; PKGS: server/cloud_run, server/cloud_storage, server/simple; `dart analyze --fatal-infos .`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0;packages:server/cloud_run-server/cloud_storage-server/simple;commands:analyze"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0;packages:server/cloud_run-server/cloud_storage-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@7654d458321ee25acccccfdb86cd48bd95768ff1
+        with:
+          sdk: "3.10.0"
+      - id: checkout
+        name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - id: server_cloud_run_pub_upgrade
+        name: server/cloud_run; dart pub upgrade
+        run: dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/cloud_run
+      - name: "server/cloud_run; dart analyze --fatal-infos ."
+        run: dart analyze --fatal-infos .
+        if: "always() && steps.server_cloud_run_pub_upgrade.conclusion == 'success'"
+        working-directory: server/cloud_run
+      - id: server_cloud_storage_pub_upgrade
+        name: server/cloud_storage; dart pub upgrade
+        run: dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/cloud_storage
+      - name: "server/cloud_storage; dart analyze --fatal-infos ."
+        run: dart analyze --fatal-infos .
+        if: "always() && steps.server_cloud_storage_pub_upgrade.conclusion == 'success'"
+        working-directory: server/cloud_storage
+      - id: server_simple_pub_upgrade
+        name: server/simple; dart pub upgrade
+        run: dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+      - name: "server/simple; dart analyze --fatal-infos ."
+        run: dart analyze --fatal-infos .
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+    needs:
+      - job_001
+  job_003:
+    name: "analysis; Dart 3.10.0; PKGS: server/cloud_run, server/cloud_storage, server/simple; `dart format --output=none --set-exit-if-changed .`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0;packages:server/cloud_run-server/cloud_storage-server/simple;commands:format"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0;packages:server/cloud_run-server/cloud_storage-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@7654d458321ee25acccccfdb86cd48bd95768ff1
+        with:
+          sdk: "3.10.0"
+      - id: checkout
+        name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - id: server_cloud_run_pub_upgrade
+        name: server/cloud_run; dart pub upgrade
+        run: dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/cloud_run
+      - name: "server/cloud_run; dart format --output=none --set-exit-if-changed ."
+        run: "dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.server_cloud_run_pub_upgrade.conclusion == 'success'"
+        working-directory: server/cloud_run
+      - id: server_cloud_storage_pub_upgrade
+        name: server/cloud_storage; dart pub upgrade
+        run: dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/cloud_storage
+      - name: "server/cloud_storage; dart format --output=none --set-exit-if-changed ."
+        run: "dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.server_cloud_storage_pub_upgrade.conclusion == 'success'"
+        working-directory: server/cloud_storage
+      - id: server_simple_pub_upgrade
+        name: server/simple; dart pub upgrade
+        run: dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: server/simple
+      - name: "server/simple; dart format --output=none --set-exit-if-changed ."
+        run: "dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
+        working-directory: server/simple
+    needs:
+      - job_001
+  job_004:
     name: "analysis; Dart dev; PKGS: command_line, enhanced_enums, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system_command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, package_constraint_solver, parameters, server/cloud_run, server/cloud_storage, server/simple; `dart analyze --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
@@ -208,7 +312,7 @@ jobs:
         working-directory: server/simple
     needs:
       - job_001
-  job_003:
+  job_005:
     name: "analysis; Dart dev; PKGS: command_line, enhanced_enums, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system_command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, package_constraint_solver, parameters, server/cloud_run, server/cloud_storage, server/simple; `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
@@ -377,17 +481,17 @@ jobs:
         working-directory: server/simple
     needs:
       - job_001
-  job_004:
-    name: "analysis; Dart stable; PKGS: command_line, enhanced_enums, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system_command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters, server/cloud_run, server/cloud_storage, server/simple; `dart analyze --fatal-infos .`"
+  job_006:
+    name: "analysis; Dart stable; PKGS: command_line, enhanced_enums, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system_command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters; `dart analyze --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system_command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/cloud_run-server/cloud_storage-server/simple;commands:analyze"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system_command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters;commands:analyze"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system_command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/cloud_run-server/cloud_storage-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system_command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters
             os:ubuntu-latest;pub-cache-hosted;sdk:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -508,46 +612,19 @@ jobs:
         run: dart analyze --fatal-infos .
         if: "always() && steps.parameters_pub_upgrade.conclusion == 'success'"
         working-directory: parameters
-      - id: server_cloud_run_pub_upgrade
-        name: server/cloud_run; dart pub upgrade
-        run: dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: server/cloud_run
-      - name: "server/cloud_run; dart analyze --fatal-infos ."
-        run: dart analyze --fatal-infos .
-        if: "always() && steps.server_cloud_run_pub_upgrade.conclusion == 'success'"
-        working-directory: server/cloud_run
-      - id: server_cloud_storage_pub_upgrade
-        name: server/cloud_storage; dart pub upgrade
-        run: dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: server/cloud_storage
-      - name: "server/cloud_storage; dart analyze --fatal-infos ."
-        run: dart analyze --fatal-infos .
-        if: "always() && steps.server_cloud_storage_pub_upgrade.conclusion == 'success'"
-        working-directory: server/cloud_storage
-      - id: server_simple_pub_upgrade
-        name: server/simple; dart pub upgrade
-        run: dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: server/simple
-      - name: "server/simple; dart analyze --fatal-infos ."
-        run: dart analyze --fatal-infos .
-        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
-        working-directory: server/simple
     needs:
       - job_001
-  job_005:
-    name: "analysis; Dart stable; PKGS: command_line, enhanced_enums, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system_command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters, server/cloud_run, server/cloud_storage, server/simple; `dart format --output=none --set-exit-if-changed .`"
+  job_007:
+    name: "analysis; Dart stable; PKGS: command_line, enhanced_enums, extension_methods, ffi/hello_world, ffi/primitives, ffi/structs, ffi/system_command, ffi/test_utils, isolates, native_app, null_safety/calculate_lix, parameters; `dart format --output=none --set-exit-if-changed .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system_command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/cloud_run-server/cloud_storage-server/simple;commands:format"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system_command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters;commands:format"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system_command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters-server/cloud_run-server/cloud_storage-server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:command_line-enhanced_enums-extension_methods-ffi/hello_world-ffi/primitives-ffi/structs-ffi/system_command-ffi/test_utils-isolates-native_app-null_safety/calculate_lix-parameters
             os:ubuntu-latest;pub-cache-hosted;sdk:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -668,36 +745,129 @@ jobs:
         run: "dart format --output=none --set-exit-if-changed ."
         if: "always() && steps.parameters_pub_upgrade.conclusion == 'success'"
         working-directory: parameters
+    needs:
+      - job_001
+  job_008:
+    name: "unit_test; Dart 3.10.0; PKG: server/cloud_run; `dart test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0;packages:server/cloud_run;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0;packages:server/cloud_run
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@7654d458321ee25acccccfdb86cd48bd95768ff1
+        with:
+          sdk: "3.10.0"
+      - id: checkout
+        name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
       - id: server_cloud_run_pub_upgrade
         name: server/cloud_run; dart pub upgrade
         run: dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: server/cloud_run
-      - name: "server/cloud_run; dart format --output=none --set-exit-if-changed ."
-        run: "dart format --output=none --set-exit-if-changed ."
+      - name: server/cloud_run; dart test
+        run: dart test
         if: "always() && steps.server_cloud_run_pub_upgrade.conclusion == 'success'"
         working-directory: server/cloud_run
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+      - job_006
+      - job_007
+  job_009:
+    name: "unit_test; Dart 3.10.0; PKG: server/cloud_storage; `dart test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0;packages:server/cloud_storage;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0;packages:server/cloud_storage
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@7654d458321ee25acccccfdb86cd48bd95768ff1
+        with:
+          sdk: "3.10.0"
+      - id: checkout
+        name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
       - id: server_cloud_storage_pub_upgrade
         name: server/cloud_storage; dart pub upgrade
         run: dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: server/cloud_storage
-      - name: "server/cloud_storage; dart format --output=none --set-exit-if-changed ."
-        run: "dart format --output=none --set-exit-if-changed ."
+      - name: server/cloud_storage; dart test
+        run: dart test
         if: "always() && steps.server_cloud_storage_pub_upgrade.conclusion == 'success'"
         working-directory: server/cloud_storage
+    needs:
+      - job_001
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+      - job_006
+      - job_007
+  job_010:
+    name: "unit_test; Dart 3.10.0; PKG: server/simple; `dart test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0;packages:server/simple;commands:test"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0;packages:server/simple
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.10.0
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@7654d458321ee25acccccfdb86cd48bd95768ff1
+        with:
+          sdk: "3.10.0"
+      - id: checkout
+        name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
       - id: server_simple_pub_upgrade
         name: server/simple; dart pub upgrade
         run: dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
         working-directory: server/simple
-      - name: "server/simple; dart format --output=none --set-exit-if-changed ."
-        run: "dart format --output=none --set-exit-if-changed ."
+      - name: server/simple; dart test
+        run: dart test
         if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
         working-directory: server/simple
     needs:
       - job_001
-  job_006:
+      - job_002
+      - job_003
+      - job_004
+      - job_005
+      - job_006
+      - job_007
+  job_011:
     name: "unit_test; Dart dev; PKG: command_line; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -735,7 +905,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_007:
+      - job_006
+      - job_007
+  job_012:
     name: "unit_test; Dart dev; PKG: enhanced_enums; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -773,7 +945,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_008:
+      - job_006
+      - job_007
+  job_013:
     name: "unit_test; Dart dev; PKG: extension_methods; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -811,7 +985,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_009:
+      - job_006
+      - job_007
+  job_014:
     name: "unit_test; Dart dev; PKG: ffi/hello_world; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -849,7 +1025,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_010:
+      - job_006
+      - job_007
+  job_015:
     name: "unit_test; Dart dev; PKG: ffi/primitives; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -887,7 +1065,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_011:
+      - job_006
+      - job_007
+  job_016:
     name: "unit_test; Dart dev; PKG: ffi/structs; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -925,7 +1105,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_012:
+      - job_006
+      - job_007
+  job_017:
     name: "unit_test; Dart dev; PKG: package_constraint_solver; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -963,7 +1145,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_013:
+      - job_006
+      - job_007
+  job_018:
     name: "unit_test; Dart dev; PKG: server/cloud_run; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -978,12 +1162,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@65eb853c7ba17dde3be364c3d2858773e7144260
+        uses: dart-lang/setup-dart@7654d458321ee25acccccfdb86cd48bd95768ff1
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
       - id: server_cloud_run_pub_upgrade
@@ -1001,7 +1185,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_014:
+      - job_006
+      - job_007
+  job_019:
     name: "unit_test; Dart dev; PKG: server/cloud_storage; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1016,12 +1202,12 @@ jobs:
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@65eb853c7ba17dde3be364c3d2858773e7144260
+        uses: dart-lang/setup-dart@7654d458321ee25acccccfdb86cd48bd95768ff1
         with:
           sdk: dev
       - id: checkout
         name: Checkout repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
       - id: server_cloud_storage_pub_upgrade
@@ -1039,7 +1225,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_015:
+      - job_006
+      - job_007
+  job_020:
     name: "unit_test; Dart dev; PKG: server/simple; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1077,7 +1265,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_016:
+      - job_006
+      - job_007
+  job_021:
     name: "unit_test; Dart stable; PKG: command_line; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1115,7 +1305,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_017:
+      - job_006
+      - job_007
+  job_022:
     name: "unit_test; Dart stable; PKG: enhanced_enums; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1153,7 +1345,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_018:
+      - job_006
+      - job_007
+  job_023:
     name: "unit_test; Dart stable; PKG: extension_methods; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1191,7 +1385,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_019:
+      - job_006
+      - job_007
+  job_024:
     name: "unit_test; Dart stable; PKG: ffi/hello_world; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1229,7 +1425,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_020:
+      - job_006
+      - job_007
+  job_025:
     name: "unit_test; Dart stable; PKG: ffi/primitives; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1267,7 +1465,9 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_021:
+      - job_006
+      - job_007
+  job_026:
     name: "unit_test; Dart stable; PKG: ffi/structs; `dart test`"
     runs-on: ubuntu-latest
     steps:
@@ -1305,117 +1505,5 @@ jobs:
       - job_003
       - job_004
       - job_005
-  job_022:
-    name: "unit_test; Dart stable; PKG: server/cloud_run; `dart test`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:server/cloud_run;commands:test"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:server/cloud_run
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@65eb853c7ba17dde3be364c3d2858773e7144260
-        with:
-          sdk: stable
-      - id: checkout
-        name: Checkout repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
-        with:
-          persist-credentials: false
-      - id: server_cloud_run_pub_upgrade
-        name: server/cloud_run; dart pub upgrade
-        run: dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: server/cloud_run
-      - name: server/cloud_run; dart test
-        run: dart test
-        if: "always() && steps.server_cloud_run_pub_upgrade.conclusion == 'success'"
-        working-directory: server/cloud_run
-    needs:
-      - job_001
-      - job_002
-      - job_003
-      - job_004
-      - job_005
-  job_023:
-    name: "unit_test; Dart stable; PKG: server/cloud_storage; `dart test`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:server/cloud_storage;commands:test"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:server/cloud_storage
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@65eb853c7ba17dde3be364c3d2858773e7144260
-        with:
-          sdk: stable
-      - id: checkout
-        name: Checkout repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
-        with:
-          persist-credentials: false
-      - id: server_cloud_storage_pub_upgrade
-        name: server/cloud_storage; dart pub upgrade
-        run: dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: server/cloud_storage
-      - name: server/cloud_storage; dart test
-        run: dart test
-        if: "always() && steps.server_cloud_storage_pub_upgrade.conclusion == 'success'"
-        working-directory: server/cloud_storage
-    needs:
-      - job_001
-      - job_002
-      - job_003
-      - job_004
-      - job_005
-  job_024:
-    name: "unit_test; Dart stable; PKG: server/simple; `dart test`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:server/simple;commands:test"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:server/simple
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - name: Setup Dart SDK
-        uses: dart-lang/setup-dart@7654d458321ee25acccccfdb86cd48bd95768ff1
-        with:
-          sdk: stable
-      - id: checkout
-        name: Checkout repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-        with:
-          persist-credentials: false
-      - id: server_simple_pub_upgrade
-        name: server/simple; dart pub upgrade
-        run: dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: server/simple
-      - name: server/simple; dart test
-        run: dart test
-        if: "always() && steps.server_simple_pub_upgrade.conclusion == 'success'"
-        working-directory: server/simple
-    needs:
-      - job_001
-      - job_002
-      - job_003
-      - job_004
-      - job_005
+      - job_006
+      - job_007
