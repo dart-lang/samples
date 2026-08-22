@@ -6,4 +6,4 @@ stages:
     - analyze: --fatal-infos .
     - format
   - unit_test:
-    - test_with_coverage
+    - test
