@@ -8,6 +8,7 @@ import 'dart:io';
 import 'package:google_cloud/google_cloud.dart';
 import 'package:google_cloud_shelf/google_cloud_shelf.dart';
 import 'package:google_cloud_storage/google_cloud_storage.dart';
+import 'package:http/http.dart' as http;
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
@@ -22,7 +23,12 @@ Future<void> main() async {
 
   // Storage client automatically authenticates with Application Default
   // Credentials (ADC) on Cloud Run, Compute Engine, or via local `gcloud auth`.
-  final storage = Storage(projectId: projectId);
+  // When running in local/CI environments without credentials, pass an unauthenticated
+  // http.Client to prevent metadata server resolution errors.
+  final storage = Storage(
+    projectId: projectId,
+    client: projectId == null ? http.Client() : null,
+  );
 
   final bucketName = Platform.environment['STORAGE_BUCKET'];
 
