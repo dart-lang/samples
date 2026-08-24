@@ -2,6 +2,8 @@
 # that everything is up to date
 self_validate: true
 github:
+  permissions:
+    contents: read
   on:
     push:
       branches:
@@ -11,6 +13,3 @@ github:
 # Merges all analyze stages into one bot, which is more efficient
 merge_stages:
   - analysis
-
-coverage_service:
-  - coveralls

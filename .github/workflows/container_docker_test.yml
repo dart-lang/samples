@@ -1,4 +1,6 @@
 name: container_docker_test
+permissions:
+  contents: read
 on:
   push:
     branches:

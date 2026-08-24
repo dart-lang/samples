@@ -1,5 +1,5 @@
 #!/bin/bash
-# Created with package:mono_repo v6.6.3
+# Created with package:mono_repo v6.7.2
 
 # Support built in commands on windows out of the box.
 
@@ -74,10 +74,6 @@ for PKG in ${PKGS}; do
       test)
         echo 'dart test'
         dart test || EXIT_CODE=$?
-        ;;
-      test_with_coverage)
-        echo 'dart pub global run coverage:test_with_coverage'
-        dart pub global run coverage:test_with_coverage || EXIT_CODE=$?
         ;;
       *)
         echo -e "\033[31mUnknown TASK '${TASK}' - TERMINATING JOB\033[0m"
