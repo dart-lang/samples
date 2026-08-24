@@ -53,7 +53,11 @@ Future<void> main() async {
       .addMiddleware(createLoggingMiddleware(projectId: projectId))
       .addHandler(router.call);
 
-  await serveHandler(handler);
+  try {
+    await serveHandler(handler);
+  } finally {
+    storage.close();
+  }
 }
 
 Response _rootHandler(Request request, String? bucketName) => Response.ok(

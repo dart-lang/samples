@@ -11,24 +11,26 @@ import 'package:test_process/test_process.dart';
 
 void main() {
   test('starts server and responds to root endpoint', () async {
-    final port = '8092';
+    const port = 8092;
     final process = await TestProcess.start(
       Platform.resolvedExecutable,
       ['bin/server.dart'],
-      environment: {'PORT': port},
+      environment: {'PORT': port.toString()},
     );
 
+    // Wait for the server to announce it is listening.
     await expectLater(
       process.stdout,
       emitsThrough(contains('Serving at http://')),
     );
 
+    final baseUrl = Uri(scheme: 'http', host: '127.0.0.1', port: port);
     final client = http.Client();
     try {
-      final response = await client.get(Uri.parse('http://127.0.0.1:$port/'));
+      final response = await client.get(baseUrl);
       expect(response.statusCode, equals(200));
 
-      final data = jsonDecode(response.body) as Map<String, dynamic>;
+      final data = jsonDecode(response.body) as Map<String, Object?>;
       expect(data['service'], equals('Google Cloud Storage Dart Demo'));
       expect(data['bucketConfigured'], isFalse);
     } finally {
@@ -39,26 +41,26 @@ void main() {
   });
 
   test('reports clear error when bucket is not configured', () async {
-    final port = '8093';
+    const port = 8093;
     final process = await TestProcess.start(
       Platform.resolvedExecutable,
       ['bin/server.dart'],
-      environment: {'PORT': port},
+      environment: {'PORT': port.toString()},
     );
 
+    // Wait for the server to announce it is listening.
     await expectLater(
       process.stdout,
       emitsThrough(contains('Serving at http://')),
     );
 
+    final baseUrl = Uri(scheme: 'http', host: '127.0.0.1', port: port);
     final client = http.Client();
     try {
-      final response = await client.get(
-        Uri.parse('http://127.0.0.1:$port/files'),
-      );
+      final response = await client.get(baseUrl.resolve('files'));
       expect(response.statusCode, equals(400));
 
-      final data = jsonDecode(response.body) as Map<String, dynamic>;
+      final data = jsonDecode(response.body) as Map<String, Object?>;
       expect(data['error'], contains('STORAGE_BUCKET'));
     } finally {
       client.close();

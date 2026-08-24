@@ -11,33 +11,30 @@ import 'package:test_process/test_process.dart';
 
 void main() {
   test('starts server and responds to requests', () async {
-    final port = '8091';
+    const port = 8091;
     final process = await TestProcess.start(
       Platform.resolvedExecutable,
       ['bin/server.dart'],
-      environment: {'PORT': port},
+      environment: {'PORT': port.toString()},
     );
 
-    // Wait for the server to announce it is listening
+    // Wait for the server to announce it is listening.
     await expectLater(
       process.stdout,
       emitsThrough(contains('Serving at http://')),
     );
 
+    final baseUrl = Uri(scheme: 'http', host: '127.0.0.1', port: port);
     final client = http.Client();
     try {
-      final rootResponse = await client.get(
-        Uri.parse('http://127.0.0.1:$port/'),
-      );
+      final rootResponse = await client.get(baseUrl);
       expect(rootResponse.statusCode, equals(200));
       expect(
         jsonDecode(rootResponse.body),
         equals({'message': 'Hello from Cloud Run with Dart!'}),
       );
 
-      final healthResponse = await client.get(
-        Uri.parse('http://127.0.0.1:$port/healthz'),
-      );
+      final healthResponse = await client.get(baseUrl.resolve('healthz'));
       expect(healthResponse.statusCode, equals(200));
       expect(jsonDecode(healthResponse.body), equals({'status': 'healthy'}));
     } finally {

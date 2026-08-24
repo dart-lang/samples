@@ -1,22 +1,26 @@
-# Cloud Run Server Sample
+# Cloud Run server sample
 
 A minimal, production-ready HTTP service designed for deployment to
 [Google Cloud Run](https://cloud.google.com/run) using
-[package:google_cloud](https://pub.dev/packages/google_cloud) and
-[package:google_cloud_shelf](https://pub.dev/packages/google_cloud_shelf).
+[`package:google_cloud`](https://pub.dev/packages/google_cloud) and
+[`package:google_cloud_shelf`](https://pub.dev/packages/google_cloud_shelf).
 
 ## Features
 
-- **Structured Cloud Logging**: Automatically outputs GCP-compliant JSON log
-  payloads correlated with incoming `X-Cloud-Trace-Context` headers on Cloud Run,
+- **Structured cloud logging**:
+  Automatically outputs GCP-compliant JSON log payloads correlated with
+  incoming `X-Cloud-Trace-Context` headers on Cloud Run,
   falling back to human-readable console logs when running locally.
-- **Signal-Driven Graceful Shutdown**: Automatically captures `SIGTERM` and `SIGINT`
-  signals via `serveHandler` to finish pending requests before container termination.
-- **Port Detection**: Respects the `PORT` environment variable injected by Cloud Run.
-- **Minimal Container Image**: Multi-stage Dockerfile compiling Dart to a native AOT
-  binary on top of a `scratch` base image.
+- **Signal-driven graceful shutdown**:
+  Automatically captures `SIGTERM` and `SIGINT` signals with `serveHandler` to
+  finish pending requests before container termination.
+- **Port detection**:
+  Respects the `PORT` environment variable injected by Cloud Run.
+- **Minimal container image**:
+  Multi-stage Dockerfile compiling Dart to a
+  native AOT binary on top of a `scratch` base image.
 
-## Running Locally
+## Run locally
 
 Run the server with the Dart CLI:
 
@@ -32,23 +36,26 @@ curl http://localhost:8080/healthz
 curl http://localhost:8080/time
 ```
 
-## Running Tests
+## Run tests
 
 ```sh
 dart test
 ```
 
-## Deploying to Cloud Run
+## Deploy to Cloud Run
 
-### Fast Direct Source Deployment (osonly)
+### Fast direct source deployment (osonly)
 
 From the repository root:
 
 ```sh
-dart tool/deploy_server.dart server/cloud_run
+dart run tool/deploy_server.dart server/cloud_run
 ```
 
-### Standard Container Deployment (Docker)
+### Standard container deployment (Docker)
+
+Deploy the container to Cloud Run using
+the [gcloud CLI](https://docs.cloud.google.com/sdk/gcloud):
 
 ```sh
 gcloud run deploy dart-cloud-run-sample \

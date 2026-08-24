@@ -1,24 +1,28 @@
-# Google Cloud Storage Server Sample
+# Google Cloud Storage server sample
 
 An HTTP service demonstrating how to interact with
 [Google Cloud Storage](https://cloud.google.com/storage) using
-[package:google_cloud_storage](https://pub.dev/packages/google_cloud_storage),
-[package:google_cloud_shelf](https://pub.dev/packages/google_cloud_shelf), and
-[package:google_cloud](https://pub.dev/packages/google_cloud).
+[`package:google_cloud_storage`](https://pub.dev/packages/google_cloud_storage),
+[`package:google_cloud_shelf`](https://pub.dev/packages/google_cloud_shelf), and
+[`package:google_cloud`](https://pub.dev/packages/google_cloud).
 
 ## Features
 
-- **Object Storage Operations**: List bucket contents, download files, and upload
-  objects with custom MIME types using idiomatic Dart APIs.
-- **Application Default Credentials (ADC)**: Authenticates automatically using
-  attached Cloud Run service accounts in production, or `gcloud auth application-default login`
-  in local development.
-- **Structured Cloud Logging**: Seamless JSON logging and trace correlation.
-- **Graceful Lifecycle Management**: Clean SIGTERM/SIGINT signal handling.
+- **Object storage operations**:
+  List bucket contents, download files, and upload objects with custom MIME
+  types using idiomatic Dart APIs.
+- **Application Default Credentials (ADC)**:
+  Authenticates automatically using attached Cloud Run service accounts in
+  production, or `gcloud auth application-default login` in local development.
+- **Structured cloud logging**:
+  Seamless JSON logging and trace correlation.
+- **Graceful lifecycle management**:
+  Clean `SIGTERM`/`SIGINT` signal handling.
 
-## Running Locally
+## Run locally
 
-1. Authenticate with Google Cloud locally:
+1. Authenticate with Google Cloud locally using the
+   [gcloud CLI](https://docs.cloud.google.com/sdk/gcloud):
    ```sh
    gcloud auth application-default login
    ```
@@ -47,23 +51,26 @@ An HTTP service demonstrating how to interact with
    curl http://localhost:8080/files/hello.txt
    ```
 
-## Running Tests
+## Run tests
 
 ```sh
 dart test
 ```
 
-## Deploying to Cloud Run
+## Deploy to Cloud Run
 
-### Fast Direct Source Deployment (osonly)
+### Fast direct source deployment (osonly)
 
 From the repository root:
 
 ```sh
-dart tool/deploy_server.dart server/cloud_storage --set-env-vars=STORAGE_BUCKET="my-demo-bucket"
+dart run tool/deploy_server.dart server/cloud_storage --set-env-vars=STORAGE_BUCKET="my-demo-bucket"
 ```
 
-### Standard Container Deployment (Docker)
+### Standard container deployment (Docker)
+
+Deploy the container to Cloud Run using
+the [gcloud CLI](https://docs.cloud.google.com/sdk/gcloud):
 
 ```sh
 gcloud run deploy dart-storage-sample \

@@ -8,7 +8,10 @@ import 'dart:io';
 /// using the fast direct-source (`osonly24`) base image.
 ///
 /// Usage:
-///   dart tool/deploy_server.dart [target_directory] [options]
+///
+/// ```bash
+/// dart run tool/deploy_server.dart [target_directory] [options]
+/// ```
 Future<void> main(List<String> args) async {
   String? targetDirArg;
   String? project;
@@ -17,7 +20,7 @@ Future<void> main(List<String> args) async {
   String? setEnvVars;
   var dryRun = false;
 
-  // Parse arguments
+  // Parse CLI arguments.
   for (var i = 0; i < args.length; i++) {
     final arg = args[i];
     if (arg == '-h' || arg == '--help') {
@@ -52,12 +55,12 @@ Future<void> main(List<String> args) async {
     }
   }
 
-  // Resolve target directory
+  // Determine and resolve target directory.
   final Directory targetDir;
   if (targetDirArg != null) {
     targetDir = Directory(targetDirArg);
   } else {
-    // Check if current directory has a server
+    // Check if the current directory has a server to deploy.
     if (File('bin/server.dart').existsSync()) {
       targetDir = Directory.current;
     } else {
@@ -80,7 +83,7 @@ Future<void> main(List<String> args) async {
     );
   }
 
-  // Resolve configuration
+  // Resolve project configuration.
   project ??= Platform.environment['GCP_PROJECT'];
   region ??= Platform.environment['GCP_REGION'] ?? 'us-central1';
 
@@ -107,14 +110,15 @@ Future<void> main(List<String> args) async {
   print('==================================================');
 
   final buildDir = Directory(_join(targetDir.path, 'build'));
-  final buildBinDir = Directory(_join(buildDir.path, 'bin'));
-  if (!buildBinDir.existsSync()) {
-    buildBinDir.createSync(recursive: true);
+  if (buildDir.existsSync()) {
+    buildDir.deleteSync(recursive: true);
   }
+  final buildBinDir = Directory(_join(buildDir.path, 'bin'));
+  buildBinDir.createSync(recursive: true);
 
   final outputBinary = _join(buildBinDir.path, 'server');
 
-  // 1. Compile native AOT executable targeting Linux x64
+  // 1. Compile to a native AOT executable targeting Linux x64.
   print(
     '\n[1/3] Compiling ${serverEntrypoint.path} to native Linux AOT binary...',
   );
@@ -132,7 +136,7 @@ Future<void> main(List<String> args) async {
 
   await _runProcess(Platform.resolvedExecutable, compileArgs);
 
-  // 2. Copy static public assets if present
+  // 2. Copy static public assets if present.
   final publicDir = Directory(_join(targetDir.path, 'public'));
   final destPublicDir = Directory(_join(buildDir.path, 'public'));
   if (publicDir.existsSync()) {
@@ -145,8 +149,9 @@ Future<void> main(List<String> args) async {
     print('\n[2/3] No public/ directory found; skipping asset bundling.');
   }
 
-  // 3. Deploy to Cloud Run with osonly24 base image (no Cloud Build, no Docker)
-  print('\n[3/3] Deploying to Cloud Run via direct source (osonly24)...');
+  // 3. Deploy to Cloud Run using the osonly24 base image without
+  // Cloud Build or Docker.
+  print('\n[3/3] Deploying to Cloud Run using the direct source (osonly24)...');
   final isWindows = Platform.isWindows;
   final gcloudExecutable = isWindows ? 'gcloud.cmd' : 'gcloud';
 
@@ -179,7 +184,7 @@ Future<void> main(List<String> args) async {
 
 void _printUsage() {
   print('''
-Usage: dart tool/deploy_server.dart [target_directory] [options]
+Usage: dart run tool/deploy_server.dart [target_directory] [options]
 
 Options:
   -p, --project <id>          GCP Project ID (defaults to GCP_PROJECT or gcloud config)
@@ -190,9 +195,9 @@ Options:
   -h, --help                  Show this help message
 
 Examples:
-  dart tool/deploy_server.dart server/simple
-  dart tool/deploy_server.dart server/cloud_run --project=my-gcp-project
-  dart tool/deploy_server.dart server/cloud_storage --set-env-vars=STORAGE_BUCKET=my-bucket
+  dart run tool/deploy_server.dart server/simple
+  dart run tool/deploy_server.dart server/cloud_run --project=my-gcp-project
+  dart run tool/deploy_server.dart server/cloud_storage --set-env-vars=STORAGE_BUCKET=my-bucket
 ''');
 }
 
