@@ -7,36 +7,44 @@ A simple Dart HTTP server using [package:shelf](https://pub.dev/packages/shelf).
 - Defaults to listening on port `8080`, but this can be configured by setting
   the `PORT` environment variable. (This is also the convention used by
   [Cloud Run](https://cloud.google.com/run).)
-- Includes `Dockerfile` for easy containerization
+- Includes a `Dockerfile` for easy containerization.
 
 ## Run locally
 
-To run this server locally, run as follows:
+```bash
+dart run bin/server.dart
+```
+
+## Run tests
 
 ```bash
-$ dart run bin/server.dart
+dart test
 ```
 
 ## Deploy to Google Cloud Run
 
-### With Docker
+### Fast direct source deployment (osonly)
 
-To deploy on [Cloud Run](https://cloud.google.com/run), click
+From the repository root, deploy using the shared deployment tool:
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/dart-lang/samples.git&dir=server/simple)
+```bash
+dart run tool/deploy_server.dart server/simple
+```
 
-or follow
-[these instructions](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/other).
+Or from within this directory:
 
-### With OS-only runtime
+```bash
+dart run ../../tool/deploy_server.dart
+```
 
-Use [`tool/deploy_source.dart`](tool/deploy_source.dart) to build and
-deploy using the
-[OS-only runtimes](https://docs.cloud.google.com/docs/buildpacks/osonly)
-feature.
+### Standard container deployment (Docker)
 
-> [!NOTE]
-> As of May 2026, this feature is in "Preview" and
-> requires the ["beta" gcloud component][gcloud-beta].
+Deploy using the included multi-stage `Dockerfile` with
+the [gcloud CLI](https://docs.cloud.google.com/sdk/gcloud):
 
-[cloud-beta]: https://docs.cloud.google.com/sdk/docs/components#alpha_and_beta_components
+```bash
+gcloud run deploy dart-sample-simple \
+  --source . \
+  --region us-central1 \
+  --allow-unauthenticated
+```

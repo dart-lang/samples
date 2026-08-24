@@ -1,0 +1,4 @@
+# https://dart.dev/tools/pub/private-files
+.dart_tool/
+build/
+pubspec.lock

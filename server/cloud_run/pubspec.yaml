@@ -1,13 +1,14 @@
-name: container_server_example
+name: cloud_run_example
 publish_to: none # not intended for publication to pub.dev
 
 environment:
   sdk: ^3.10.0
 
 dependencies:
+  google_cloud: ^0.5.0
+  google_cloud_shelf: ^0.6.0
   shelf: ^1.4.2
   shelf_router: ^1.1.4
-  shelf_static: ^1.1.3
 
 dev_dependencies:
   http: ^1.6.0
